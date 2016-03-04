@@ -1,0 +1,17 @@
+1、hibernate多对多以及级联关系设置
+	多对多请转换成2个一对多 维护中间表的对应关系，在多的一方级联关系设置成none  一的一方设置all
+	
+	只删除中间表时，需要先设置中间表对象对两端对象的引用 然后在调用删除方法
+	参考AccountServiceTest
+	
+	
+2、test测试用例
+	默认AbstractTransactionalJUnit4SpringContextTests 会在执行完毕后 回滚事务
+ 	如需要提交事务 请配置 @TransactionConfiguration(defaultRollback=false)
+ 	参考AccountServiceTest
+ 	
+ 	
+ 3、shiro安全认证
+ 	异步提交时转到登录页面，在shiroFilter的 filterChainDefinitions 中增加自定义filter
+ 	ToSee AjaxAuthenticationFilter 异步请求写入Response跳转地址，为了方便跳转至首页（首页是需要登录的）
+ 	

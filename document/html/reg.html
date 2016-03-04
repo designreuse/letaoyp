@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0043)http://www.hzltyp.com/user.php?act=register -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="Generator" content="ECSHOP v2.7.3">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>用户中心_龙淘优品--专业网店运营服务商 服装网店货源,开网店女装货源,一件代发货源网! - </title>
+    <link rel="shortcut icon" href="http://www.hzltyp.com/favicon.ico">
+    <link rel="icon" href="http://www.hzltyp.com/animated_favicon.gif" type="image/gif">
+    <link href="./css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="./css/login_reg.css">
+</head>
+
+<body>
+    <link href="./css/ec11.css" rel="stylesheet" type="text/css">
+    <div class="reg_top">
+        <a href="http://www.hzltyp.com/index.php" name="top"><img src="./images/reg_logo.jpg"></a>
+    </div>
+    <div class="clear0"></div>
+    <div class="blank"></div>
+    <div class="container">
+        <div id="body">
+            <div class="login_main">
+                <div class="l_bar"></div>
+                <div id="main" class="login_page">
+                    <div class="content_head">
+                        <h1>注册会员</h1>
+                    </div>
+                    <div class="content_body">
+                        <form action="http://www.hzltyp.com/user.php" method="post" name="formUser" onsubmit="return register();" class="signup-user-form">
+                            <div class="input_container email">
+                                <label>用户名</label>
+                                <label class="input_field">
+                                    <input class="f_input" size="30" name="username" id="username" type="text" onblur="is_registered(this.value);">
+                                </label>
+                                <div class="f-input-tip-container">
+                                    <div class="f_input_tip_text" id="username_notice"></div>
+                                </div>
+                            </div>
+                            <div class="input_container email">
+                                <label>email</label>
+                                <label class="input_field">
+                                    <input class="f_input" size="30" name="email" id="email" type="text" onblur="checkEmail(this.value);">
+                                </label>
+                                <div class="f-input-tip-container">
+                                    <div class="f_input_tip_text" id="email_notice"></div>
+                                </div>
+                            </div>
+                            <div class="input_container password">
+                                <label>密码</label>
+                                <label class="input_field">
+                                    <input class="f_input" name="password" id="password1" type="password" onblur="check_password(this.value);" onkeyup="checkIntensity(this.value)">
+                                </label>
+                                <div class="f-input-tip-container">
+                                    <div class="f_input_tip_text" id="password_notice"></div>
+                                </div>
+                                <div style="clear: both;"></div>
+                                <p class="safe-tip">
+                                    <label id="pwd_lower" class="">弱</label>
+                                    <label id="pwd_middle" class="">中</label>
+                                    <label id="pwd_high" class="">强</label>
+                                </p>
+                            </div>
+                            <div class="input_container password_confir">
+                                <label>确认密码</label>
+                                <label class="input_field">
+                                    <input class="f_input" name="confirm_password" id="confirm_password" type="password" onblur="check_conform_password(this.value);">
+                                </label>
+                                <div class="f-input-tip-container">
+                                    <div class="f_input_tip_text" id="conform_password_notice"></div>
+                                </div>
+                            </div>
+                            <div class="input_container">
+                                <label>MSN</label>
+                                <label class="input_field">
+                                    <input name="extend_field1" type="text" class="f_input" size="30">
+                                </label>
+                                <div class="input_container">
+                                    <label id="extend_field2i">QQ</label>
+                                    <label class="input_field">
+                                        <input name="extend_field2" type="text" class="f_input" size="30">
+                                    </label>
+                                    <div class="f-input-tip-container">
+                                        <div class="f_input_tip_text">*</div>
+                                    </div>
+                                </div>
+                                <div class="input_container">
+                                    <label>办公电话</label>
+                                    <label class="input_field">
+                                        <input name="extend_field3" type="text" class="f_input" size="30">
+                                    </label>
+                                    <div class="input_container">
+                                        <label>家庭电话</label>
+                                        <label class="input_field">
+                                            <input name="extend_field4" type="text" class="f_input" size="30">
+                                        </label>
+                                        <div class="input_container">
+                                            <label id="extend_field5i">手机</label>
+                                            <label class="input_field">
+                                                <input name="extend_field5" type="text" class="f_input" size="30">
+                                            </label>
+                                            <div class="f-input-tip-container">
+                                                <div class="f_input_tip_text">*</div>
+                                            </div>
+                                        </div>
+                                        <div class="input_container">
+                                            <label>密码提示问题</label>
+                                            <label class="input_fields">
+                                                <select name="sel_question">
+                                                    <option value="0">请选择密码提示问题</option>
+                                                    <option value="friend_birthday">我最好朋友的生日？</option>
+                                                    <option value="old_address">我儿时居住地的地址？</option>
+                                                    <option value="motto">我的座右铭是？</option>
+                                                    <option value="favorite_movie">我最喜爱的电影？</option>
+                                                    <option value="favorite_song">我最喜爱的歌曲？</option>
+                                                    <option value="favorite_food">我最喜爱的食物？</option>
+                                                    <option value="interest">我最大的爱好？</option>
+                                                    <option value="favorite_novel">我最喜欢的小说？</option>
+                                                    <option value="favorite_equipe">我最喜欢的运动队？</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                        <div class="input_container">
+                                            <label>密码问题答案 </label>
+                                            <label class="input_field">
+                                                <input name="passwd_answer" type="text" class="f_input" size="30" maxlengt="20">
+                                            </label>
+                                        </div>
+                                        <div class="email_subscribe check_radio">
+                                            <label>
+                                                <input name="agreement" type="checkbox" value="1" checked="checked"> 我已看过并接受《
+                                                <a href="http://www.hzltyp.com/article.php?cat_id=-1" style="color:blue" target="_blank">用户协议</a>》</label>
+                                        </div>
+                                        <div class="cl"></div>
+                                        <div class="act">
+                                            <input name="act" type="hidden" value="act_register">
+                                            <input type="hidden" name="back_act" value="">
+                                            <input value="同意协议并注册" name="Submit" class="signup_button" type="submit">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="sidebar" class="login_page">
+                                    <div class="siderbar_head"> 我已有账号，我要登录？ </div>
+                                    <div class="loginup_button"><a href="http://www.hzltyp.com/user.php" rel="nofollow">立即登录</a></div>
+                                    <div class="loginup_button"> <a href="http://www.hzltyp.com/user.php?act=get_password">您忘记密码了吗？</a></div>
+                                </div>
+                                <div class="r_bar"></div>
+                            </div>
+                        </form>
+                        <div style="display:none;color:"></div>
+                        <div class="blank"></div>
+                    </div>
+                </div>
+                <div class="blank"></div>
+                <div class="qqline"> <span><b>&gt;</b>在线客服</span>
+                    <ul>
+                        <li class="li1">工作时间
+                            <br>
+                            <i>周一至周六(9:30-18:00)</i>
+                        </li>
+                        <li>
+                        </li>
+                        <li>招商加盟热线
+                            <dt class="service-num">400-8233-660</dt>
+                        </li>
+                        <li>
+                            <img src="./images/erweima.jpg" width="120">
+                            <p>关注我们</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footad">
+                    <div class="footads">
+                        <a href="http://www.hzltyp.com/user.php?"></a>
+                        <a href="http://www.hzltyp.com/user.php?"></a>
+                        <a href="http://www.hzltyp.com/user.php?"></a>
+                        <a href="http://www.hzltyp.com/user.php?"></a>
+                    </div>
+                </div>
+                <div class="footer_wrap">
+                    <div class="footer">
+                        <div class="fl">
+                            <dl class="service-info">
+                                <dt class="service-num">售后服务热线 </dt>
+                                <dd class="number">400-8233-660</dd>
+                                <dt class="service-email">客服邮箱 </dt>
+                                <dd class="email"> 328451149@qq.com </dd>
+                            </dl>
+                        </div>
+                        <div class="fr">
+                            <div class="help_cat">
+                                <div class="tt">联系合作</div>
+                                <div class="ii"><a href="http://www.hzltyp.com/article.php?id=17" title="资费标准">资费标准</a></div>
+                                <div class="ii"><a href="http://www.hzltyp.com/article.php?id=18" title="私人定制-豪华至尊">私人定制-豪华至尊</a></div>
+                                <div class="ii"><a href="http://www.hzltyp.com/article.php?id=19" title="微商城">微商城</a></div>
+                            </div>
+                            <div class="help_cat">
+                                <div class="tt">服务保证</div>
+                                <div class="ii"><a href="http://www.hzltyp.com/article.php?id=20" title="退换货政策">退换货政策</a></div>
+                                <div class="ii"><a href="http://www.hzltyp.com/article.php?id=21" title="快递资费">快递资费</a></div>
+                                <div class="ii"><a href="http://www.hzltyp.com/article.php?id=28" title="下架区">下架区</a></div>
+                            </div>
+                            <div class="help_cat">
+                                <div class="tt">新手上路</div>
+                                <div class="ii"><a href="http://www.hzltyp.com/article.php?id=22" title="网店新手教程">网店新手教程</a></div>
+                                <div class="ii"><a href="http://www.hzltyp.com/article.php?id=23" title="如何在网上下单">如何在网上下单</a></div>
+                                <div class="ii"><a href="http://www.hzltyp.com/article.php?id=24" title="如何注册会员">如何注册会员</a></div>
+                            </div>
+                            <div class="help_cat">
+                                <div class="tt">关于我们</div>
+                                <div class="ii"><a href="http://www.hzltyp.com/article.php?id=25" title="公司简介">公司简介</a></div>
+                                <div class="ii"><a href="http://www.hzltyp.com/article.php?id=26" title="联系我们">联系我们</a></div>
+                                <div class="ii"><a href="http://www.hzltyp.com/article.php?id=27" title="员工风采">员工风采</a></div>
+                            </div>
+                            <div class="help_cat">
+                                <div class="tt">网店新手教程（总）</div>
+                                <div class="ii"><a href="http://www.hzltyp.com/article.php?id=29" title="新手卖家必读：防骗技巧">新手卖家必读：防骗技巧</a></div>
+                                <div class="ii"><a href="http://www.hzltyp.com/article.php?id=30" title="新手卖家必读：常见问题解答">新手卖家必读：常见问题解答</a></div>
+                                <div class="ii"><a href="http://www.hzltyp.com/article.php?id=31" title="店长必看：如何抓住淘宝自然搜索的流量">店长必看：如何抓住淘宝自然搜索的...</a></div>
+                            </div>
+                        </div>
+                        <div class="clear10"></div>
+                        <div class="footer_info"> © 2005-2016 龙淘优品 版权所有，并保留所有权利。
+                            <a href="http://wpa.qq.com/msgrd?V=1&amp;Uin=4008233660&amp;Site=%E9%BE%99%E6%B7%98%E4%BC%98%E5%93%81&amp;Menu=yes" target="_blank"><img src="./用户中心_龙淘优品--专业网店运营服务商 服装网店货源,开网店女装货源,一件代发货源网! -_files/pa" height="16" border="0" alt="QQ"> 4008233660</a>
+                            <a href="http://amos1.taobao.com/msg.ww?v=2&amp;uid=kefujiushiwo&amp;s=2" target="_blank"><img src="./用户中心_龙淘优品--专业网店运营服务商 服装网店货源,开网店女装货源,一件代发货源网! -_files/online.ww" width="16" height="16" border="0" alt="淘宝旺旺">kefujiushiwo</a>
+                            <br>
+                            <div class="query_info">共执行 6 个查询，用时 0.024529 秒，在线 1225 人，Gzip 已禁用，占用内存 5.370 MB<img src="./用户中心_龙淘优品--专业网店运营服务商 服装网店货源,开网店女装货源,一件代发货源网! -_files/cron.php" alt="" style="width:0px;height:0px;">
+                                <br>
+                                <a href="http://www.ecshop.com/" target="_blank" style=" font-family:Verdana; font-size:11px;">Powered&nbsp;by&nbsp;<strong><span style="color: #3366FF">ECShop</span>&nbsp;<span style="color: #FF9966">v2.7.3</span></strong></a>&nbsp;<a href="http://www.ecshop.com/license.php?product=ecshop_b2c&amp;url=http%3A%2F%2Fwww.hzltyp.com%2F" target="_blank">&nbsp;&nbsp;Licensed</a>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear10"></div>
+                </div>
+                <hr style="border-bottom:1px #FF5460 solid">
+                <br>
+                <section>
+                    <ul style="list-style:none;margin:0 auto;">
+                        <li style="float:left;padding:0 2em 0 0;margin-left:40em;"><img src="./images/itrust_logo.jpg"></li>
+                        <li style="float:left;padding:0 2em 0 0;"><img src="./images/redlogo.gif"></li>
+                        <li style="float:left;padding:0 2em 0 0;"><img src="./images/seallog.png"></li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
