@@ -8,7 +8,7 @@
 	float:right
 }
 .logo, .user-icon, .pass-icon, .er .inputWrap, .loginbtn, .item, .login_layer .er input, .login_layer .ok input {
-	background:url(login.jpg) no-repeat 0 0 #fff
+	background:url(../images/login.jpg) no-repeat 0 0 #fff
 }
 .loginWrap {
 	width:965px;
@@ -57,7 +57,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#f9f9f9fff, endC
 	width:6px;
 	top:-60px;
 	z-index:2;
-	background:url(shadow.png) no-repeat 0 0
+	background:url(../images/shadow.png) no-repeat 0 0
 }
 .shadow_l {
 	left:604px;
@@ -335,7 +335,7 @@ a:hover .item09 {
 .login_main .l_bar, .login_main .r_bar, .login_main .l_bar1, .login_main .r_bar1 {
 	width:9px;
 	height:450px;
-	background:url(signup_logo.jpg) center no-repeat;
+	background:url(../images/signup_logo.jpg) center no-repeat;
 	position:absolute;
 	top:0
 }
@@ -527,7 +527,7 @@ background-image:none
 	display:inline-block;
 	width:18px;
 	height:19px;
-	background:url(signup_logo.jpg);
+	background:url(../images/signup_logo.jpg);
 	margin-right:10px
 }
 .input_container.success .f_input_tip {
@@ -604,7 +604,7 @@ background-image:none
 	text-align:left;
 }
 .check_radio .have_check {
-	background:url(signup_logo.jpg) -50px -99px;
+	background:url(../images/signup_logo.jpg) -50px -99px;
 	width:18px;
 	height:18px;
 	display:inline-block;
@@ -629,7 +629,7 @@ background-image:none
 }
 .login_page .signup_button {
 	overflow:hidden;
-	background:url(login.jpg) no-repeat 0 -82px transparent;
+	background:url(../images/login.jpg) no-repeat 0 -82px transparent;
 	border:0;
 	cursor:pointer;
 	display:block;
@@ -644,7 +644,7 @@ background-image:none
 	height:42px
 }
 .login_page .loginup_button a {
-	background:url(login.jpg) 0 -82px;
+	background:url(../images/login.jpg) 0 -82px;
 	display:block;
 	width:122px;
 	height:42px;
@@ -726,7 +726,7 @@ div.f-input-tip-container .error {
 	margin:10px 0;
 	font-size:18px;
 	color:#fff;
-	background:url(login.jpg) 0 -82px;
+	background:url(../images/login.jpg) 0 -82px;
 	cursor:pointer
 }
 .cl {
@@ -751,7 +751,7 @@ div.f-input-tip-container .error {
 	float:left;
 	width:43px;
 	height:43px;
-	background:url(signup_logo.jpg) -50px 0 no-repeat;
+	background:url(../images/signup_logo.jpg) -50px 0 no-repeat;
 	vertical-align:text-bottom
 }
 .success_wrapper .check_mail {
@@ -793,7 +793,7 @@ div.f-input-tip-container .error {
 	margin:0 auto
 }
 .emai_top, .email_center .fail_icon, .email_center .send_email, .email_center .login_email, .email_center .success_icon, .success_con .to_jumei, .invite_con .invitation_logo, .share_links .share_button, .about_invition .it {
-	background:url(logo.jpg) #fdf8fa no-repeat
+	background:url(../images/redegsin/logo.jpg) #fdf8fa no-repeat
 }
 .emai_top {
 	width:100%;
