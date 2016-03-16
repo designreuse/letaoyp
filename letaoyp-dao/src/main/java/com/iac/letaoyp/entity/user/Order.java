@@ -2,10 +2,13 @@ package com.iac.letaoyp.entity.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
@@ -106,12 +109,7 @@ public class Order extends IdEntity {
      * phone       db_column: phone 
      */ 	
 	@NotBlank @Length(max=20)
-	private java.lang.String phone;
-    /**
-     * point       db_column: point 
-     */ 	
-	@NotNull @Max(9223372036854775807L)
-	private java.lang.Long point;
+	private java.lang.String mobile;
     /**
      * 交易编号       db_column: trade_no 
      */ 	
@@ -122,11 +120,6 @@ public class Order extends IdEntity {
      */ 	
 	@Length(max=100)
 	private java.lang.String outTradeNo;
-    /**
-     * zipCode       db_column: zip_code 
-     */ 	
-	@NotBlank @Length(max=255)
-	private java.lang.String zipCode;
     /**
      * couponCode       db_column: coupon_code 
      */ 	
@@ -244,6 +237,7 @@ public class Order extends IdEntity {
 	}
 	
 	@Column(name = "status")
+	@Enumerated(EnumType.STRING)
 	public Status getStatus() {
 		return this.status;
 	}
@@ -253,6 +247,7 @@ public class Order extends IdEntity {
 	}
 	
 	@Column(name = "channel")
+	@Enumerated(EnumType.STRING)
 	public Channel getChannel() {
 		return this.channel;
 	}
@@ -261,24 +256,15 @@ public class Order extends IdEntity {
 		this.channel = value;
 	}
 	
-	@Column(name = "phone")
-	public java.lang.String getPhone() {
-		return this.phone;
+	@Column(name = "mobile")
+	public java.lang.String getMobile() {
+		return mobile;
 	}
-	
-	public void setPhone(java.lang.String value) {
-		this.phone = value;
+
+	public void setMobile(java.lang.String mobile) {
+		this.mobile = mobile;
 	}
-	
-	@Column(name = "point")
-	public java.lang.Long getPoint() {
-		return this.point;
-	}
-	
-	public void setPoint(java.lang.Long value) {
-		this.point = value;
-	}
-	
+
 	@Column(name = "trade_no")
 	public java.lang.String getTradeNo() {
 		return this.tradeNo;
@@ -295,15 +281,6 @@ public class Order extends IdEntity {
 	
 	public void setOutTradeNo(java.lang.String value) {
 		this.outTradeNo = value;
-	}
-	
-	@Column(name = "zip_code")
-	public java.lang.String getZipCode() {
-		return this.zipCode;
-	}
-	
-	public void setZipCode(java.lang.String value) {
-		this.zipCode = value;
 	}
 	
 	@Column(name = "coupon_code")
@@ -359,7 +336,34 @@ public class Order extends IdEntity {
 	}
 	
 	public enum Status {
-		START, WAIT_FOR_PAY, PAIED, SUCCESS, FAIL
+		START("初始化"), WAIT_FOR_PAY("等待支付"), PAIED("已支付"), SUCCESS("成功"), FAIL("失败");
+		
+		private String description = "失败";
+
+		private Status(String description) {
+			this.description = description;
+		}
+
+		public String getDescription() {
+			return description;
+		}
+
+		public void setDescription(String description) {
+			this.description = description;
+		}
+	}
+	
+	@PrePersist
+	private void prePersist() {
+		if(this.address == null) this.address = "N/A";
+		
+		if(this.isInvoice == null) this.isInvoice = true;
+		
+		if(this.isAllocatedStock == null) this.isAllocatedStock = false;
+		
+		if(this.status == null) this.status = Status.START;
+		
+		if(this.channel == null) this.channel = Channel.ALIPAY;
 	}
 }
 

@@ -35,12 +35,12 @@ public class ShippingAddress extends IdEntity {
     /**
      * 收货人       db_column: receiver 
      */ 	
-	@Length(max=64)
+	@NotBlank @Length(max=64)
 	private java.lang.String receiver;
     /**
      * 详细地址       db_column: address 
      */ 	
-	@Length(max=255)
+	@NotBlank @Length(max=255)
 	private java.lang.String address;
     /**
      * 电话       db_column: mobile 

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.Length;
 
 import com.iac.letaoyp.entity.IdEntity;
-import com.iac.letaoyp.entity.goods.Goods;
+import com.iac.letaoyp.entity.sku.Goods;
 
 /**
  *

@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Length;
@@ -57,6 +58,11 @@ public class Cart extends IdEntity {
 	})
 	public Member getMember() {
 		return member;
+	}
+	
+	@PrePersist
+	private void prePersist() {
+		if(cartKey == null) this.cartKey = "N/A";
 	}
 }
 

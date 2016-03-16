@@ -20,8 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springside.modules.web.Servlets;
 
 import com.iac.letaoyp.controller.BasicController;
-import com.iac.letaoyp.entity.goods.Goods;
-import com.iac.letaoyp.service.goods.GoodsService;
+import com.iac.letaoyp.entity.sku.Goods;
+import com.iac.letaoyp.service.sku.GoodsService;
 
 @Controller
 @RequestMapping("goods/goods")

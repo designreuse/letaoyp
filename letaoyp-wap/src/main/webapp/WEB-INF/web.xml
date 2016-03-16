@@ -17,6 +17,12 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<!-- get ServletHttpRequest from context  -->
+	<listener>    
+        <listener-class>    
+            org.springframework.web.context.request.RequestContextListener    
+        </listener-class>    
+	</listener>
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -34,6 +40,40 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<filter>
+		<filter-name>sox</filter-name>
+		<filter-class>com.opentech.cloud.sox.core.filter.SoxFilter</filter-class>
+		<init-param>
+			<param-name>scan_packages</param-name>
+			<param-value>com.iac.letaoyp</param-value>
+		</init-param>
+	
+		<!--
+		<init-param>
+			<param-name>domain</param-name>
+			<param-value>xwork.cn</param-value>
+		</init-param>
+		-->
+		
+		<init-param>
+			<param-name>storage_type</param-name>
+			<param-value>COOKIE</param-value>
+		</init-param>
+		<init-param>
+			<param-name>timeout</param-name>
+			<param-value>2592000</param-value>
+		</init-param>
+		<init-param>
+			<param-name>encrtypter_algorithm</param-name>
+			<param-value>BLOWFISH</param-value>
+		</init-param>
+		<init-param>
+			<param-name>private_key</param-name>
+			<param-value>378206</param-value>
+		</init-param>
+	</filter>
+
 
 	<filter>
 		<filter-name>openEntityManagerInViewFilter</filter-name>

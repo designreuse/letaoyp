@@ -1,14 +1,20 @@
 package com.iac.letaoyp.entity.user;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Max;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -42,8 +48,10 @@ public class Member extends IdEntity {
     /**
      * password       db_column: password 
      */ 	
-	@NotBlank @Length(max=255)
+	@Length(max=255)
 	private java.lang.String password;
+	
+	private String plainPassword;
     /**
      * 加密salt       db_column: salt 
      */ 	
@@ -66,27 +74,23 @@ public class Member extends IdEntity {
     /**
      * gender       db_column: gender 
      */ 	
-	@Length(max=20)
-	private java.lang.String gender;
+	private Gender gender;
     /**
      * isLocked       db_column: is_locked 
      */ 	
-	@NotNull 
 	private java.lang.Boolean isLocked;
     /**
      * lockedDate       db_column: locked_date 
      */ 	
-	
 	private java.util.Date lockedDate;
     /**
      * loginDate       db_column: login_date 
      */ 	
-	
 	private java.util.Date loginDate;
     /**
      * loginFailureCount       db_column: login_failure_count 
      */ 	
-	@NotNull @Max(9999999999L)
+	@Max(9999999999L)
 	private java.lang.Integer loginFailureCount;
     /**
      * loginIp       db_column: login_ip 
@@ -111,63 +115,13 @@ public class Member extends IdEntity {
     /**
      * registerIp       db_column: register_ip 
      */ 	
-	@NotBlank @Length(max=255)
+	@Length(max=255)
 	private java.lang.String registerIp;
     /**
      * zipCode       db_column: zip_code 
      */ 	
 	@Length(max=255)
 	private java.lang.String zipCode;
-    /**
-     * attributeValue0       db_column: attribute_value0 
-     */ 	
-	@Length(max=255)
-	private java.lang.String attributeValue0;
-    /**
-     * attributeValue1       db_column: attribute_value1 
-     */ 	
-	@Length(max=255)
-	private java.lang.String attributeValue1;
-    /**
-     * attributeValue2       db_column: attribute_value2 
-     */ 	
-	@Length(max=255)
-	private java.lang.String attributeValue2;
-    /**
-     * attributeValue3       db_column: attribute_value3 
-     */ 	
-	@Length(max=255)
-	private java.lang.String attributeValue3;
-    /**
-     * attributeValue4       db_column: attribute_value4 
-     */ 	
-	@Length(max=255)
-	private java.lang.String attributeValue4;
-    /**
-     * attributeValue5       db_column: attribute_value5 
-     */ 	
-	@Length(max=255)
-	private java.lang.String attributeValue5;
-    /**
-     * attributeValue6       db_column: attribute_value6 
-     */ 	
-	@Length(max=255)
-	private java.lang.String attributeValue6;
-    /**
-     * attributeValue7       db_column: attribute_value7 
-     */ 	
-	@Length(max=255)
-	private java.lang.String attributeValue7;
-    /**
-     * attributeValue8       db_column: attribute_value8 
-     */ 	
-	@Length(max=255)
-	private java.lang.String attributeValue8;
-    /**
-     * attributeValue9       db_column: attribute_value9 
-     */ 	
-	@Length(max=255)
-	private java.lang.String attributeValue9;
 	//columns END
 	
 	@Column(name = "username")
@@ -188,6 +142,15 @@ public class Member extends IdEntity {
 		this.password = value;
 	}
 	
+	@Transient
+	public String getPlainPassword() {
+		return plainPassword;
+	}
+
+	public void setPlainPassword(String plainPassword) {
+		this.plainPassword = plainPassword;
+	}
+
 	@Column(name = "salt")
 	public java.lang.String getSalt() {
 		return this.salt;
@@ -225,17 +188,18 @@ public class Member extends IdEntity {
 	}
 	
 	@Column(name = "gender")
-	public java.lang.String getGender() {
-		return this.gender;
+	@Enumerated(EnumType.STRING)
+	public Gender getGender() {
+		return gender;
 	}
-	
-	public void setGender(java.lang.String value) {
-		this.gender = value;
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
-	
+
 	@Column(name = "is_locked")
 	public java.lang.Boolean getIsLocked() {
-		return this.isLocked;
+		return this.isLocked != null && isLocked;
 	}
 	
 	public void setIsLocked(java.lang.Boolean value) {
@@ -323,96 +287,6 @@ public class Member extends IdEntity {
 		this.zipCode = value;
 	}
 	
-	@Column(name = "attribute_value0")
-	public java.lang.String getAttributeValue0() {
-		return this.attributeValue0;
-	}
-	
-	public void setAttributeValue0(java.lang.String value) {
-		this.attributeValue0 = value;
-	}
-	
-	@Column(name = "attribute_value1")
-	public java.lang.String getAttributeValue1() {
-		return this.attributeValue1;
-	}
-	
-	public void setAttributeValue1(java.lang.String value) {
-		this.attributeValue1 = value;
-	}
-	
-	@Column(name = "attribute_value2")
-	public java.lang.String getAttributeValue2() {
-		return this.attributeValue2;
-	}
-	
-	public void setAttributeValue2(java.lang.String value) {
-		this.attributeValue2 = value;
-	}
-	
-	@Column(name = "attribute_value3")
-	public java.lang.String getAttributeValue3() {
-		return this.attributeValue3;
-	}
-	
-	public void setAttributeValue3(java.lang.String value) {
-		this.attributeValue3 = value;
-	}
-	
-	@Column(name = "attribute_value4")
-	public java.lang.String getAttributeValue4() {
-		return this.attributeValue4;
-	}
-	
-	public void setAttributeValue4(java.lang.String value) {
-		this.attributeValue4 = value;
-	}
-	
-	@Column(name = "attribute_value5")
-	public java.lang.String getAttributeValue5() {
-		return this.attributeValue5;
-	}
-	
-	public void setAttributeValue5(java.lang.String value) {
-		this.attributeValue5 = value;
-	}
-	
-	@Column(name = "attribute_value6")
-	public java.lang.String getAttributeValue6() {
-		return this.attributeValue6;
-	}
-	
-	public void setAttributeValue6(java.lang.String value) {
-		this.attributeValue6 = value;
-	}
-	
-	@Column(name = "attribute_value7")
-	public java.lang.String getAttributeValue7() {
-		return this.attributeValue7;
-	}
-	
-	public void setAttributeValue7(java.lang.String value) {
-		this.attributeValue7 = value;
-	}
-	
-	@Column(name = "attribute_value8")
-	public java.lang.String getAttributeValue8() {
-		return this.attributeValue8;
-	}
-	
-	public void setAttributeValue8(java.lang.String value) {
-		this.attributeValue8 = value;
-	}
-	
-	@Column(name = "attribute_value9")
-	public java.lang.String getAttributeValue9() {
-		return this.attributeValue9;
-	}
-	
-	public void setAttributeValue9(java.lang.String value) {
-		this.attributeValue9 = value;
-	}
-	
 	private Area area;
 	public void setArea(Area area){
 		this.area = area;
@@ -424,6 +298,34 @@ public class Member extends IdEntity {
 	})
 	public Area getArea() {
 		return area;
+	}
+	
+	@PrePersist
+	public void prePersistence() {
+		if(this.created == null) 
+			this.created = new Date();
+		
+		if(this.modified == null)
+			this.modified = new Date();
+		
+		if(this.gender == null) 
+			this.gender = Gender.MALE;
+		
+		if(this.loginDate == null)
+			this.loginDate = new Date();
+		
+		this.loginFailureCount = 0;
+		this.isLocked = false;
+		this.active = true;
+	}
+	
+	@PreUpdate
+	public void preUpdate() {
+		this.modified = new Date();
+	}
+	
+	public enum Gender {
+		MALE, FEMALE
 	}
 }
 

@@ -10,4 +10,6 @@ public interface MemberDao extends BasicRepository<Member,java.lang.Long>{
 	
 	public Member deleteByUsername(java.lang.String username);
 
+	public Member findByMobile(String phone);
+
 }

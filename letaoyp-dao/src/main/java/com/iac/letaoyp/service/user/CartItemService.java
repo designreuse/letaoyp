@@ -1,5 +1,7 @@
 package com.iac.letaoyp.service.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,5 +21,9 @@ public class CartItemService extends BasicService<CartItem,java.lang.Long> {
 	@Override
 	public BasicRepository<CartItem,java.lang.Long> getRepository() {
 		return cartItemDao;
+	}
+
+	public List<CartItem> findByCartId(Long cart) {
+		return cartItemDao.findByCartId(cart);
 	}
 }

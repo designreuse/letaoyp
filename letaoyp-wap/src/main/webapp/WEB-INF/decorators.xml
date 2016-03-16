@@ -3,6 +3,10 @@
 	<excludes>
 		<pattern>/static/*</pattern>
 		<pattern>/api/*</pattern>
+		<pattern>/user/login</pattern>
+		<pattern>/user/register</pattern>
+		<pattern>/sku/order/*</pattern>
+		<pattern>/*ajax/*</pattern>
 	</excludes>
 	
 	<decorator name="default" page="default.jsp">

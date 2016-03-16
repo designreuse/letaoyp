@@ -20,8 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springside.modules.web.Servlets;
 
 import com.iac.letaoyp.controller.BasicController;
-import com.iac.letaoyp.entity.goods.Category;
-import com.iac.letaoyp.service.goods.CategoryService;
+import com.iac.letaoyp.entity.sku.Category;
+import com.iac.letaoyp.service.sku.CategoryService;
 
 
 @Controller

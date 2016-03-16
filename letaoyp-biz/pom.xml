@@ -11,6 +11,12 @@
 	<description>jms, cache, monitor</description>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.iac</groupId>
+			<artifactId>letaoyp-dao</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	
 		<!-- JMS begin -->
 		<dependency>
 			<groupId>org.springframework</groupId>

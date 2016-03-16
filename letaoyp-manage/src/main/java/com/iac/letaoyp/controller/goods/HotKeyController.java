@@ -20,8 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springside.modules.web.Servlets;
 
 import com.iac.letaoyp.controller.BasicController;
-import com.iac.letaoyp.entity.goods.HotKey;
-import com.iac.letaoyp.service.goods.HotKeyService;
+import com.iac.letaoyp.entity.sku.HotKey;
+import com.iac.letaoyp.service.sku.HotKeyService;
 
 @Controller
 @RequestMapping("goods/hotkey")
