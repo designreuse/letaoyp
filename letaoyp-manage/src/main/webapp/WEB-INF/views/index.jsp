@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="${ctx}/static/plugins/iCheck/all.css">
 <!-- datepicker -->
 <link rel="stylesheet" href="${ctx}/static/plugins/datepicker/datepicker3.css">
+<link rel="stylesheet" href="${ctx}/static/plugins/pace/pace.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="${ctx}/static/plugins/adminLTE/css/AdminLTE.min.css">
 <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -49,6 +50,7 @@
 <script src="${ctx}/static/plugins/jquery-validation/additional-methods.js"></script>
 
 <script src="${ctx}/static/plugins/noty/jquery.noty.packaged.min.js"></script>
+<script src="${ctx}/static/plugins/pace/pace.js"></script>
 
 </head>
 

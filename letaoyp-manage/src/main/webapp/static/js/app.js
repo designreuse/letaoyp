@@ -44,6 +44,7 @@ function ajax(config) {
           if (complateFunc) complateFunc();
       }
   }
+  $(document).ajaxStart(function() { Pace.restart(); });
   $.ajax($.extend(config, settings));
 }
 
@@ -152,6 +153,8 @@ function _initialize() {
       function(e) {
         e.preventDefault();
         var $this = $(this);
+        $(document).ajaxStart(function() { Pace.restart(); });
+        
         $.ajax({
           url : $this.attr('href') || $this.attr('action')
               || ($this.data('config') ? $this.data('config').url : ''),
@@ -170,6 +173,7 @@ function _initialize() {
         e.preventDefault();
         var $this = $(this);
         var $form = $(this).parent('form');
+        $(document).ajaxStart(function() { Pace.restart(); });
         $.ajax({
           url : $form.attr('action'),
           type: $form.attr('method') || 'GET',
