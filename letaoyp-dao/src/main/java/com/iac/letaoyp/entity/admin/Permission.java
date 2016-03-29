@@ -1,7 +1,5 @@
 package com.iac.letaoyp.entity.admin;
 
-import com.iac.letaoyp.entity.IdEntity;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -9,15 +7,8 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.iac.letaoyp.entity.IdEntity;
 
-/**
- * 
- * @author dingp email:dingp@51box.cn
- * @version 1.0
- * @since 1.0
- *
- * 权限表
- */
 @Entity
 @Table(name = "s_permission")
 public class Permission extends IdEntity {

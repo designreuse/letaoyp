@@ -11,55 +11,56 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.iac.letaoyp.entity.IdEntity;
 
 /**
+ * Area
  *
- * @author dingp email:dingp@51box.cn
+ * @author Markin email:iacdingping@gmail.com
  * @version 1.0
- * @since 1.0
- * * Area
- */
+ * */
 @Entity
 @Table(name = "area")
 public class Area extends IdEntity {
 	
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8209700439157074746L;
+	private static final long serialVersionUID = -5353698182501525089L;
 	//可以直接使用: @Length(max=50,message="用户名长度不能大于50")显示错误消息
 	//columns START
     /**
-     * order       db_column: order 
+     * 排序       db_column: sort 
      */ 	
 	@Max(9999999999L)
-	private java.lang.Integer order;
+	private java.lang.Integer sort;
     /**
-     * fullName       db_column: full_name 
+     * 全名       db_column: full_name 
      */ 	
 	@NotBlank @Length(max=2147483647)
 	private java.lang.String fullName;
     /**
-     * name       db_column: name 
+     * 地名       db_column: name 
      */ 	
 	@NotBlank @Length(max=100)
 	private java.lang.String name;
     /**
-     * treePath       db_column: tree_path 
+     * 树路径       db_column: tree_path 
      */ 	
 	@NotBlank @Length(max=255)
 	private java.lang.String treePath;
     /**
-     * parent       db_column: parent 
+     * 父节点       db_column: parent 
      */ 	
+	@Max(9223372036854775807L)
 	private java.lang.Long parent;
 	//columns END
 
-	@Column(name = "order")
-	public java.lang.Integer getOrder() {
-		return this.order;
+	@Column(name = "sort")
+	public java.lang.Integer getSort() {
+		return this.sort;
 	}
 	
-	public void setOrder(java.lang.Integer value) {
-		this.order = value;
+	public void setSort(java.lang.Integer value) {
+		this.sort = value;
 	}
 	
 	@Column(name = "full_name")
@@ -97,5 +98,6 @@ public class Area extends IdEntity {
 	public void setParent(java.lang.Long value) {
 		this.parent = value;
 	}
+	
 }
 

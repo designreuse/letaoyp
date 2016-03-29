@@ -11,14 +11,6 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import com.iac.letaoyp.entity.IdEntity;
 
-
-/**
- *
- * @author dingp email:dingp@51box.cn
- * @version 1.0
- * @since 1.0
- * 品牌
- */
 @Entity
 @Table(name = "brand")
 public class Brand extends IdEntity {

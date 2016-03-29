@@ -12,14 +12,6 @@ import org.hibernate.validator.constraints.Length;
 
 import com.iac.letaoyp.entity.IdEntity;
 
-
-/**
- *
- * @author dingp email:dingp@51box.cn
- * @version 1.0
- * @since 1.0
- * * 商品选择条件
- */
 @Entity
 @Table(name = "goods_choosen")
 public class GoodsChoosen extends IdEntity {

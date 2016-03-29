@@ -26,4 +26,12 @@ public class GoodsImageService extends BasicService<GoodsImage,java.lang.Long> {
 	public List<GoodsImage> findByGoods(Long goods) {
 		return goodsImageDao.findByGoods(goods);
 	}
+	
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		goodsImageDao.updateActiveByIdIn(active, ids);
+	}
+
+	public void delete(Long[] ids) {
+		goodsImageDao.deleteByIdIn(ids);
+	}
 }

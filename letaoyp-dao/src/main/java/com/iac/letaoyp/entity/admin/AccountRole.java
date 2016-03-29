@@ -1,7 +1,5 @@
 package com.iac.letaoyp.entity.admin;
 
-import com.iac.letaoyp.entity.IdEntity;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -9,14 +7,8 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.iac.letaoyp.entity.IdEntity;
 
-/**
- *
- * @author dingp email:dingp@51box.cn
- * @version 1.0
- * @since 1.0
- * * 用户角色表
- */
 @Entity
 @Table(name = "s_account_role")
 public class AccountRole extends IdEntity {

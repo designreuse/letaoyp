@@ -20,14 +20,6 @@ import com.iac.letaoyp.entity.IdEntity;
 import com.iac.letaoyp.entity.admin.Account;
 import com.iac.letaoyp.entity.info.Area;
 
-
-/**
- *
- * @author dingp email:dingp@51box.cn
- * @version 1.0
- * @since 1.0
- * * Order
- */
 @Entity
 @Table(name = "[order]")
 public class Order extends IdEntity {

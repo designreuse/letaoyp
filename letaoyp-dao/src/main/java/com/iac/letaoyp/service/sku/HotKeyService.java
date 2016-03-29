@@ -20,4 +20,12 @@ public class HotKeyService extends BasicService<HotKey,java.lang.Long> {
 	public BasicRepository<HotKey,java.lang.Long> getRepository() {
 		return hotKeyDao;
 	}
+	
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		hotKeyDao.updateActiveByIdIn(active, ids);
+	}
+
+	public void delete(Long[] ids) {
+		hotKeyDao.deleteByIdIn(ids);
+	}
 }

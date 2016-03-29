@@ -22,13 +22,6 @@ import org.springside.modules.mapper.JsonMapper;
 import com.iac.letaoyp.entity.IdEntity;
 import com.iac.letaoyp.entity.sku.Goods;
 
-/**
- *
- * @author dingp email:dingp@51box.cn
- * @version 1.0
- * @since 1.0
- * * 购物车item
- */
 @Entity
 @Table(name = "cart_item")
 public class CartItem extends IdEntity {

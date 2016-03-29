@@ -9,16 +9,16 @@ import org.hibernate.validator.constraints.Length;
 import com.iac.letaoyp.entity.IdEntity;
 
 /**
+ * 公告|帮助
  *
- * @author dingp email:dingp@51box.cn
+ * @author Markin email:iacdingping@gmail.com
  * @version 1.0
- * @since 1.0
- * * 公告|帮助
- */
+ * */
 @Entity
 @Table(name = "information")
 public class Information extends IdEntity {
 	
+
 	/**
 	 * 
 	 */
@@ -48,7 +48,6 @@ public class Information extends IdEntity {
     /**
      * top       db_column: top 
      */ 	
-	
 	private java.lang.Boolean top;
     /**
      * topImage       db_column: top_image 
@@ -56,7 +55,7 @@ public class Information extends IdEntity {
 	@Length(max=256)
 	private java.lang.String topImage;
 	//columns END
-	
+
 	@Column(name = "title")
 	public java.lang.String getTitle() {
 		return this.title;

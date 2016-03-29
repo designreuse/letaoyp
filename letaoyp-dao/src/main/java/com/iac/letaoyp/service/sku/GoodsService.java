@@ -66,4 +66,12 @@ public class GoodsService extends BasicService<Goods,java.lang.Long> {
 		
 		return map.isEmpty() ? null : "请选择商品参数";
 	}
+	
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		goodsDao.updateActiveByIdIn(active, ids);
+	}
+
+	public void delete(Long[] ids) {
+		goodsDao.deleteByIdIn(ids);
+	}
 }

@@ -79,7 +79,7 @@ public class MemberService extends BasicService<Member,java.lang.Long> {
 		}
 		
 		if(!encryptPassword(password, user.getSalt()).equals(user.getPassword())) {
-			if(DateUtil.isSameDay(user.getLockedDate(), new Date())) {
+			if(user.getLockedDate() != null && DateUtil.isSameDay(user.getLockedDate(), new Date())) {
 				user.setLoginFailureCount(user.getLoginFailureCount() + 1);
 				
 				if(user.getLoginFailureCount() > 10) {
@@ -95,5 +95,13 @@ public class MemberService extends BasicService<Member,java.lang.Long> {
 		}
 		
 		return user;
+	}
+	
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		memberDao.updateActiveByIdIn(active, ids);
+	}
+
+	public void delete(Long[] ids) {
+		memberDao.deleteByIdIn(ids);
 	}
 }

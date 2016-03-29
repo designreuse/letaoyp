@@ -26,4 +26,12 @@ public class GoodsTopService extends BasicService<GoodsTop,java.lang.Long> {
 	public List<GoodsTop> findByCategoryAndActive(Long categoryId, boolean active) {
 		return goodsTopDao.findByCategoryIdAndActive(categoryId, active);
 	}
+	
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		goodsTopDao.updateActiveByIdIn(active, ids);
+	}
+
+	public void delete(Long[] ids) {
+		goodsTopDao.deleteByIdIn(ids);
+	}
 }

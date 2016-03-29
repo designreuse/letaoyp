@@ -60,4 +60,12 @@ public class CartService extends BasicService<Cart,java.lang.Long> {
 	public Cart findByMemberId(Long id) {
 		return cartDao.findByMemberId(id);
 	}
+	
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		cartDao.updateActiveByIdIn(active, ids);
+	}
+
+	public void delete(Long[] ids) {
+		cartDao.deleteByIdIn(ids);
+	}
 }

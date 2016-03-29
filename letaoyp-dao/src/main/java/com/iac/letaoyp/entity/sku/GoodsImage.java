@@ -11,14 +11,6 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import com.iac.letaoyp.entity.IdEntity;
 
-
-/**
- *
- * @author dingp email:dingp@51box.cn
- * @version 1.0
- * @since 1.0
- * * 商品图库
- */
 @Entity
 @Table(name = "goods_image")
 public class GoodsImage extends IdEntity {

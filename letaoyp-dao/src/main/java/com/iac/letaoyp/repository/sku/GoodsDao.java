@@ -2,6 +2,7 @@ package com.iac.letaoyp.repository.sku;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.iac.letaoyp.entity.sku.Goods;
@@ -14,4 +15,12 @@ public interface GoodsDao extends BasicRepository<Goods,java.lang.Long>{
 	List<Goods> findTop(Long category, String status, int size);
 	
 
+	@Modifying
+    @Query("update Goods a set a.active=?1 where a.id in (?2)")
+    void updateActiveByIdIn(boolean active, Long[] ids);
+
+
+    @Modifying
+    @Query("delete Goods a where a.id in (?1)")
+    void deleteByIdIn(Long[] ids);
 }

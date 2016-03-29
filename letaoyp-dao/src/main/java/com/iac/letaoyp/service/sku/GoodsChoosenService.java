@@ -26,4 +26,12 @@ public class GoodsChoosenService extends BasicService<GoodsChoosen,java.lang.Lon
 	public List<GoodsChoosen> findByGoodsId(Long goods) {
 		return goodsChoosenDao.findByGoodsId(goods);
 	}
+	
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		goodsChoosenDao.updateActiveByIdIn(active, ids);
+	}
+
+	public void delete(Long[] ids) {
+		goodsChoosenDao.deleteByIdIn(ids);
+	}
 }

@@ -1,7 +1,5 @@
 package com.iac.letaoyp.entity.admin;
 
-import com.iac.letaoyp.entity.IdEntity;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -19,6 +17,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
+import com.iac.letaoyp.entity.IdEntity;
 
 @Entity
 @Table(name = "s_account")
@@ -65,7 +64,6 @@ public class Account extends IdEntity {
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
-	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account", cascade=CascadeType.ALL)
 	@Fetch(FetchMode.SUBSELECT)
 	public List<AccountRole> getAccountRoles() {

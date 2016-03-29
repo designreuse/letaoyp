@@ -15,13 +15,6 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.iac.letaoyp.entity.IdEntity;
 import com.iac.letaoyp.entity.info.Area;
 
-/**
- *
- * @author dingp email:dingp@51box.cn
- * @version 1.0
- * @since 1.0
- * * 收货地址
- */
 @Entity
 @Table(name = "shipping_address")
 public class ShippingAddress extends IdEntity {

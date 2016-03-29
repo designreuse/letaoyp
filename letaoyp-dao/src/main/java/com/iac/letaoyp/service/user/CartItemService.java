@@ -26,4 +26,12 @@ public class CartItemService extends BasicService<CartItem,java.lang.Long> {
 	public List<CartItem> findByCartId(Long cart) {
 		return cartItemDao.findByCartId(cart);
 	}
+	
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		cartItemDao.updateActiveByIdIn(active, ids);
+	}
+
+	public void delete(Long[] ids) {
+		cartItemDao.deleteByIdIn(ids);
+	}
 }

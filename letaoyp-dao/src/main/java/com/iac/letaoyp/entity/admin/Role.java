@@ -1,7 +1,5 @@
 package com.iac.letaoyp.entity.admin;
 
-import com.iac.letaoyp.entity.IdEntity;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,15 +17,8 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.iac.letaoyp.entity.IdEntity;
 
-
-/**
- *
- * @author dingp email:dingp@51box.cn
- * @version 1.0
- * @since 1.0
- * * 角色表
- */
 @Entity
 @Table(name = "s_role")
 public class Role extends IdEntity {

@@ -20,4 +20,12 @@ public class ShippingAddressService extends BasicService<ShippingAddress,java.la
 	public BasicRepository<ShippingAddress,java.lang.Long> getRepository() {
 		return shippingAddressDao;
 	}
+	
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		shippingAddressDao.updateActiveByIdIn(active, ids);
+	}
+
+	public void delete(Long[] ids) {
+		shippingAddressDao.deleteByIdIn(ids);
+	}
 }

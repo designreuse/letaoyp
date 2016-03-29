@@ -20,4 +20,12 @@ public class DictService extends BasicService<Dict,java.lang.Long> {
 	public BasicRepository<Dict,java.lang.Long> getRepository() {
 		return dictDao;
 	}
+	
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		dictDao.updateActiveByIdIn(active, ids);
+	}
+
+	public void delete(Long[] ids) {
+		dictDao.deleteByIdIn(ids);
+	}
 }

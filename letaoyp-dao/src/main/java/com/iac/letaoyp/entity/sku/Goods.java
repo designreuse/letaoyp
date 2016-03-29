@@ -24,13 +24,6 @@ import org.springside.modules.mapper.JsonMapper;
 
 import com.iac.letaoyp.entity.IdEntity;
 
-/**
- *
- * @author dingp email:dingp@51box.cn
- * @version 1.0
- * @since 1.0
- * * 商品
- */
 @Entity
 @Table(name = "goods")
 public class Goods extends IdEntity {

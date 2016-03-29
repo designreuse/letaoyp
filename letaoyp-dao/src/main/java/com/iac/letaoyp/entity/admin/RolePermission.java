@@ -1,7 +1,5 @@
 package com.iac.letaoyp.entity.admin;
 
-import com.iac.letaoyp.entity.IdEntity;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,14 +8,8 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.iac.letaoyp.entity.IdEntity;
 
-/**
- *
- * @author dingp email:dingp@51box.cn
- * @version 1.0
- * @since 1.0
- * * 角色权限表
- */
 @Entity
 @Table(name = "s_role_permission")
 public class RolePermission extends IdEntity {

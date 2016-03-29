@@ -48,6 +48,7 @@
                             <input type="hidden" name="act" value="act_login">
                             <input type="hidden" name="back_act" value="http://www.hzltyp.com/index.php">
                             <input class="loginbtn" name="submit" value="登 录" type="submit">
+                            <c:if test="${not empty message}"><span style="color:red">${message}</span></c:if>
                         </form>
                     </div>
                     <div class="shadow_l"></div>

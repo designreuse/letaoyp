@@ -20,4 +20,12 @@ public class GoodsChoosenTemplateService extends BasicService<GoodsChoosenTempla
 	public BasicRepository<GoodsChoosenTemplate,java.lang.Long> getRepository() {
 		return goodsChoosenTemplateDao;
 	}
+	
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		goodsChoosenTemplateDao.updateActiveByIdIn(active, ids);
+	}
+
+	public void delete(Long[] ids) {
+		goodsChoosenTemplateDao.deleteByIdIn(ids);
+	}
 }

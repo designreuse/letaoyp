@@ -9,15 +9,25 @@ import com.iac.letaoyp.repository.BasicRepository;
 import com.iac.letaoyp.repository.info.InformationDao;
 import com.iac.letaoyp.service.BasicService;
 
+
 @Component
 @Transactional
 public class InformationService extends BasicService<Information,java.lang.Long> {
 
-	@Autowired
-	private InformationDao informationDao;
-	
-	@Override
-	public BasicRepository<Information,java.lang.Long> getRepository() {
-		return informationDao;
-	}
+    @Autowired
+    private InformationDao informationDao;
+
+    @Override
+    public BasicRepository<Information,java.lang.Long> getRepository() {
+    	return informationDao;
+    }
+
+
+    public void updateActiveByIds(boolean active, Long[] ids) {
+      informationDao.updateActiveByIdIn(active, ids);
+    }
+
+    public void delete(Long[] ids) {
+      informationDao.deleteByIdIn(ids);
+    }
 }

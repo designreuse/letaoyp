@@ -3,132 +3,97 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
-<div>
-	<ul class="breadcrumb">
-		<li>
-			<a href="${ctx}/">Home</a> <span class="divider">/ user / 订单物品</span>
-		</li>
-	</ul>
-</div>
+<form id="form" class="form-horizontal" form-validate action="${ctx}/user/orderitem/update" method="post">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h4 class="modal-title" id="myModalLabel">
+${orderItem.id == null ? '新增' : '编辑'}		</h4>
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<!-- form start -->
+      <input type="hidden" id="id" name="id" value="${orderItem.id}"/>
 
-<div class="row-fluid">
-	<div class="box span12">
-		<div class="box-header well" data-original-title>
-			<h2><i class="icon-edit"></i> Form Elements</h2>
+	    <div class="form-group">
+	      <label class="col-sm-4 control-label" for="name">商品名称</label>
+	      <div class="col-sm-6">
+	        <input class="form-control" id="name" name="name" type="text" value="${orderItem.name}" data-rule-required="true" data-msg-required="请输入商品名称" />
+	        <span class="help-inline"><form:errors path="name"/></span>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="col-sm-4 control-label" for="price">价格</label>
+	      <div class="col-sm-6">
+	        <input class="form-control" id="price" name="price" type="text" value="${orderItem.price}" data-rule-required="true" data-msg-required="请输入价格" />
+	        <span class="help-inline"><form:errors path="price"/></span>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="col-sm-4 control-label" for="quantity">数量</label>
+	      <div class="col-sm-6">
+	        <input class="form-control" id="quantity" name="quantity" type="text" value="${orderItem.quantity}" data-rule-required="true" data-msg-required="请输入数量" />
+	        <span class="help-inline"><form:errors path="quantity"/></span>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="col-sm-4 control-label" for="thumbnail">商品缩略图</label>
+	      <div class="col-sm-6">
+	        <input class="form-control" id="thumbnail" name="thumbnail" type="text" value="${orderItem.thumbnail}"  />
+	        <span class="help-inline"><form:errors path="thumbnail"/></span>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="col-sm-4 control-label" for="weight">重量</label>
+	      <div class="col-sm-6">
+	        <input class="form-control" id="weight" name="weight" type="text" value="${orderItem.weight}"  />
+	        <span class="help-inline"><form:errors path="weight"/></span>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="col-sm-4 control-label" for="order">订单</label>
+	      <div class="col-sm-6">
+	        <input class="form-control" id="order" name="order" type="text" value="${orderItem.order}" data-rule-required="true" data-msg-required="请输入订单" />
+	        <span class="help-inline"><form:errors path="order"/></span>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="col-sm-4 control-label" for="goods">商品</label>
+	      <div class="col-sm-6">
+	        <input class="form-control" id="goods" name="goods" type="text" value="${orderItem.goods}" data-rule-required="true" data-msg-required="请输入商品" />
+	        <span class="help-inline"><form:errors path="goods"/></span>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="col-sm-4 control-label" for="active">active</label>
+	      <div class="col-sm-6">
+	      	<input type="radio" name="active" class="minimal icheck" <c:if test="${orderItem.active}">checked</c:if> value="1">
+					<span class="label label-success">Active</span> &nbsp;&nbsp; 
+					<input type="radio" name="active" class="minimal icheck" <c:if test="${!orderItem.active}">checked</c:if> value="0"> 
+					<span class="label label-danger">Banned</span>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="col-sm-4 control-label" for="created">created</label>
+	      <div class="col-sm-6">
+	      		<input class="form-control" id="created" name="created"
+		          type="text" value="<fmt:formatDate value='${orderItem.created}' pattern='yyyy-MM-dd HH:mm:ss'/>" disabled>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="col-sm-4 control-label" for="modified">modified</label>
+	      <div class="col-sm-6">
+	      		<input class="form-control" id="modified" name="modified"
+		          type="text" value="<fmt:formatDate value='${orderItem.modified}' pattern='yyyy-MM-dd HH:mm:ss'/>" disabled>
+	      </div>
+	    </div>
+
 		</div>
-		<div class="box-content">
-			<form action="${ctx}/user/orderitem/update" modelAttribute="orderItem" method="post" class="form-horizontal">
-				<fieldset>					
-					<input type="hidden" id="id" name="id" value="${orderItem.id}"/>
+	</div>
+	<div class="modal-footer">
+		<button type="reset" class="btn btn-default">重置</button>
+		<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		<button type="submit" class="btn btn-primary">提交</button>
+	</div>
+</form>
 
-					<div class="control-group">
-						<label class="control-label" for="created">created</label>
-						<div class="controls">
-							<input class="input-large datepicker  required" id="created" name="created" readonly="readonly"
-								type="text" value="<fmt:formatDate value='${orderItem.created}' pattern='yyyy-MM-dd HH:mm:ss'/>">
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="modified">modified</label>
-						<div class="controls">
-							<input class="input-large datepicker  required" id="modified" name="modified" readonly="readonly"
-								type="text" value="<fmt:formatDate value='${orderItem.modified}' pattern='yyyy-MM-dd HH:mm:ss'/>">
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="active">active</label>
-						<div class="controls">
-							<input class="input-large required" id="active" name="active" type="text" value="${orderItem.active}">
-							<span class="help-inline"><form:errors path="active"/></span>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="isGift">isGift</label>
-						<div class="controls">
-							<input class="input-large required" id="isGift" name="isGift" type="text" value="${orderItem.isGift}">
-							<span class="help-inline"><form:errors path="isGift"/></span>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="name">商品名称</label>
-						<div class="controls">
-							<input class="input-large required" id="name" name="name" type="text" value="${orderItem.name}">
-							<span class="help-inline"><form:errors path="name"/></span>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="price">价格</label>
-						<div class="controls">
-							<input class="input-large required" id="price" name="price" type="text" value="${orderItem.price}">
-							<span class="help-inline"><form:errors path="price"/></span>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="quantity">数量</label>
-						<div class="controls">
-							<input class="input-large required" id="quantity" name="quantity" type="text" value="${orderItem.quantity}">
-							<span class="help-inline"><form:errors path="quantity"/></span>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="returnQuantity">returnQuantity</label>
-						<div class="controls">
-							<input class="input-large required" id="returnQuantity" name="returnQuantity" type="text" value="${orderItem.returnQuantity}">
-							<span class="help-inline"><form:errors path="returnQuantity"/></span>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="shippedQuantity">shippedQuantity</label>
-						<div class="controls">
-							<input class="input-large required" id="shippedQuantity" name="shippedQuantity" type="text" value="${orderItem.shippedQuantity}">
-							<span class="help-inline"><form:errors path="shippedQuantity"/></span>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="sn">商品编号</label>
-						<div class="controls">
-							<input class="input-large required" id="sn" name="sn" type="text" value="${orderItem.sn}">
-							<span class="help-inline"><form:errors path="sn"/></span>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="thumbnail">商品缩略图</label>
-						<div class="controls">
-							<input class="input-large" id="thumbnail" name="thumbnail" type="text" value="${orderItem.thumbnail}">
-							<span class="help-inline"><form:errors path="thumbnail"/></span>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="weight">重量</label>
-						<div class="controls">
-							<input class="input-large" id="weight" name="weight" type="text" value="${orderItem.weight}">
-							<span class="help-inline"><form:errors path="weight"/></span>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="order">订单</label>
-						<div class="controls">
-							<input class="input-large required" id="order" name="order" type="text" value="${orderItem.order}">
-							<span class="help-inline"><form:errors path="order"/></span>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="goods">商品</label>
-						<div class="controls">
-							<input class="input-large" id="goods" name="goods" type="text" value="${orderItem.goods}">
-							<span class="help-inline"><form:errors path="goods"/></span>
-						</div>
-					</div>
-					<div class="form-actions">
-						<span id="form_submit" class="btn btn-primary">Save changes</span>
-						<input type="reset" class="btn" value="Reset" />
-					</div>
-				</fieldset>
-			</form>   
-		</div>
-	</div><!--/span-->
-
-</div><!--/row-->
-
-<!-- public common.js -->
-<script src="${ctx}/static/js/charisma.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/app_single.js" />

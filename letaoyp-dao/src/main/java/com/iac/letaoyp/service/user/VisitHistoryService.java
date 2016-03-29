@@ -20,4 +20,12 @@ public class VisitHistoryService extends BasicService<VisitHistory,java.lang.Lon
 	public BasicRepository<VisitHistory,java.lang.Long> getRepository() {
 		return visitHistoryDao;
 	}
+	
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		visitHistoryDao.updateActiveByIdIn(active, ids);
+	}
+
+	public void delete(Long[] ids) {
+		visitHistoryDao.deleteByIdIn(ids);
+	}
 }

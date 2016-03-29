@@ -26,4 +26,12 @@ public class OrderItemService extends BasicService<OrderItem,java.lang.Long> {
 	public List<OrderItem> findByOrderIdAndActive(Long orderId, boolean active) {
 		return orderItemDao.findByOrderIdAndActive(orderId, active);
 	}
+	
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		orderItemDao.updateActiveByIdIn(active, ids);
+	}
+
+	public void delete(Long[] ids) {
+		orderItemDao.deleteByIdIn(ids);
+	}
 }

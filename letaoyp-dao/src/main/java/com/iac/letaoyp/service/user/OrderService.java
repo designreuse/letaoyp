@@ -93,4 +93,12 @@ public class OrderService extends BasicService<Order,java.lang.Long> {
 	public Long countByMemberIdAndCreatedGreaterThan(Long member, Date date) {
 		return orderDao.countByMemberIdAndCreatedGreaterThan(member, date);
 	}
+	
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		orderDao.updateActiveByIdIn(active, ids);
+	}
+
+	public void delete(Long[] ids) {
+		orderDao.deleteByIdIn(ids);
+	}
 }

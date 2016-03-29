@@ -16,14 +16,6 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.iac.letaoyp.entity.IdEntity;
 import com.iac.letaoyp.entity.sku.Goods;
 
-
-/**
- *
- * @author dingp email:dingp@51box.cn
- * @version 1.0
- * @since 1.0
- * * 订单物品
- */
 @Entity
 @Table(name = "order_item")
 public class OrderItem extends IdEntity {

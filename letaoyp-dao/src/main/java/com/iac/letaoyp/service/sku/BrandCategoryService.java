@@ -26,4 +26,12 @@ public class BrandCategoryService extends BasicService<BrandCategory,java.lang.L
 	public List<BrandCategory> findByCategory(Long id) {
 		return brandCategoryDao.findByCategory(id);
 	}
+	
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		brandCategoryDao.updateActiveByIdIn(active, ids);
+	}
+
+	public void delete(Long[] ids) {
+		brandCategoryDao.deleteByIdIn(ids);
+	}
 }

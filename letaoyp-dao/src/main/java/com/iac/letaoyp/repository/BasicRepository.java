@@ -9,6 +9,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 @NoRepositoryBean
 public interface BasicRepository<E, pk extends Serializable> 
 	extends PagingAndSortingRepository<E, pk>, JpaSpecificationExecutor<E> {
-		
+
+	
 	// Basic repository
 }

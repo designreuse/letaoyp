@@ -1,15 +1,24 @@
 package com.iac.letaoyp.repository.admin;
 
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+
 import com.iac.letaoyp.entity.admin.Menu;
 import com.iac.letaoyp.repository.BasicRepository;
 
-import java.util.List;
+public interface MenuDao extends BasicRepository<Menu, java.lang.Long> {
 
-import javax.persistence.OrderBy;
+	@Modifying
+	@Query("update Menu a set a.active=?1 where a.id in (?2)")
+	void updateActiveByIdIn(boolean active, Long[] ids);
 
-public interface MenuDao extends BasicRepository<Menu, Long> {
+	@Modifying
+	@Query("delete Menu a where a.id in (?1)")
+	void deleteByIdIn(Long[] ids);
 
-	@OrderBy(value="sort")
-	List<Menu> findByParent(Long parentId);
+	public List<Menu> findByParentAndActive(long id, boolean active);
 
+	Menu findByNameAndActive(String name, boolean active);
 }

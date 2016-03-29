@@ -9,13 +9,6 @@ import org.hibernate.validator.constraints.Length;
 
 import com.iac.letaoyp.entity.IdEntity;
 
-/**
- *
- * @author dingp email:dingp@51box.cn
- * @version 1.0
- * @since 1.0
- * * BrandCategory
- */
 @Entity
 @Table(name = "brand_category")
 public class BrandCategory extends IdEntity {

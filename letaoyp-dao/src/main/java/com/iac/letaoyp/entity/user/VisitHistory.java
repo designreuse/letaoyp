@@ -13,13 +13,6 @@ import org.hibernate.validator.constraints.Length;
 import com.iac.letaoyp.entity.IdEntity;
 import com.iac.letaoyp.entity.sku.Goods;
 
-/**
- *
- * @author dingp email:dingp@51box.cn
- * @version 1.0
- * @since 1.0
- * * 浏览历史
- */
 @Entity
 @Table(name = "visit_history")
 public class VisitHistory extends IdEntity {

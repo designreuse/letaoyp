@@ -23,13 +23,6 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.iac.letaoyp.entity.IdEntity;
 import com.iac.letaoyp.entity.info.Area;
 
-/**
- *
- * @author dingp email:dingp@51box.cn
- * @version 1.0
- * @since 1.0
- * * 人员表
- */
 @Entity
 @Table(name = "member")
 public class Member extends IdEntity {

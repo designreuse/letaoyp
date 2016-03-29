@@ -20,4 +20,12 @@ public class BrandService extends BasicService<Brand,java.lang.Long> {
 	public BasicRepository<Brand,java.lang.Long> getRepository() {
 		return brandDao;
 	}
+	
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		brandDao.updateActiveByIdIn(active, ids);
+	}
+
+	public void delete(Long[] ids) {
+		brandDao.deleteByIdIn(ids);
+	}
 }

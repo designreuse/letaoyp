@@ -9,15 +9,25 @@ import com.iac.letaoyp.repository.BasicRepository;
 import com.iac.letaoyp.repository.info.AdvertiseDao;
 import com.iac.letaoyp.service.BasicService;
 
+
 @Component
 @Transactional
 public class AdvertiseService extends BasicService<Advertise,java.lang.Long> {
 
-	@Autowired
-	private AdvertiseDao advertiseDao;
-	
-	@Override
-	public BasicRepository<Advertise,java.lang.Long> getRepository() {
-		return advertiseDao;
-	}
+    @Autowired
+    private AdvertiseDao advertiseDao;
+
+    @Override
+    public BasicRepository<Advertise,java.lang.Long> getRepository() {
+    	return advertiseDao;
+    }
+
+
+    public void updateActiveByIds(boolean active, Long[] ids) {
+      advertiseDao.updateActiveByIdIn(active, ids);
+    }
+
+    public void delete(Long[] ids) {
+      advertiseDao.deleteByIdIn(ids);
+    }
 }

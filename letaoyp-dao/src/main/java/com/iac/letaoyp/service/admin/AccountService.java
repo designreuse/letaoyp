@@ -1,16 +1,17 @@
 package com.iac.letaoyp.service.admin;
 
-import com.iac.letaoyp.entity.admin.Account;
-import com.iac.letaoyp.repository.BasicRepository;
-import com.iac.letaoyp.repository.admin.AccountDao;
-import com.iac.letaoyp.service.BasicService;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springside.modules.security.utils.Digests;
 import org.springside.modules.utils.Encodes;
+
+import com.iac.letaoyp.entity.admin.Account;
+import com.iac.letaoyp.repository.BasicRepository;
+import com.iac.letaoyp.repository.admin.AccountDao;
+import com.iac.letaoyp.service.BasicService;
+import com.iac.letaoyp.service.ServiceException;
 
 @Component
 @Transactional
@@ -22,14 +23,11 @@ public class AccountService extends BasicService<Account, Long> {
 	public static final int HASH_INTERATIONS = 1024;
 	private static final int SALT_SIZE = 8;
 	
-	public Account getAccount(Long id) {
-		return accountDao.findOne(id);
-	}
-	
-	public Account findUserByLoginName(String loginName) {
+	public Account findByLoginName(String loginName) {
 		return accountDao.findByLoginName(loginName);
 	}
 	
+	@Override
 	public void save(Account user) {
 		if (StringUtils.isNotBlank(user.getPlainPassword())) {
 			entryptPassword(user);
@@ -53,4 +51,32 @@ public class AccountService extends BasicService<Account, Long> {
 		return accountDao;
 	}
 
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		checkOperationParam(ids);
+		
+		accountDao.updateActiveByIdIn(active, ids);
+	}
+
+	@Override
+	public void delete(Long id) {
+		if(id == 1L) {
+			throw new ServiceException("不允许删除超级管理员账号");
+		}
+		
+		super.delete(id);
+	}
+	
+	public void delete(Long[] ids) {
+		checkOperationParam(ids);
+		
+		accountDao.deleteByIdIn(ids);
+	}
+
+	public void checkOperationParam(Long[] ids) {
+		for(long t : ids) {
+			if (t == 1L) {
+				throw new ServiceException("不允许修改超级管理员账号");
+			}
+		}
+	}
 }

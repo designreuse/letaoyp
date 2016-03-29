@@ -44,4 +44,12 @@ public class CategoryService extends BasicService<Category,java.lang.Long> {
 	public List<Category> findByParentAndActiveOrderByOrderDesc(Long categoryId, boolean active) {
 		return categoryDao.findByParentAndActiveOrderByOrderDesc(categoryId, active);
 	}
+	
+	public void updateActiveByIds(boolean active, Long[] ids) {
+		categoryDao.updateActiveByIdIn(active, ids);
+	}
+
+	public void delete(Long[] ids) {
+		categoryDao.deleteByIdIn(ids);
+	}
 }
