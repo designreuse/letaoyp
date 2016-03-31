@@ -67,21 +67,19 @@
 					<table class="table table-bordered table-hover">
 						<thead>
 							<tr role="row">
-								<th sortColumn="brand">brand</th>
-								<th sortColumn="brand_name">brandName</th>
-								<th sortColumn="category">category</th>
-								<th sortColumn="active">active</th>
-								<th sortColumn="created">created</th>
-								<th sortColumn="modified">modified</th>
+								<th sortColumn="brand_name">品牌名称</th>
+								<th sortColumn="category">类目</th>
+								<th sortColumn="active">状态</th>
+								<th sortColumn="created">创建时间</th>
+								<th sortColumn="modified">修改时间</th>
 								<th>操作</th>
 							</tr>
 						</thead>
 						<tbody id="checkbox-toggled">
 							<c:forEach items="${page.content}" var="brandCategory" varStatus="status">
 								<tr>
-									<td class="center"><input class="icheck" type="checkbox" value="${brandCategory.id}">${brandCategory.brand}</td>
-									<td class="center">${brandCategory.brandName}</td>
-									<td class="center">${brandCategory.category}</td>
+									<td class="center"><input class="icheck" type="checkbox" value="${brandCategory.id}">${brandCategory.brandName}</td>
+									<td class="center">${brandCategory.category.name}</td>
 									<td class="center">${brandCategory.active}</td>
 									<td class="center"><fmt:formatDate value='${brandCategory.created}' pattern='yyyy-MM-dd HH:mm:ss' /></td>
 									<td class="center"><fmt:formatDate value='${brandCategory.modified}' pattern='yyyy-MM-dd HH:mm:ss' /></td>
@@ -89,7 +87,7 @@
 											<a href="#modal_form" action="${ctx}/sku/brandcategory/update/${brandCategory.id}" title="编辑"
 												data-toggle="modal" data-target="#modal_form"><i class="fa fa-edit"></i> </a>
 										</shiro:hasPermission> <shiro:hasPermission name="sku:brandcategory:delete">
-											<a href="${ctx}/sku/brandcategory/delete/${brandCategory.id}" title="删除"><i class="fa fa-trash-o"></i> </a>
+											<a href="${ctx}/sku/brandcategory/delete/${brandCategory.id}" single-delete title="删除"><i class="fa fa-trash-o"></i> </a>
 										</shiro:hasPermission></td>
 								</tr>
 							</c:forEach>

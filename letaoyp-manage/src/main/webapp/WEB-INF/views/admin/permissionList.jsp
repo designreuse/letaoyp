@@ -100,7 +100,7 @@ ${permission.active}								</td>
 											data-target="#modal_form"><i class="fa fa-edit"></i> </a>
 									</shiro:hasPermission> 
 									<shiro:hasPermission name="admin:permission:delete">
-										<a href="${ctx}/admin/permission/delete/${permission.id}" title="删除"><i class="fa fa-trash-o"></i> </a>
+										<a href="${ctx}/admin/permission/delete/${permission.id}" single-delete title="删除"><i class="fa fa-trash-o"></i> </a>
 									</shiro:hasPermission>
 								</td>
 							</tr>

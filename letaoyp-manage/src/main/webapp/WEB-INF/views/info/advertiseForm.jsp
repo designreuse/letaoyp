@@ -18,13 +18,22 @@
 			<div class="form-group">
 				<label class="col-sm-4 control-label" for="model">模块</label>
 				<div class="col-sm-6">
-				  <select name="model">
-				    <option>请选择模块</option>
+				  <!-- 从其他页面跳转过来 指定model参数后 则不允许再选择模块 disabled-->
+				  <select id="select_model" name="model" class="form-control" <c:if test="${param.model != null}">disabled</c:if>>  
 				    <% 
 				      Advertise advertise = (Advertise)request.getAttribute("advertise");
+				      String modelParam = request.getParameter("model");
 				      for(Advertise.Model model : Model.values()) {
 				    %>
-				    <option value="<%= model.name() %>" <% if(advertise !=null && model == advertise.getModel()) { %>selected="selected"<% } %>>
+				    <option value="<%= model.name() %>" 
+				      <% if( (advertise !=null && model == advertise.getModel()) || model.name().equals(modelParam)) { %>
+				        selected="selected"
+				      <% } %>
+				      data-option='{"width":<%= model.getWidth() %>, "height": <%= model.getHeight() %>}'
+				      <% if(model == Advertise.Model.HOME_CATEGORY) {%>
+                disabled
+              <% }%>
+				    >
 				      <%= model.getDescription() %>
 				    </option>
 				    <%} %>
@@ -32,10 +41,12 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label" for="image">广告图片(${advertise.model.width} * ${advertise.model.height})</label>
+				<label class="col-sm-4 control-label" for="image">广告图片<span id="label_size"></span></label>
 				<div class="col-sm-6">
-				  <img alt="" src="${advertise.image}" width="300px" height="${advertise.model.height / advertise.model.width * 300}px" />
+				  <img alt="" id="img_advertise" src="${advertise.image}" width="300px" />
 					<input id="image" name="image" type="hidden" value="${advertise.image}" />
+          <input type="file" class="pos-abs pic_upload" 
+               data-config='{"url": "${ctx}/admin/file/upload", "input_img":"#img_advertise", "input_id":"#image"}' />
 				</div>
 			</div>
 			<div class="form-group">
@@ -46,6 +57,13 @@
 					<span class="help-inline"><form:errors path="text" /></span>
 				</div>
 			</div>
+			<div class="form-group">
+        <label class="col-sm-4 control-label" for="index">索引值</label>
+        <div class="col-sm-6">
+          <input class="form-control" id="index" name="index" type="text" 
+            value="${advertise.index == null ? param.index : advertise.index}" <c:if test="${param.model != null}">disabled</c:if> />
+        </div>
+      </div>
 			<div class="form-group">
 				<label class="col-sm-4 control-label" for="link">链接地址</label>
 				<div class="col-sm-6">
@@ -87,3 +105,18 @@
 </form>
 
 <script type="text/javascript" src="${ctx}/static/js/app_single.js" />
+<script>
+  $(function() {
+    var option = $('#select_model option:selected').data('option');
+    select(option);
+    
+    $('#select_model').change(select);
+  })
+  
+  function select(option) {
+    option = $(this).find('option:selected').data('option') || option;
+    
+    $('#label_size').html('(' + option.width + ' * ' + option.height + ')');
+    $('#img_advertise').css({width: '380px', height: option.height / option.width * 300 + 'px'});
+  }
+</script>

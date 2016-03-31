@@ -2,6 +2,7 @@ package com.iac.letaoyp.service.admin;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -71,32 +72,33 @@ public class MenuService extends BasicService<Menu, java.lang.Long> {
 		boolean isInsert = menu.getId() == null;
 		super.save(menu);
 		// maintain permission name when updated menu 
+		String namePrepend = StringUtils.isBlank(parentName) ? "" : parentName + ":";
 		if(isInsert) {
 			// 增加menu时 默认添加对应的权限
 			Permission p = new Permission();
 			p.setActive(true);
-			p.setName(parentName + ":" + menu.getName() + ":*");
-			p.setDescription(menu.getDescription() + "管理");
+			p.setName(namePrepend + menu.getName() + ":*");
+			p.setDescription(menu.getDescription() + "管理权限");
 			p.setMenu(menu.getId());
 			permissionDao.save(p);
 			
 			Permission p2 = new Permission();
 			p2.setActive(true);
-			p2.setName(parentName + ":" + menu.getName() + ":view");
+			p2.setName(namePrepend + menu.getName() + ":view");
 			p2.setDescription(menu.getDescription() + "查看权限");
 			p2.setMenu(menu.getId());
 			permissionDao.save(p2);
 			
 			Permission p3 = new Permission();
 			p3.setActive(true);
-			p3.setName(parentName + ":" + menu.getName() + ":edit");
+			p3.setName(namePrepend + menu.getName() + ":edit");
 			p3.setDescription(menu.getDescription() + "编辑权限");
 			p3.setMenu(menu.getId());
 			permissionDao.save(p3);
 			
 			Permission p4 = new Permission();
 			p4.setActive(true);
-			p4.setName(parentName + ":" + menu.getName() + ":delete");
+			p4.setName(namePrepend + menu.getName() + ":delete");
 			p4.setDescription(menu.getDescription() + "删除权限");
 			p4.setMenu(menu.getId());
 			permissionDao.save(p4);

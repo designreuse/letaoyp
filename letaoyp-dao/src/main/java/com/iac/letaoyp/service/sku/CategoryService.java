@@ -25,8 +25,8 @@ public class CategoryService extends BasicService<Category,java.lang.Long> {
 		return categoryDao;
 	}
 
-	public List<Category> findByParent(Long parent) {
-		return categoryDao.findByParent(parent);
+	public List<Category> findByParentOrderByOrderDesc(Long parent) {
+		return categoryDao.findByParentOrderByOrderDesc(parent);
 	}
 
 	public List<Category> findAllByOrderByOrderDesc() {
@@ -51,5 +51,18 @@ public class CategoryService extends BasicService<Category,java.lang.Long> {
 
 	public void delete(Long[] ids) {
 		categoryDao.deleteByIdIn(ids);
+	}
+	
+	@Override
+	public void save(Category c) {
+		Category parent = categoryDao.findOne(c.getParent());
+		parent.setIsLeaf(false);
+		categoryDao.save(parent);
+		
+		c.setIsLeaf(true);
+		c.setLevel(parent.getLevel() + 1);
+		c.setTreeName(parent.getTreeName() + "," + parent.getName());
+		c.setTreePath(parent.getTreePath() + "," + parent.getId());
+		categoryDao.save(c);
 	}
 }

@@ -1,5 +1,7 @@
 package com.iac.letaoyp.controller.sku;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
@@ -31,11 +33,18 @@ public class CategoryController extends BasicController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	@RequestMapping("layer")
+	public String layer(Model model,
+			@RequestParam(value = "loading", required = false, defaultValue = "/sku/category") String loading) {
+		model.addAttribute("loading", loading);
+		return "sku/categoryLayer";
+	}
+
 	/** 列表 */
 	@RequestMapping
 	public String list(@RequestParam(value = "page", defaultValue = "1") int pageNumber,
 			@RequestParam(value = "page.size", defaultValue = DEFAULT_PAGE_SIZE) int pageSize,
-			@RequestParam(value = "sortType", defaultValue = DEFAULT_SORT_TYPE) String sortType,
+			@RequestParam(value = "sortType", defaultValue = " order desc, id asc") String sortType,
 			Model model, ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		Page<Category> page = categoryService.findPage(searchParams, pageNumber, pageSize, sortType);
@@ -45,6 +54,17 @@ public class CategoryController extends BasicController {
 		// 将搜索条件编码成字符串，用于排序，分页的URL
 		model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
 		return "sku/categoryList";
+	}
+	
+	@RequestMapping("child")
+	@ResponseBody
+	public AjaxResult child(@RequestParam(value = "parent", required = false) Long parent) {
+		if(parent == null) {
+			return AjaxResult.succeed(Arrays.asList(categoryService.get(0L)));
+		}
+		
+		List<Category> categories = categoryService.findByParentOrderByOrderDesc(parent);
+		return AjaxResult.succeed(categories);
 	}
 	
 	@RequestMapping(value="/create", method = RequestMethod.GET)

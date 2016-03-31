@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.iac</groupId>
 	<artifactId>letaoyp</artifactId>
@@ -51,29 +52,16 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.6</java.version>
 	</properties>
-	
-	<!-- ?????????? (repo1.maven.org/maven2/)??????????,???????????????????Nexus???, ??????????????????????? 
-	<repositories>
-		<repository>
-			<id>nexus</id>
-			<name>Team Nexus Repository</name>
-			<url>http://localhost:8081/nexus/content/groups/public</url>
-		</repository>
-	</repositories>-->
 
-	<!-- ????Nexus???, ???????????????????????
-	<pluginRepositories>
-		<pluginRepository>
-			<id>nexus</id>
-			<name>Team Nexus Repository</name>
-			<url>http://localhost:8081/nexus/content/groups/public</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories> -->
+	<!-- ?????????? (repo1.maven.org/maven2/)??????????,???????????????????Nexus???, ??????????????????????? <repositories> 
+		<repository> <id>nexus</id> <name>Team Nexus Repository</name> <url>http://localhost:8081/nexus/content/groups/public</url> 
+		</repository> </repositories> -->
 
-	<!-- ????????????version,scope??exclusions,????????????groupId ??  artifactId ???? -->
+	<!-- ????Nexus???, ??????????????????????? <pluginRepositories> <pluginRepository> <id>nexus</id> <name>Team Nexus Repository</name> 
+		<url>http://localhost:8081/nexus/content/groups/public</url> <snapshots> <enabled>false</enabled> </snapshots> </pluginRepository> 
+		</pluginRepositories> -->
+
+	<!-- ????????????version,scope??exclusions,????????????groupId ?? artifactId ???? -->
 	<dependencyManagement>
 		<dependencies>
 			<!-- SPRINGSIDE MODULES begin -->
@@ -104,10 +92,10 @@
 				<groupId>io.springside</groupId>
 				<artifactId>springside-redis</artifactId>
 				<version>${springside.version}</version>
-			</dependency>			
+			</dependency>
 			<!-- SPRINGSIDE MODULES end -->
-			
-			<!-- spring-->
+
+			<!-- spring -->
 			<!-- ???????exclude commons-loging -->
 			<dependency>
 				<groupId>cn.org.springframework</groupId>
@@ -131,7 +119,7 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
-			
+
 
 			<!-- PERSISTENCE begin -->
 			<!-- hibernate -->
@@ -182,7 +170,7 @@
 				<artifactId>mybatis-spring</artifactId>
 				<version>1.2.2</version>
 			</dependency>
-		
+
 			<!-- connection pool -->
 			<dependency>
 				<groupId>org.apache.tomcat</groupId>
@@ -199,7 +187,7 @@
 				<artifactId>spring-webmvc</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-			
+
 			<!-- sitemesh -->
 			<dependency>
 				<groupId>opensymphony</groupId>
@@ -209,7 +197,7 @@
 			</dependency>
 
 			<!-- j2ee web spec -->
-			<!-- update to servlet 3.0 for spring 4.0 MockHttpServletRequest  -->
+			<!-- update to servlet 3.0 for spring 4.0 MockHttpServletRequest -->
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
@@ -517,6 +505,11 @@
 				<version>${commons-io.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>1.3.1</version>
+			</dependency>
+			<dependency>
 				<groupId>commons-codec</groupId>
 				<artifactId>commons-codec</artifactId>
 				<version>1.9</version>
@@ -585,7 +578,7 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.apache.httpcomponents</groupId>
 				<artifactId>fluent-hc</artifactId>
@@ -597,7 +590,7 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.apache.httpcomponents</groupId>
 				<artifactId>httpcore</artifactId>
@@ -629,23 +622,23 @@
 				<artifactId>activation</artifactId>
 				<version>1.1.1</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.jsoup</groupId>
 				<artifactId>jsoup</artifactId>
 				<version>1.8.3</version>
 			</dependency>
-			
+
 			<dependency>
-                <groupId>com.opentech.cloud.sox</groupId>
-                <artifactId>sox-common</artifactId>
-                <version>${sox.version}</version>
-            </dependency>
+				<groupId>com.opentech.cloud.sox</groupId>
+				<artifactId>sox-common</artifactId>
+				<version>${sox.version}</version>
+			</dependency>
 			<dependency>
-                <groupId>com.opentech.cloud.sox</groupId>
-                <artifactId>sox-core</artifactId>
-                <version>${sox.version}</version>
-            </dependency>
+				<groupId>com.opentech.cloud.sox</groupId>
+				<artifactId>sox-core</artifactId>
+				<version>${sox.version}</version>
+			</dependency>
 			<!-- OTHER TOOLS end -->
 
 			<!-- TEST begin -->
@@ -656,7 +649,7 @@
 				<version>${junit.version}</version>
 				<scope>test</scope>
 			</dependency>
-			
+
 			<!-- assertj -->
 			<dependency>
 				<groupId>org.assertj</groupId>
@@ -664,7 +657,7 @@
 				<version>${assertj.version}</version>
 				<scope>test</scope>
 			</dependency>
-			
+
 			<!-- mockito -->
 			<dependency>
 				<groupId>org.mockito</groupId>
@@ -807,7 +800,7 @@
 				<scope>test</scope>
 			</dependency>
 			<!-- TEST end -->
-			
+
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-framework-bom</artifactId>
@@ -916,13 +909,13 @@
 					<artifactId>maven-install-plugin</artifactId>
 					<version>2.5.2</version>
 				</plugin>
-				
+
 				<!-- archetype??? -->
 				<plugin>
-		            <groupId>org.apache.maven.plugins</groupId>
-		            <artifactId>maven-archetype-plugin</artifactId>
-		            <version>2.2</version>
-		        </plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-archetype-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
 
 				<!-- enforcer???, ??????????????????????jar?? -->
 				<plugin>
@@ -1001,8 +994,8 @@
 					<artifactId>jetty-maven-plugin</artifactId>
 					<version>${jetty.version}</version>
 				</plugin>
-				
-				<!-- tomcat  -->
+
+				<!-- tomcat -->
 				<plugin>
 					<groupId>org.apache.tomcat.maven</groupId>
 					<artifactId>tomcat7-maven-plugin</artifactId>
@@ -1029,10 +1022,10 @@
 			</build>
 		</profile>
 	</profiles>
-  <modules>
-    <module>letaoyp-dao</module>
-    <module>letaoyp-biz</module>
-    <module>letaoyp-manage</module>
-    <module>letaoyp-wap</module>
-  </modules>
+	<modules>
+		<module>letaoyp-dao</module>
+		<module>letaoyp-biz</module>
+		<module>letaoyp-manage</module>
+		<module>letaoyp-wap</module>
+	</modules>
 </project>

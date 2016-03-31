@@ -22,7 +22,7 @@
 			<%
 				if (page.hasPreviousPage()) {
 			%>
-			<li><a href="${action}?page=1&sortType=${sortType}&${searchParams}" class="ajax_link">&laquo;</a></li>
+			<li><a href="javascript:page(1)">&laquo;</a></li>
 			<%
 				} else {
 			%>
@@ -37,7 +37,7 @@
 						<li class="active"><a href="javascript:;">${i}</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="${action}?page=${i}&sortType=${sortType}&${searchParams}" class="ajax_link">${i}</a></li>
+						<li><a href="javascript:page(${i})">${i}</a></li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
@@ -45,7 +45,7 @@
 			<%
 				if (page.hasNextPage()) {
 			%>
-			<li><a href="${action}?page=${page.totalPages}&sortType=${sortType}&${searchParams}" class="ajax_link">&raquo;</a></li>
+			<li><a href="javascript:page(${page.totalPages})">&raquo;</a></li>
 			<%
 				} else {
 			%>

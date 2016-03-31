@@ -92,7 +92,7 @@
 											<a action="${ctx}/admin/account/update/${user.id}" title="编辑" data-toggle="modal"
 												data-target="#modal_user_form"><i class="fa fa-edit"></i> </a>
 										</shiro:hasPermission> <shiro:hasPermission name="admin:account:delete">
-											<a href="${ctx}/admin/account/delete/${user.id}" title="删除"><i class="fa fa-trash-o"></i> </a>
+											<a href="${ctx}/admin/account/delete/${user.id}" single-delete title="删除"><i class="fa fa-trash-o"></i> </a>
 										</shiro:hasPermission></td>
 								</tr>
 							</c:forEach>

@@ -97,7 +97,7 @@ ${visitHistory.active}								</td>
 											data-target="#modal_form"><i class="fa fa-edit"></i> </a>
 									</shiro:hasPermission> 
 									<shiro:hasPermission name="user:visithistory:delete">
-										<a href="${ctx}/user/visithistory/delete/${visitHistory.id}" title="删除"><i class="fa fa-trash-o"></i> </a>
+										<a href="${ctx}/user/visithistory/delete/${visitHistory.id}" single-delete title="删除"><i class="fa fa-trash-o"></i> </a>
 									</shiro:hasPermission>
 								</td>
 							</tr>

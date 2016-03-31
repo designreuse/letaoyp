@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -41,11 +40,6 @@ public class Brand extends IdEntity {
      */ 	
 	@NotBlank @Length(max=255)
 	private java.lang.String name;
-    /**
-     * type       db_column: type 
-     */ 	
-	@NotNull @Max(9999999999L)
-	private java.lang.Integer type;
     /**
      * url       db_column: url 
      */ 	
@@ -87,15 +81,6 @@ public class Brand extends IdEntity {
 	
 	public void setName(java.lang.String value) {
 		this.name = value;
-	}
-	
-	@Column(name = "type")
-	public java.lang.Integer getType() {
-		return this.type;
-	}
-	
-	public void setType(java.lang.Integer value) {
-		this.type = value;
 	}
 	
 	@Column(name = "url")

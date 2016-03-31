@@ -14,96 +14,102 @@
 			<input type="hidden" id="id" name="id" value="${category.id}" />
 
 			<div class="form-group">
-				<label class="col-sm-4 control-label" for="order">降序排列</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="order" name="order" type="text" value="${category.order}" /> <span
-						class="help-inline"><form:errors path="order" /></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label" for="name">name</label>
+				<label class="col-sm-4 control-label" for="name">类目名称</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="name" name="name" type="text" value="${category.name}" data-rule-required="true"
-						data-msg-required="请输入name" /> <span class="help-inline"><form:errors path="name" /></span>
+						data-msg-required="请输入类目名称" /> <span class="help-inline"><form:errors path="name" /></span>
+				</div>
+			</div>
+			
+			<shiro:hasRole name="admin">
+				<div class="form-group">
+					<label class="col-sm-4 control-label" for="seoDescription">seoDescription</label>
+					<div class="col-sm-6">
+						<input class="form-control" id="seoDescription" name="seoDescription" type="text"
+							value="${category.seoDescription}" /> <span class="help-inline"><form:errors path="seoDescription" /></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" for="seoKeywords">seoKeywords</label>
+					<div class="col-sm-6">
+						<input class="form-control" id="seoKeywords" name="seoKeywords" type="text" value="${category.seoKeywords}" /> <span
+							class="help-inline"><form:errors path="seoKeywords" /></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" for="seoTitle">seoTitle</label>
+					<div class="col-sm-6">
+						<input class="form-control" id="seoTitle" name="seoTitle" type="text" value="${category.seoTitle}" /> <span
+							class="help-inline"><form:errors path="seoTitle" /></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" for="treePath">treePath</label>
+					<div class="col-sm-6">
+						<input class="form-control" id="treePath" name="treePath" type="text" value="${category.treePath}" disabled/> 
+						<span class="help-inline"><form:errors path="treePath" /></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" for="treeName">treeName</label>
+					<div class="col-sm-6">
+						<input class="form-control" id="treeName" name="treeName" type="text" value="${category.treeName}" disabled /> 
+						<span class="help-inline"><form:errors path="treeName" /></span>
+					</div>
+				</div>
+				<div class="form-group">
+	        <label class="col-sm-4 control-label" for="isLeaf">isLeaf</label>
+	        <div class="col-sm-6">
+	          <input class="form-control" id="isLeaf" name="isLeaf" type="text" value="${category.isLeaf}" disabled/> <span
+	            class="help-inline"><form:errors path="isLeaf" /></span>
+	        </div>
+	      </div>
+	      <div class="form-group">
+	        <label class="col-sm-4 control-label" for="level">层级</label>
+	        <div class="col-sm-6">
+	          <input class="form-control" id="level" name="level" type="text" value="${category.level}" disabled/> <span
+	            class="help-inline"><form:errors path="level" /></span>
+	        </div>
+	      </div>
+			</shiro:hasRole>
+			
+			<div class="form-group">
+				<label class="col-sm-4 control-label" for="parent">父类目</label>
+				<div class="col-sm-6">
+				  <input type="text" class="form-control" id="input_category_name" disabled> 
+					<input class="form-control" id="parent" name="parent" type="hidden" value="${category.parent}" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-4 control-label" for="icon">图标(60 * 60)</label>
+				<div class="col-sm-6">
+					<input id="icon" name="icon" type="hidden" value="${category.icon}" />
+				  <img id="img_icon" src="${category.icon}" width="60" height="60">
+				  <input type="file" class="pos-abs pic_upload" 
+               data-config='{"url": "${ctx}/admin/file/upload", "input_img":"#img_icon", "input_id":"#icon"}' />
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label" for="seoDescription">seoDescription</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="seoDescription" name="seoDescription" type="text"
-						value="${category.seoDescription}" /> <span class="help-inline"><form:errors path="seoDescription" /></span>
-				</div>
-			</div>
+        <label class="col-sm-4 control-label" for="order">排序(越大越靠前)</label>
+        <div class="col-sm-6">
+          <input class="form-control" id="order" name="order" type="text" value="${category.order}" /> <span
+            class="help-inline"><form:errors path="order" /></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="top">置顶至首页</label>
+        <div class="col-sm-6">
+          <input class="form-control" id="top" name="top" type="text" value="${category.top ? '是' : '否'}" disabled />
+        </div>
+      </div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label" for="seoKeywords">seoKeywords</label>
+				<label class="col-sm-4 control-label" for="logo">类目logo (150 * 60)</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="seoKeywords" name="seoKeywords" type="text" value="${category.seoKeywords}" /> <span
-						class="help-inline"><form:errors path="seoKeywords" /></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label" for="seoTitle">seoTitle</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="seoTitle" name="seoTitle" type="text" value="${category.seoTitle}" /> <span
-						class="help-inline"><form:errors path="seoTitle" /></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label" for="treePath">treePath</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="treePath" name="treePath" type="text" value="${category.treePath}"
-						data-rule-required="true" data-msg-required="请输入treePath" /> <span class="help-inline"><form:errors
-							path="treePath" /></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label" for="treeName">treeName</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="treeName" name="treeName" type="text" value="${category.treeName}"
-						data-rule-required="true" data-msg-required="请输入treeName" /> <span class="help-inline"><form:errors
-							path="treeName" /></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label" for="parent">parent</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="parent" name="parent" type="text" value="${category.parent}" /> <span
-						class="help-inline"><form:errors path="parent" /></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label" for="isLeaf">isLeaf</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="isLeaf" name="isLeaf" type="text" value="${category.isLeaf}" /> <span
-						class="help-inline"><form:errors path="isLeaf" /></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label" for="level">层级</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="level" name="level" type="text" value="${category.level}" /> <span
-						class="help-inline"><form:errors path="level" /></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label" for="icon">图标</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="icon" name="icon" type="text" value="${category.icon}" /> <span
-						class="help-inline"><form:errors path="icon" /></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label" for="top">是否置顶至首页</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="top" name="top" type="text" value="${category.top}" /> <span class="help-inline"><form:errors
-							path="top" /></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label" for="logo">类目logo</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="logo" name="logo" type="text" value="${category.logo}" /> <span
-						class="help-inline"><form:errors path="logo" /></span>
+					<input class="form-control" id="logo" name="logo" type="hidden" value="${category.logo}" />
+          <img id="img_logo" src="${category.logo}" width="150px" height="60px">
+				  <input type="file" class="pos-abs pic_upload" 
+               data-config='{"url": "${ctx}/admin/file/upload", "input_img":"#img_logo", "input_id":"#logo"}' />
 				</div>
 			</div>
 			<div class="form-group">
@@ -140,3 +146,24 @@
 </form>
 
 <script type="text/javascript" src="${ctx}/static/js/app_single.js" />
+<script>
+$(function() {
+  if('${category.id}' == '') {
+    var node = getSelectedNode();
+    if(!node) {
+      notice.error('请先选择左侧类目')
+      return;
+    }
+    $('#input_category_name').val(node.name);
+    $('#parent').val(node.id);
+    
+    if(!node.active) {
+      notice.error('请注意，' + node.name + '节点为失效状态，您不应该再该节点下增加子节点');
+    }
+  }
+  
+  $('#top').click(function() {
+    
+  })
+})
+</script>

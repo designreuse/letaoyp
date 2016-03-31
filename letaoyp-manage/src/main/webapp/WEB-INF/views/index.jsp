@@ -11,6 +11,7 @@
 <meta http-equiv="Cache-Control" content="no-store" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
+<link type="image/x-icon" href="${ctx}/static/images/favicon.ico" rel="shortcut icon">
 
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <!-- Bootstrap 3.3.5 -->
@@ -48,6 +49,7 @@
 <script src="${ctx}/static/plugins/datepicker/bootstrap-datepicker.js"></script>
 <script src="${ctx}/static/plugins/jquery-validation/jquery.validate.js"></script>
 <script src="${ctx}/static/plugins/jquery-validation/additional-methods.js"></script>
+<script src="${ctx}/static/plugins/jQuery/jquery.form.js"></script>
 
 <script src="${ctx}/static/plugins/noty/jquery.noty.packaged.min.js"></script>
 <script src="${ctx}/static/plugins/pace/pace.js"></script>

@@ -155,7 +155,7 @@ ${order.active}								</td>
 											data-target="#modal_form"><i class="fa fa-edit"></i> </a>
 									</shiro:hasPermission> 
 									<shiro:hasPermission name="user:order:delete">
-										<a href="${ctx}/user/order/delete/${order.id}" title="删除"><i class="fa fa-trash-o"></i> </a>
+										<a href="${ctx}/user/order/delete/${order.id}" single-delete title="删除"><i class="fa fa-trash-o"></i> </a>
 									</shiro:hasPermission>
 								</td>
 							</tr>

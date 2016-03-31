@@ -90,7 +90,7 @@
 												data-toggle="modal" data-target="#modal_form"><i class="fa fa-edit"></i> </a>
 										</shiro:hasPermission> 
 										<shiro:hasPermission name="admin:accountrole:delete">
-											<a href="${ctx}/admin/accountrole/delete/${accountRole.id}" title="删除"><i class="fa fa-trash-o"></i> </a>
+											<a href="${ctx}/admin/accountrole/delete/${accountRole.id}" single-delete title="删除"><i class="fa fa-trash-o"></i> </a>
 										</shiro:hasPermission></td>
 								</tr>
 							</c:forEach>

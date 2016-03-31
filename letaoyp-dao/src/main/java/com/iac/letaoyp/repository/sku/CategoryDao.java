@@ -10,7 +10,7 @@ import com.iac.letaoyp.repository.BasicRepository;
 
 public interface CategoryDao extends BasicRepository<Category,java.lang.Long>{
 
-	List<Category> findByParent(Long parent);
+	List<Category> findByParentOrderByOrderDesc(Long parent);
 
 	List<Category> findAllByOrderByOrderDesc();
 

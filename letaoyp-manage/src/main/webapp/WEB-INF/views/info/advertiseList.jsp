@@ -93,7 +93,7 @@
 											<a href="#modal_form" action="${ctx}/info/advertise/update/${advertise.id}" title="编辑" data-toggle="modal"
 												data-target="#modal_form"><i class="fa fa-edit"></i> </a>
 										</shiro:hasPermission> <shiro:hasPermission name="info:advertise:delete">
-											<a href="${ctx}/info/advertise/delete/${advertise.id}" title="删除"><i class="fa fa-trash-o"></i> </a>
+											<a href="${ctx}/info/advertise/delete/${advertise.id}" single-delete title="删除"><i class="fa fa-trash-o"></i> </a>
 										</shiro:hasPermission></td>
 								</tr>
 							</c:forEach>

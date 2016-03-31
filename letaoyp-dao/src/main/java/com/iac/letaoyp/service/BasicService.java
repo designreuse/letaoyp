@@ -54,7 +54,7 @@ public abstract class BasicService<E, pk extends Serializable> {
 	 * 创建分页请求. PageRequest start index with 0
 	 */
 	private PageRequest buildPageRequest(int pageNumber, int pagzSize, String sortType) {
-		Sort sort = from(sortType);
+		Sort sort = parse(sortType);
 
 		return new PageRequest(pageNumber - 1, pagzSize, sort);
 	}
@@ -82,7 +82,7 @@ public abstract class BasicService<E, pk extends Serializable> {
 	}
 	
 	private Sort from(String single) {
-		String[] sortTypeGroup = single.split(" ");
+		String[] sortTypeGroup = single.trim().split(" ");
 
 		String dirctionStr = sortTypeGroup.length == 1
 				|| StringUtils.isBlank(sortTypeGroup[1]) ? "asc"

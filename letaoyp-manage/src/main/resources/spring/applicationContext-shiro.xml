@@ -28,7 +28,8 @@
 				/api/secure/** = authcBasic
 				/captcha = anon
 				/static/** = anon
-				
+				/upload/** = anon
+				/favicon.ico = anon
 				/** = user
 			</value>
 		</property>

@@ -13,10 +13,20 @@
 		<param-name>spring.profiles.default</param-name>
 		<param-value>development</param-value>
 	</context-param>
+  <context-param>   
+    <param-name>webAppRootKey</param-name>   
+    <param-value>app.root</param-value> 
+  </context-param>
 
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+  
+  <listener>
+      <listener-class>   
+        org.springframework.web.util.WebAppRootListener
+      </listener-class>
+  </listener>
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>

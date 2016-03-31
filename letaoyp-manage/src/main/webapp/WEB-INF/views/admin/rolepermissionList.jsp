@@ -90,7 +90,7 @@
 												title="编辑" data-toggle="modal" data-target="#modal_form"><i class="fa fa-edit"></i> </a>
 										</shiro:hasPermission> 
 										<shiro:hasPermission name="admin:rolepermission:delete">
-											<a href="${ctx}/admin/rolepermission/delete/${rolePermission.id}" title="删除"><i class="fa fa-trash-o"></i>
+											<a href="${ctx}/admin/rolepermission/delete/${rolePermission.id}" single-delete title="删除"><i class="fa fa-trash-o"></i>
 											</a>
 										</shiro:hasPermission></td>
 								</tr>

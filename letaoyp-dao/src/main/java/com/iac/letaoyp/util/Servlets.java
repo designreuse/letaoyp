@@ -1,5 +1,6 @@
 package com.iac.letaoyp.util;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.Cookie;
@@ -56,4 +57,47 @@ public class Servlets extends org.springside.modules.web.Servlets {
             return request.getRemoteAddr();
         }
     }
+	
+	/**
+	 * 获取相对地址与参数
+	 * 
+	 * @param request
+	 * @return	example /activity?from=llgj return /activity
+	 * @throws IOException
+	 */
+	public static String getRelativeUrl(HttpServletRequest request) {
+		String result = request.getRequestURI().substring(request.getContextPath().length());
+		int index = result.indexOf(";");
+		if(index != -1) {
+			result = result.substring(0, index);
+		}
+		return result;
+	}
+	
+	/**
+	 * 获取访问全地址 不包括参数
+	 * 
+	 * @param request
+	 * @return example http://3g.k189.cn:8100/flow-service-wap/index
+	 */
+	public static String getCompleteUrl(HttpServletRequest request) {
+		return getDomainUrl(request) + request.getRequestURI();
+	}
+	
+	public static String getDomainUrl(HttpServletRequest request) {
+		return request.getScheme() + "://"
+				+ request.getServerName() + 
+				(request.getServerPort() == 80 ? "" : ":" + request.getServerPort())
+				;
+	}
+	
+	/**
+	 * 获取 http://域名：端口/context
+	 * 
+	 * @param request
+	 * @return	example http://3g.k189.cn:8100/flow-service-assets-query
+	 */
+	public static String getRequestContext(HttpServletRequest request) {
+		return getDomainUrl(request) + request.getContextPath();
+	}
 }

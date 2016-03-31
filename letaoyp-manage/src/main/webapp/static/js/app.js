@@ -48,6 +48,68 @@ function ajax(config) {
   $.ajax($.extend(config, settings));
 }
 
+function page(page) {
+  $('#page').val(page || $('ul.pagination li.active a').text() || 1);
+  $('#button_search').click();
+}
+
+/**
+ * 图片上传
+ * input file 移到创建的form表单中 提交完毕再移回去 
+ * TODO: 目前都是input file 外围包装一个a标签 所以直接$parent.append(this) 
+ * 需要再改进成通用的方式 有多个节点时 移回去位置会错乱
+ */
+function picUpload() {
+    var $this = $(this);
+    $this.prop('name', 'file');
+    var $form = $('#pic-ajax-upload');
+    if (!$form.length) {
+        $form = $('<form id="pic-ajax-upload" style="display: none;" method="post" enctype="multipart/form-data"></form>');
+        $('body').append($form);
+    }
+
+    $form.html(''); //清空参数
+    var $parent = $this.parent();
+    $form.append($this);
+    var config = $this.data('config');
+    var submitData = $this.data('data');
+    for (var i in submitData) {
+        $form.append('<input name="' + i + '" value="' + submitData[i] + '" />');
+    }
+    var $inputImg = $(config.input_img);
+    var $inputId = $(config.input_id);
+    
+    if (!$inputImg.length || !$inputId.length) {
+        layer.msg('ajax upload file must define input_img and input_id with data-config attribute');
+        return;
+    }
+    var oringnalSrc = $inputImg.prop('src');
+    //  $.extend(data, config || {});
+    $form.ajaxSubmit({
+        url: config.url || $form.attr('action'),
+        success: function(data) {
+            if(typeof data == 'string') {
+                var d = eval("("+data+")");
+            } else {
+                var d = data;
+            }
+            
+            if (d.success) {
+                $inputImg.attr('src', d.url);
+                $inputId.val(d.url);
+            } else {
+                notice.error(d.msg || '文件上传失败');
+                $inputId.val('');
+                $inputImg.attr('src', oringnalSrc);
+            }
+        },
+        error: errorHandler,
+        complete: function() {
+            $parent.append($this);
+        }
+    });
+}
+
 function _beauty_checkbox() {
   // Enable iCheck plugin for checkboxes
   // iCheck for checkbox and radio inputs
@@ -127,6 +189,24 @@ notice.confirm = function(message, callback_ok, title_ok, callback_cancel,
   });
 }
 /** noty function end */
+
+
+function initialzeOnloading() {
+  $('[initialze-onloading]').each(function() {
+    var $this = $(this);
+    var url = $this.attr('initialze-onloading');
+    $this.removeAttr('initialze-onloading');
+    
+    $.ajax({
+      url: url,
+      type: 'get',
+      success: function(html) {
+        $($this.data('override') || $this).html(html);
+      },
+      error: errorHandler
+    })
+  })
+}
 
 function _initialize() {
 
@@ -239,7 +319,27 @@ function _initialize() {
     
   })
   
+  $(document).on('click', '[single-delete]', function(e) {
+    e.preventDefault();
+    var $this = $(this), $target = $($(this).data('target'));
+    notice.confirm('确认删除？ 删除后不可恢复', function() {
+      $.ajax({
+        url: $this.attr('action') || $this.attr('href') || $this.data('url'),
+        type: 'DELETE',
+        success: function(data) {
+          notice.information(data.msg || 'delete success');
+          page();
+        },
+        error: errorHandler
+      })
+    })
+    
+  })
+  
   $(document).on('change', '#searchForm input', function(e) {
     $('#page').val(1);
   });
+  
+  //图片上传
+  $(document).on('change', '.pic_upload', picUpload);
 }

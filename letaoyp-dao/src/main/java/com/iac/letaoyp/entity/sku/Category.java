@@ -2,6 +2,7 @@ package com.iac.letaoyp.entity.sku;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 
@@ -196,5 +197,14 @@ public class Category extends IdEntity {
 		this.logo = logo;
 	}
 
+	@PrePersist
+	public void prepersist() {
+		if(this.top == null) {
+			this.setTop(false);
+		}
+		if(this.isLeaf == null) {
+			this.setIsLeaf(true);
+		}
+	}
 }
 

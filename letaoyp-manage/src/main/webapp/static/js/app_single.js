@@ -3,6 +3,8 @@ $(function() {
 
   _date_picker();
 
+  initialzeOnloading();
+  
   //为inputForm注册validate函数
   $('form[form-validate]').validate({
     submitHandler : function(form) {

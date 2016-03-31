@@ -91,7 +91,7 @@
 											<a href="#modal_form" action="${ctx}/sku/goodschoosen/update/${goodsChoosen.id}" title="编辑"
 												data-toggle="modal" data-target="#modal_form"><i class="fa fa-edit"></i> </a>
 										</shiro:hasPermission> <shiro:hasPermission name="sku:goodschoosen:delete">
-											<a href="${ctx}/sku/goodschoosen/delete/${goodsChoosen.id}" title="删除"><i class="fa fa-trash-o"></i> </a>
+											<a href="${ctx}/sku/goodschoosen/delete/${goodsChoosen.id}" single-delete title="删除"><i class="fa fa-trash-o"></i> </a>
 										</shiro:hasPermission></td>
 								</tr>
 							</c:forEach>

@@ -13,48 +13,44 @@
 			<!-- form start -->
 			<input type="hidden" id="id" name="id" value="${brand.id}" />
 
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="name">品牌名称</label>
+        <div class="col-sm-6">
+          <input class="form-control" id="name" name="name" type="text" value="${brand.name}" data-rule-required="true"
+            data-msg-required="请输入品牌名称" /> <span class="help-inline"><form:errors path="name" /></span>
+        </div>
+      </div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label" for="order">降序 越大越靠前</label>
+				<label class="col-sm-4 control-label" for="order">排序（越大越靠前）</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="order" name="order" type="text" value="${brand.order}" /> <span
-						class="help-inline"><form:errors path="order" /></span>
+					<input class="form-control" id="order" name="order" type="text" value="${brand.order}" 
+					  data-rule-digits=“true” data-msg-digits="请输入数字" /> 
+					<span class="help-inline"><form:errors path="order" /></span>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label" for="introduction">introduction</label>
+				<label class="col-sm-4 control-label" for="introduction">品牌介绍</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="introduction" name="introduction" type="text" value="${brand.introduction}" /> <span
-						class="help-inline"><form:errors path="introduction" /></span>
+					<input class="form-control" id="introduction" name="introduction" type="text" value="${brand.introduction}" /> 
+					<span class="help-inline"><form:errors path="introduction" /></span>
 				</div>
 			</div>
+			<!-- 
 			<div class="form-group">
 				<label class="col-sm-4 control-label" for="logo">logo</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="logo" name="logo" type="text" value="${brand.logo}" /> <span class="help-inline"><form:errors
 							path="logo" /></span>
 				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label" for="name">name</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="name" name="name" type="text" value="${brand.name}" data-rule-required="true"
-						data-msg-required="请输入name" /> <span class="help-inline"><form:errors path="name" /></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label" for="type">type</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="type" name="type" type="text" value="${brand.type}" data-rule-required="true"
-						data-msg-required="请输入type" /> <span class="help-inline"><form:errors path="type" /></span>
-				</div>
-			</div>
+			</div> 
+			
 			<div class="form-group">
 				<label class="col-sm-4 control-label" for="url">url</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="url" name="url" type="text" value="${brand.url}" /> <span class="help-inline"><form:errors
 							path="url" /></span>
 				</div>
-			</div>
+			</div>-->
 			<div class="form-group">
 				<label class="col-sm-4 control-label" for="active">active</label>
 				<div class="col-sm-6">
@@ -65,14 +61,14 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label" for="created">created</label>
+				<label class="col-sm-4 control-label" for="created">创建时间</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="created" name="created" type="text"
 						value="<fmt:formatDate value='${brand.created}' pattern='yyyy-MM-dd HH:mm:ss'/>" disabled>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label" for="modified">modified</label>
+				<label class="col-sm-4 control-label" for="modified">更新时间</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="modified" name="modified" type="text"
 						value="<fmt:formatDate value='${brand.modified}' pattern='yyyy-MM-dd HH:mm:ss'/>" disabled>

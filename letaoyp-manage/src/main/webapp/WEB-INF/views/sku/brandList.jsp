@@ -67,27 +67,21 @@
 					<table class="table table-bordered table-hover">
 						<thead>
 							<tr role="row">
-								<th sortColumn="order">降序 越大越靠前</th>
-								<th sortColumn="introduction">introduction</th>
-								<th sortColumn="logo">logo</th>
-								<th sortColumn="name">name</th>
-								<th sortColumn="type">type</th>
-								<th sortColumn="url">url</th>
-								<th sortColumn="active">active</th>
-								<th sortColumn="created">created</th>
-								<th sortColumn="modified">modified</th>
+								<th sortColumn="name">品牌名称</th>
+								<th sortColumn="order">排序</th>
+								<th sortColumn="introduction">品牌介绍</th>
+								<th sortColumn="active">状态</th>
+								<th sortColumn="created">创建时间</th>
+								<th sortColumn="modified">修改时间</th>
 								<th>操作</th>
 							</tr>
 						</thead>
 						<tbody id="checkbox-toggled">
 							<c:forEach items="${page.content}" var="brand" varStatus="status">
 								<tr>
-									<td class="center"><input class="icheck" type="checkbox" value="${brand.id}">${brand.order}</td>
+									<td class="center"><input class="icheck" type="checkbox" value="${brand.id}">${brand.name}</td>
 									<td class="center">${brand.introduction}</td>
-									<td class="center">${brand.logo}</td>
-									<td class="center">${brand.name}</td>
-									<td class="center">${brand.type}</td>
-									<td class="center">${brand.url}</td>
+									<td class="center">${brand.order}</td>
 									<td class="center">${brand.active}</td>
 									<td class="center"><fmt:formatDate value='${brand.created}' pattern='yyyy-MM-dd HH:mm:ss' /></td>
 									<td class="center"><fmt:formatDate value='${brand.modified}' pattern='yyyy-MM-dd HH:mm:ss' /></td>
@@ -95,7 +89,7 @@
 											<a href="#modal_form" action="${ctx}/sku/brand/update/${brand.id}" title="编辑" data-toggle="modal"
 												data-target="#modal_form"><i class="fa fa-edit"></i> </a>
 										</shiro:hasPermission> <shiro:hasPermission name="sku:brand:delete">
-											<a href="${ctx}/sku/brand/delete/${brand.id}" title="删除"><i class="fa fa-trash-o"></i> </a>
+											<a href="${ctx}/sku/brand/delete/${brand.id}" single-delete title="删除"><i class="fa fa-trash-o"></i> </a>
 										</shiro:hasPermission></td>
 								</tr>
 							</c:forEach>
