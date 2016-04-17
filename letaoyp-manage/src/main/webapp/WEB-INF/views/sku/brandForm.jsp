@@ -21,9 +21,9 @@
         </div>
       </div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label" for="order">排序（越大越靠前）</label>
+				<label class="col-sm-4 control-label" for="sort">排序（越大越靠前）</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="order" name="order" type="text" value="${brand.order}" 
+					<input class="form-control" id="sort" name="sort" type="text" value="${brand.sort}" 
 					  data-rule-digits=“true” data-msg-digits="请输入数字" /> 
 					<span class="help-inline"><form:errors path="order" /></span>
 				</div>
@@ -64,14 +64,14 @@
 				<label class="col-sm-4 control-label" for="created">创建时间</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="created" name="created" type="text"
-						value="<fmt:formatDate value='${brand.created}' pattern='yyyy-MM-dd HH:mm:ss'/>" disabled>
+						value="<fmt:formatDate value='${brand.created}' pattern='yyyy-MM-dd HH:mm:ss'/>" readonly="readonly">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-4 control-label" for="modified">更新时间</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="modified" name="modified" type="text"
-						value="<fmt:formatDate value='${brand.modified}' pattern='yyyy-MM-dd HH:mm:ss'/>" disabled>
+						value="<fmt:formatDate value='${brand.modified}' pattern='yyyy-MM-dd HH:mm:ss'/>" readonly="readonly">
 				</div>
 			</div>
 

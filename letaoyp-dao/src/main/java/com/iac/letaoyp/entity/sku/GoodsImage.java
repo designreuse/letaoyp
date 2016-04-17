@@ -22,15 +22,22 @@ public class GoodsImage extends IdEntity {
 	//可以直接使用: @Length(max=50,message="用户名长度不能大于50")显示错误消息
 	//columns START
     /**
-     * 降序排列       db_column: order 
+     * 降序排列       db_column: sort 
      */ 	
 	@Max(9999999999L)
-	private java.lang.Integer order;
+	private java.lang.Integer sort;
     /**
      * src       db_column: src 
      */ 	
 	@NotBlank @Length(max=255)
 	private java.lang.String src;
+	
+	/**
+	 * 路径
+	 */
+	@Length(max=255)
+	private java.lang.String path;
+	
     /**
      * goods       db_column: goods 
      */ 	
@@ -38,14 +45,13 @@ public class GoodsImage extends IdEntity {
 	private java.lang.Long goods;
 	//columns END
 
-	
-	@Column(name = "order")
-	public java.lang.Integer getOrder() {
-		return this.order;
+	@Column(name = "sort")
+	public java.lang.Integer getSort() {
+		return sort;
 	}
 	
-	public void setOrder(java.lang.Integer value) {
-		this.order = value;
+	public void setSort(java.lang.Integer sort) {
+		this.sort = sort;
 	}
 	
 	@Column(name = "src")
@@ -57,6 +63,15 @@ public class GoodsImage extends IdEntity {
 		this.src = value;
 	}
 	
+	@Column(name = "path")
+	public java.lang.String getPath() {
+		return path;
+	}
+
+	public void setPath(java.lang.String path) {
+		this.path = path;
+	}
+
 	@Column(name = "goods")
 	public java.lang.Long getGoods() {
 		return this.goods;

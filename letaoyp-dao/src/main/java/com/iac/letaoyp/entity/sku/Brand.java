@@ -25,7 +25,7 @@ public class Brand extends IdEntity {
      * 降序 越大越靠前       db_column: order 
      */ 	
 	@Max(9999999999L)
-	private java.lang.Integer order;
+	private java.lang.Integer sort;
     /**
      * introduction       db_column: introduction 
      */ 	
@@ -47,20 +47,20 @@ public class Brand extends IdEntity {
 	private java.lang.String url;
 	//columns END
 
-	@Column(name = "order")
-	public java.lang.Integer getOrder() {
-		return this.order;
+	@Column(name = "sort")
+	public java.lang.Integer getSort() {
+		return sort;
 	}
-	
-	public void setOrder(java.lang.Integer value) {
-		this.order = value;
+
+	public void setSort(java.lang.Integer sort) {
+		this.sort = sort;
 	}
 	
 	@Column(name = "introduction")
 	public java.lang.String getIntroduction() {
 		return this.introduction;
 	}
-	
+
 	public void setIntroduction(java.lang.String value) {
 		this.introduction = value;
 	}

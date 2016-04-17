@@ -44,7 +44,7 @@ public class CategoryController extends BasicController {
 	@RequestMapping
 	public String list(@RequestParam(value = "page", defaultValue = "1") int pageNumber,
 			@RequestParam(value = "page.size", defaultValue = DEFAULT_PAGE_SIZE) int pageSize,
-			@RequestParam(value = "sortType", defaultValue = " order desc, id asc") String sortType,
+			@RequestParam(value = "sortType", defaultValue = " sort desc, id asc") String sortType,
 			Model model, ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		Page<Category> page = categoryService.findPage(searchParams, pageNumber, pageSize, sortType);
@@ -63,7 +63,7 @@ public class CategoryController extends BasicController {
 			return AjaxResult.succeed(Arrays.asList(categoryService.get(0L)));
 		}
 		
-		List<Category> categories = categoryService.findByParentOrderByOrderDesc(parent);
+		List<Category> categories = categoryService.findByParentOrderBySortDesc(parent);
 		return AjaxResult.succeed(categories);
 	}
 	
@@ -83,6 +83,13 @@ public class CategoryController extends BasicController {
 	@ResponseBody
 	public AjaxResult update(@Valid @ModelAttribute("category") Category category) {
 		categoryService.save(category);
+		return AjaxResult.SUCCEED;
+	}
+	
+	@RequestMapping(value = "top/{id}", method = RequestMethod.POST)
+	@ResponseBody
+	public AjaxResult setTop(@PathVariable("id") java.lang.Long id, @RequestParam("top") boolean top) {
+		categoryService.setTop(id, top);
 		return AjaxResult.SUCCEED;
 	}
 	

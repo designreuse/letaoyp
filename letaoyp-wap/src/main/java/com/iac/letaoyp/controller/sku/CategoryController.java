@@ -45,7 +45,7 @@ public class CategoryController extends AbstractController {
 	@RequestMapping("listTop2Level")
 	@ResponseBody
 	public AjaxResult listTop2Level() {
-		List<Category> list = categoryService.findByActiveOrderByOrderDesc(true);
+		List<Category> list = categoryService.findByActiveOrderBySortDesc(true);
 		return AjaxResult.succeed(list);
 	}
 	
@@ -58,9 +58,7 @@ public class CategoryController extends AbstractController {
 	@RequestMapping("ajax/homeShown/{categoryId}")
 	public String homeShown(@PathVariable Long categoryId, Model model) {
 		Category category = categoryService.get(categoryId);
-		System.out.println("rootCategory::" + category.getName());
-		
-		List<Category> categories = categoryService.findByParentAndActiveOrderByOrderDesc(categoryId, true);
+		List<Category> categories = categoryService.findByParentAndActiveOrderBySortDesc(categoryId, true);
 		
 		List<Category> left = new ArrayList<Category>();
 		List<Category> horizontal = new ArrayList<Category>();
@@ -96,9 +94,9 @@ public class CategoryController extends AbstractController {
 			Model model, HttpServletRequest request) {
 		Category category = categoryService.get(id);
 		
-		List<Category> categories = categoryService.findByParentAndActiveOrderByOrderDesc(category.getParent(), true);
+		List<Category> categories = categoryService.findByParentAndActiveOrderBySortDesc(category.getParent(), true);
 		if(!category.getIsLeaf()) {
-			List<Category> children = categoryService.findByParentAndActiveOrderByOrderDesc(id, true);
+			List<Category> children = categoryService.findByParentAndActiveOrderBySortDesc(id, true);
 			model.addAttribute("children", children);
 		}
 		model.addAttribute("categories", categories);

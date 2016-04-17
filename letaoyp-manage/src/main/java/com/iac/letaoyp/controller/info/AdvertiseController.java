@@ -52,6 +52,14 @@ public class AdvertiseController extends BasicController {
 		return "info/advertiseForm";
 	}
 	
+	@RequestMapping(value="create/from", method = RequestMethod.GET)
+	public String createFrom(ModelMap model, @RequestParam("sequence") Long sequence, 
+			@RequestParam("model") Advertise.Model advertiseModel) {
+		Advertise advertise = advertiseService.findBySequenceAndModel(sequence, advertiseModel);
+		model.addAttribute("advertise",advertise);
+		return "info/advertiseForm";
+	}
+	
 	@RequestMapping(value="update/{id}", method = RequestMethod.GET)
 	public String updateForm(ModelMap model, @PathVariable java.lang.Long id) {
 		Advertise advertise = advertiseService.get(id);

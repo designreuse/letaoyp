@@ -71,7 +71,7 @@
 								<th sortColumn="model">模块</th>
 								<th sortColumn="image">广告图片</th>
 								<th sortColumn="link">链接地址</th>
-								<th sortColumn="index">索引值</th>
+								<th sortColumn="sequence">序列</th>
 								<th sortColumn="active">状态</th>
 								<th sortColumn="created">创建时间</th>
 								<th sortColumn="modified">修改时间</th>
@@ -85,7 +85,7 @@
 									<td class="center">${advertise.model.description}</td>
 									<td class="center"><img alt="${advertise.text}" src="${advertise.image}" style="max-width: 300px; max-height: 100px;"></td>
 									<td class="center">${advertise.link}</td>
-									<td class="center">${advertise.index}</td>
+									<td class="center">${advertise.sequence}</td>
 									<td class="center">${advertise.active}</td>
 									<td class="center"><fmt:formatDate value='${advertise.created}' pattern='yyyy-MM-dd HH:mm:ss' /></td>
 									<td class="center"><fmt:formatDate value='${advertise.modified}' pattern='yyyy-MM-dd HH:mm:ss' /></td>

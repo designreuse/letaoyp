@@ -14,9 +14,9 @@
 			<input type="hidden" id="id" name="id" value="${goodsImage.id}" />
 
 			<div class="form-group">
-				<label class="col-sm-4 control-label" for="order">降序排列</label>
+				<label class="col-sm-4 control-label" for="sort">降序排列</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="order" name="order" type="text" value="${goodsImage.order}" /> <span
+					<input class="form-control" id="sort" name="sort" type="text" value="${goodsImage.sort}" /> <span
 						class="help-inline"><form:errors path="order" /></span>
 				</div>
 			</div>
@@ -48,14 +48,14 @@
 				<label class="col-sm-4 control-label" for="created">created</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="created" name="created" type="text"
-						value="<fmt:formatDate value='${goodsImage.created}' pattern='yyyy-MM-dd HH:mm:ss'/>" disabled>
+						value="<fmt:formatDate value='${goodsImage.created}' pattern='yyyy-MM-dd HH:mm:ss'/>" readonly="readonly">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-4 control-label" for="modified">modified</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="modified" name="modified" type="text"
-						value="<fmt:formatDate value='${goodsImage.modified}' pattern='yyyy-MM-dd HH:mm:ss'/>" disabled>
+						value="<fmt:formatDate value='${goodsImage.modified}' pattern='yyyy-MM-dd HH:mm:ss'/>" readonly="readonly">
 				</div>
 			</div>
 

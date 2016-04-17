@@ -7,46 +7,33 @@
 </head>
 <body>
 	<div class="index_tt Tr_cs">
-		<div class="Tr_cs0">
-			<div id="Tr_cs11">
-				<div class="cxjad_m" style="width: 1349px;">
-					<div class="cxjinfo" style="width: 6745px; left: -1349px;">
-						<div class="cxjitem" style="width: 1349px; background-image: url(&quot;${ctx}/static/img/1446244208483836406.jpg&quot;);">
-							<a href="http://www.hzltyp.com/affiche.php?ad_id=26&amp;uri=" target="_blank"><img
-								src="${ctx}/static/img/1446244208483836406.jpg" width="1920" height="500" border="0"></a>
-						</div>
-						<div class="cxjitem" style="width: 1349px; background-image: url(&quot;${ctx}/static/img/1453930890780213374.jpg&quot;);">
-							<a href="http://www.hzltyp.com/affiche.php?ad_id=23&amp;uri=http%3A%2F%2Fwww.hzltyp.com%2Fcategory.php%3Fid%3D1"
-								target="_blank"><img src="${ctx}/static/img/1453930890780213374.jpg" width="1920" height="500" border="0"></a>
-						</div>
-						<div class="cxjitem" style="width: 1349px; background-image: url(&quot;${ctx}/static/img/1450725130250516895.jpg&quot;);">
-							<a href="http://www.hzltyp.com/affiche.php?ad_id=29&amp;uri=" target="_blank"><img
-								src="${ctx}/static/img/1450725130250516895.jpg" width="1920" height="500" border="0"></a>
-						</div>
-						<div class="cxjitem" style="width: 1349px; background-image: url(&quot;${ctx}/static/img/1454032313733566709.jpg&quot;);">
-							<a href="http://www.hzltyp.com/affiche.php?ad_id=22&amp;uri=http%3A%2F%2Fwww.hzltyp.com%2Fcategory.php%3Fid%3D2"
-								target="_blank"><img src="${ctx}/static/img/1454032313733566709.jpg" width="1920" height="500" border="0"></a>
-						</div>
-						<div class="cxjitem" style="width: 1349px; background-image: url(&quot;${ctx}/static/img/1451329538081289910.jpg&quot;);">
-							<a href="http://www.hzltyp.com/affiche.php?ad_id=27&amp;uri=http%3A%2F%2Fwww.hzltyp.com%2Farticle.php%3Fid%3D17"
-								target="_blank"><img src="${ctx}/static/img/1451329538081289910.jpg" width="1920" height="500" border="0"></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="TABLE_Sbg">
-				<ul class="TABLE_S">
-					<li class="cxjli"></li>
-					<li class="cxjli visited"></li>
-					<li class="cxjli"></li>
-					<li class="cxjli"></li>
-					<li class="cxjli"></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+    <div class="Tr_cs0">
+      <div id="Tr_cs11">
+        <div class="cxjad_m" style="width: 1349px;">
+          <div class="cxjinfo" style="width: 6745px; left: -1349px;">
+            <c:forEach items="${topSlideAdvertises}" var="advertise">
+              <div class="cxjitem" style="width: 1349px; background-image: url(&quot;${advertise.image}&quot;);">
+                <a href="${empty advertise.link ? ctx + '/' : advertise.link}" target="_blank"><img
+                  src="${advertise.image}" width="1920" height="500" border="0"></a>
+              </div>
+            </c:forEach>
+            
+          </div>
+        </div>
+      </div>
+      <div class="TABLE_Sbg">
+        <ul class="TABLE_S">
+          <c:forEach items="${topSlideAdvertises}" var="advertise" varStatus="status">
+            <li class="cxjli <c:if test="${status.index == 0}">visited</c:if>"></li>
+          </c:forEach>
+        </ul>
+      </div>
+    </div>
+  </div>
+
 
 	<div class="index_body">
+	  <!--  
 		<div class="i_t">
 			<div class="itf">
 				<div id="Tr_cs17">
@@ -91,6 +78,7 @@
 			</div>
 			<div class="clear0"></div>
 		</div>
+		-->
 		<div class="clear10"></div>
 
 		<c:forEach items="${homeShown}" var="category">
@@ -100,12 +88,15 @@
 			<!-- advertise -->
 
 			<div class="clear10"></div>
-			<div id="Tr_cs10">
-				<a href="http://www.hzltyp.com/affiche.php?ad_id=19&amp;uri=http%3A%2F%2Fwww.hzltyp.com%2Farticle.php%3Fid%3D18"
-					target="_blank"><img src="${ctx}/static/img/1438221868947345243.jpg" width="1200" height="124" border="0"></a>
-			</div>
+			<c:set var="categoryAdvertise" value="${categoryAdvertiseMap[category.id]}"></c:set>
+      
+  	  <c:if test="${not empty categoryAdvertise.image}">
+				<div id="Tr_cs10">
+						<a href="${not empty categoryAdvertise.link ? categoryAdvertise.link : '#nogo'}" target="_blank">
+						<img src="${categoryAdvertise.image}" width="1200" height="124" border="0"></a>
+				</div>
+			</c:if>
 
-			<fn:advertise ('HOME', ${category.id}) />
 			<div class="clear10"></div>
 		</c:forEach>
 

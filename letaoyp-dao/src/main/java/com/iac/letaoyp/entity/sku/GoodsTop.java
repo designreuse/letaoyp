@@ -151,24 +151,24 @@ public class GoodsTop extends IdEntity {
 	public enum Position {
 		HOME_SLIDE(785, 368, "首页滑动大图"), HOME_VERTICAL(242 , 184, "首页垂直中图"), HOME_HORIZONTAL(310, 310, "首页水平平铺商品图");
 		
-		private int width;
-		private int height;
+		private Integer width;
+		private Integer height;
 		private String desc;
 		private Position(int width, int height, String desc) {
 			this.width = width;
 			this.height = height;
 			this.desc = desc;
 		}
-		public int getWidth() {
+		public Integer getWidth() {
 			return width;
 		}
-		public void setWidth(int width) {
+		public void setWidth(Integer width) {
 			this.width = width;
 		}
-		public int getHeight() {
+		public Integer getHeight() {
 			return height;
 		}
-		public void setHeight(int height) {
+		public void setHeight(Integer height) {
 			this.height = height;
 		}
 		public String getDesc() {

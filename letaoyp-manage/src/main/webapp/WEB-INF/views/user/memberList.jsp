@@ -1,9 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
-<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
-<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 <section class="content-header">
 	<h1>
@@ -55,9 +55,9 @@
 							</button>
 							<div class="box-tools pull-right" style="margin-left: 10px;">
 								<input placeholder="start time" class="datepicker input-sm" name="search_GT_created"
-									value="${param.search_GT_created}" type="text"> 
-								<input placeholder="end time" class="datepicker input-sm" name="search_LT_created" value="${param.search_LT_created}" type="text"> 
-								<input id="page" name="page" value="${param.page == null ? 1 : param.page}" type="hidden">
+									value="${param.search_GT_created}" type="text"> <input placeholder="end time"
+									class="datepicker input-sm" name="search_LT_created" value="${param.search_LT_created}" type="text"> <input
+									id="page" name="page" value="${param.page == null ? 1 : param.page}" type="hidden">
 							</div>
 						</form>
 					</h3>
@@ -67,91 +67,45 @@
 					<table class="table table-bordered table-hover">
 						<thead>
 							<tr role="row">
-								<th sortColumn="username" >username</th>
-								<th sortColumn="password" >password</th>
-								<th sortColumn="salt" >加密salt</th>
-								<th sortColumn="area" >area</th>
-								<th sortColumn="address" >详细地址</th>
-								<th sortColumn="birth" >birth</th>
-								<th sortColumn="email" >email</th>
-								<th sortColumn="gender" >gender</th>
-								<th sortColumn="is_locked" >isLocked</th>
-								<th sortColumn="locked_date" >lockedDate</th>
-								<th sortColumn="login_date" >loginDate</th>
-								<th sortColumn="login_failure_count" >loginFailureCount</th>
-								<th sortColumn="login_ip" >loginIp</th>
-								<th sortColumn="mobile" >电话</th>
-								<th sortColumn="phone" >手机</th>
-								<th sortColumn="nick" >nick</th>
-								<th sortColumn="register_ip" >registerIp</th>
-								<th sortColumn="zip_code" >zipCode</th>
-								<th sortColumn="active" >active</th>
-								<th sortColumn="created" >created</th>
-								<th sortColumn="modified" >modified</th>
+								<th sortColumn="username">username</th>
+								<th sortColumn="area">area</th>
+								<th sortColumn="address">详细地址</th>
+								<th sortColumn="birth">birth</th>
+								<th sortColumn="email">email</th>
+								<th sortColumn="gender">gender</th>
+								<th sortColumn="mobile">电话</th>
+								<th sortColumn="phone">手机</th>
+								<th sortColumn="nick">nick</th>
+								<th sortColumn="register_ip">registerIp</th>
+								<th sortColumn="zip_code">zipCode</th>
+								<th sortColumn="active">active</th>
+								<th sortColumn="created">created</th>
 								<th>操作</th>
 							</tr>
 						</thead>
 						<tbody id="checkbox-toggled">
 							<c:forEach items="${page.content}" var="member" varStatus="status">
-							<tr>
-								<td class="center">
-									<input class="icheck" type="checkbox" value="${member.id}">
-${member.username}								</td>
-								<td class="center">
-${member.password}								</td>
-								<td class="center">
-${member.salt}								</td>
-								<td class="center">
-${member.area}								</td>
-								<td class="center">
-${member.address}								</td>
-								<td class="center">
-									<fmt:formatDate value='${member.birth}' pattern='yyyy-MM-dd HH:mm:ss'/>
-								</td>
-								<td class="center">
-${member.email}								</td>
-								<td class="center">
-${member.gender}								</td>
-								<td class="center">
-${member.isLocked}								</td>
-								<td class="center">
-									<fmt:formatDate value='${member.lockedDate}' pattern='yyyy-MM-dd HH:mm:ss'/>
-								</td>
-								<td class="center">
-									<fmt:formatDate value='${member.loginDate}' pattern='yyyy-MM-dd HH:mm:ss'/>
-								</td>
-								<td class="center">
-${member.loginFailureCount}								</td>
-								<td class="center">
-${member.loginIp}								</td>
-								<td class="center">
-${member.mobile}								</td>
-								<td class="center">
-${member.phone}								</td>
-								<td class="center">
-${member.nick}								</td>
-								<td class="center">
-${member.registerIp}								</td>
-								<td class="center">
-${member.zipCode}								</td>
-								<td class="center">
-${member.active}								</td>
-								<td class="center">
-									<fmt:formatDate value='${member.created}' pattern='yyyy-MM-dd HH:mm:ss'/>
-								</td>
-								<td class="center">
-									<fmt:formatDate value='${member.modified}' pattern='yyyy-MM-dd HH:mm:ss'/>
-								</td>
-								<td class="center ">
-									<shiro:hasPermission name="user:member:edit">
-										<a href="#modal_form" action="${ctx}/user/member/update/${member.id}" title="编辑" data-toggle="modal"
-											data-target="#modal_form"><i class="fa fa-edit"></i> </a>
-									</shiro:hasPermission> 
-									<shiro:hasPermission name="user:member:delete">
-										<a href="${ctx}/user/member/delete/${member.id}" single-delete title="删除"><i class="fa fa-trash-o"></i> </a>
-									</shiro:hasPermission>
-								</td>
-							</tr>
+								<tr>
+									<td class="center"><input class="icheck" type="checkbox" value="${member.id}">${member.username}</td>
+									<td class="center">${member.area}</td>
+									<td class="center">${member.address}</td>
+									<td class="center"><fmt:formatDate value='${member.birth}' pattern='yyyy-MM-dd HH:mm:ss' /></td>
+									<td class="center">${member.email}</td>
+									<td class="center">${member.gender}</td>
+									<td class="center">${member.mobile}</td>
+									<td class="center">${member.phone}</td>
+									<td class="center">${member.nick}</td>
+									<td class="center">${member.registerIp}</td>
+									<td class="center">${member.zipCode}</td>
+									<td class="center">${member.active}</td>
+									<td class="center"><fmt:formatDate value='${member.created}' pattern='yyyy-MM-dd HH:mm:ss' /></td>
+  `									<td class="center "><shiro:hasPermission name="user:member:edit">
+											<a href="#modal_form" action="${ctx}/user/member/update/${member.id}" title="编辑" data-toggle="modal"
+												data-target="#modal_form"><i class="fa fa-edit"></i> </a>
+										</shiro:hasPermission> <shiro:hasPermission name="user:member:delete">
+											<a href="${ctx}/user/member/delete/${member.id}" single-delete title="删除"><i class="fa fa-trash-o"></i> </a>
+										</shiro:hasPermission></td>
+								</tr>
 							</c:forEach>
 						</tbody>
 					</table>

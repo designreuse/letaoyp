@@ -53,7 +53,7 @@ public class Advertise extends IdEntity {
 	 * 索引值或者业务ID
 	 */
 	@NotNull
-	private Long index;
+	private Long sequence;
 	
 	/**
 	 * 排序
@@ -97,14 +97,14 @@ public class Advertise extends IdEntity {
 	public void setLink(java.lang.String value) {
 		this.link = value;
 	}
-	
-	@Column(name = "index")
-	public Long getIndex() {
-		return index;
+
+	@Column(name = "sequence")
+	public Long getSequence() {
+		return sequence;
 	}
 
-	public void setIndex(Long index) {
-		this.index = index;
+	public void setSequence(Long sequence) {
+		this.sequence = sequence;
 	}
 
 	@Column(name = "sort")

@@ -41,14 +41,14 @@ ${visitHistory.id == null ? '新增' : '编辑'}		</h4>
 	      <label class="col-sm-4 control-label" for="created">created</label>
 	      <div class="col-sm-6">
 	      		<input class="form-control" id="created" name="created"
-		          type="text" value="<fmt:formatDate value='${visitHistory.created}' pattern='yyyy-MM-dd HH:mm:ss'/>" disabled>
+		          type="text" value="<fmt:formatDate value='${visitHistory.created}' pattern='yyyy-MM-dd HH:mm:ss'/>" readonly="readonly">
 	      </div>
 	    </div>
 	    <div class="form-group">
 	      <label class="col-sm-4 control-label" for="modified">modified</label>
 	      <div class="col-sm-6">
 	      		<input class="form-control" id="modified" name="modified"
-		          type="text" value="<fmt:formatDate value='${visitHistory.modified}' pattern='yyyy-MM-dd HH:mm:ss'/>" disabled>
+		          type="text" value="<fmt:formatDate value='${visitHistory.modified}' pattern='yyyy-MM-dd HH:mm:ss'/>" readonly="readonly">
 	      </div>
 	    </div>
 

@@ -2,9 +2,7 @@ package com.iac.letaoyp.controller.admin;
 
 import java.util.List;
 
-import com.iac.letaoyp.entity.admin.Menu;
-import com.iac.letaoyp.service.admin.MenuService;
-
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +11,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.iac.letaoyp.entity.admin.Menu;
+import com.iac.letaoyp.security.ShiroDbRealm.ShiroUser;
+import com.iac.letaoyp.service.admin.MenuService;
 
 /**
  * LoginController负责打开登录页面(GET请求)和登录出错页面(POST请求)，
@@ -41,6 +43,11 @@ public class LoginController {
 	
 	@RequestMapping(value="login", method = RequestMethod.GET)
 	public String login() {
+		ShiroUser user = (ShiroUser)SecurityUtils.getSubject().getPrincipal();
+		if(user != null) {
+			return "redirect:/";
+		}
+		
 		return "login";
 	}
 

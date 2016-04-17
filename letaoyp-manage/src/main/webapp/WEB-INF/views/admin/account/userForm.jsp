@@ -56,14 +56,14 @@
 				<label class="col-sm-4 control-label" for="confirmPassword">创建时间</label>
 				<div class="col-sm-6">
 					<input class="form-control datepicker" type="text"
-						value="<fmt:formatDate value="${user.created}" pattern="yyyy-MM-dd HH:mm:ss"/>" disabled>
+						value="<fmt:formatDate value="${user.created}" pattern="yyyy-MM-dd HH:mm:ss"/>" readonly="readonly">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-4 control-label" for="confirmPassword">修改时间</label>
 				<div class="col-sm-6">
 					<input class="form-control datepicker" type="text"
-						value="<fmt:formatDate value="${user.modified}" pattern="yyyy-MM-dd HH:mm:ss"/>" disabled>
+						value="<fmt:formatDate value="${user.modified}" pattern="yyyy-MM-dd HH:mm:ss"/>" readonly="readonly">
 				</div>
 			</div>
 		</div>

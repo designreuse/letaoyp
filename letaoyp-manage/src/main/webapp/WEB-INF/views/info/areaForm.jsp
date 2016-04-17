@@ -63,14 +63,14 @@
 				<label class="col-sm-4 control-label" for="created">创建时间</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="created" name="created" type="text"
-						value="<fmt:formatDate value='${area.created}' pattern='yyyy-MM-dd HH:mm:ss'/>" disabled>
+						value="<fmt:formatDate value='${area.created}' pattern='yyyy-MM-dd HH:mm:ss'/>" readonly="readonly">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-4 control-label" for="modified">更新时间</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="modified" name="modified" type="text"
-						value="<fmt:formatDate value='${area.modified}' pattern='yyyy-MM-dd HH:mm:ss'/>" disabled>
+						value="<fmt:formatDate value='${area.modified}' pattern='yyyy-MM-dd HH:mm:ss'/>" readonly="readonly">
 				</div>
 			</div>
 

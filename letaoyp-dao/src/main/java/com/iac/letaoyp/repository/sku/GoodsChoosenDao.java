@@ -18,8 +18,13 @@ public interface GoodsChoosenDao extends BasicRepository<GoodsChoosen,java.lang.
     @Query("update GoodsChoosen a set a.active=?1 where a.id in (?2)")
     void updateActiveByIdIn(boolean active, Long[] ids);
 
-
     @Modifying
     @Query("delete GoodsChoosen a where a.id in (?1)")
     void deleteByIdIn(Long[] ids);
+
+    void deleteByGoodsIdIn(Long[] goodsIds);
+    
+    @Modifying
+    @Query("update GoodsChoosen a set a.active = ?1 where a.goods.id in (?2)")
+	void updateActiveByGoodsIn(boolean active, Long[] ids);
 }

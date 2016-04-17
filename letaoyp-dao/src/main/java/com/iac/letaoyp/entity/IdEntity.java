@@ -3,19 +3,21 @@ package com.iac.letaoyp.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
+@EntityListeners(EntityListener.class)
 public abstract class IdEntity implements Serializable {
 
 	private static final long serialVersionUID = -4235957630562240110L;
 	protected Long id;
 	protected Boolean active = true;
-	protected Date created = new Date();
-	protected Date modified = new Date();
+	protected Date created;
+	protected Date modified;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

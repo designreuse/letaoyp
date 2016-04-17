@@ -1,5 +1,6 @@
 package com.iac.letaoyp.controller.sku;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
@@ -21,6 +22,8 @@ import org.springside.modules.web.Servlets;
 import com.iac.letaoyp.biz.web.AjaxResult;
 import com.iac.letaoyp.controller.BasicController;
 import com.iac.letaoyp.entity.sku.Goods;
+import com.iac.letaoyp.entity.sku.GoodsImage;
+import com.iac.letaoyp.service.sku.GoodsImageService;
 import com.iac.letaoyp.service.sku.GoodsService;
 
 
@@ -30,6 +33,9 @@ public class GoodsController extends BasicController {
 	
 	@Autowired
 	private GoodsService goodsService;
+	
+	@Autowired
+	private GoodsImageService goodsImageService;
 	
 	/** 列表 */
 	@RequestMapping
@@ -55,16 +61,39 @@ public class GoodsController extends BasicController {
 	@RequestMapping(value="update/{id}", method = RequestMethod.GET)
 	public String updateForm(ModelMap model, @PathVariable java.lang.Long id) {
 		Goods goods = goodsService.get(id);
-		model.addAttribute("goods",goods);
+		List<GoodsImage> goodsImages = goodsImageService.findByGoods(id);
+		model.addAttribute("goods", goods);
+		model.addAttribute("goodsImages", goodsImages);
 		return "sku/goodsForm";
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	@ResponseBody
-	public AjaxResult update(@Valid @ModelAttribute("goods") Goods goods) {
-		goodsService.save(goods);
+	public AjaxResult update(@Valid @ModelAttribute("goods") Goods goods, 
+			@RequestParam(value = "images", required = false) String[] images,
+			@RequestParam(value = "sorts", required = false) Integer[] sorts,
+			@RequestParam(value = "key", required = false) String[] keys,
+			@RequestParam(value = "value", required = false) String[] values
+			) {
+		goodsService.save(goods, images, sorts, keys, values);
 		return AjaxResult.SUCCEED;
 	}
+	
+	@RequestMapping(value = "offline/{id}", method = RequestMethod.POST)
+	@ResponseBody
+	public AjaxResult offline(@PathVariable java.lang.Long id) {
+		goodsService.updateStatus(id, Goods.Status.OFFLINE);
+		return AjaxResult.SUCCEED;
+	}
+	
+	@RequestMapping(value = "online/{id}", method = RequestMethod.POST)
+	@ResponseBody
+	public AjaxResult online(@PathVariable java.lang.Long id) {
+		goodsService.updateStatus(id, Goods.Status.ONLINE);
+		return AjaxResult.SUCCEED;
+	}
+	
+	
 	
 	/** 删除 */
 	@RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)

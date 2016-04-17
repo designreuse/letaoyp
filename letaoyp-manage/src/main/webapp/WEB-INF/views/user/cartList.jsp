@@ -1,9 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
-<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
-<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 <section class="content-header">
 	<h1>
@@ -55,9 +55,9 @@
 							</button>
 							<div class="box-tools pull-right" style="margin-left: 10px;">
 								<input placeholder="start time" class="datepicker input-sm" name="search_GT_created"
-									value="${param.search_GT_created}" type="text"> 
-								<input placeholder="end time" class="datepicker input-sm" name="search_LT_created" value="${param.search_LT_created}" type="text"> 
-								<input id="page" name="page" value="${param.page == null ? 1 : param.page}" type="hidden">
+									value="${param.search_GT_created}" type="text"> <input placeholder="end time"
+									class="datepicker input-sm" name="search_LT_created" value="${param.search_LT_created}" type="text"> <input
+									id="page" name="page" value="${param.page == null ? 1 : param.page}" type="hidden">
 							</div>
 						</form>
 					</h3>
@@ -67,40 +67,29 @@
 					<table class="table table-bordered table-hover">
 						<thead>
 							<tr role="row">
-								<th sortColumn="cart_key" >购物车唯一编码 未注册用户也可体验购物车功能</th>
-								<th sortColumn="member" >member</th>
-								<th sortColumn="active" >active</th>
-								<th sortColumn="created" >created</th>
-								<th sortColumn="modified" >modified</th>
+								<th sortColumn="cart_key" title="购物车唯一编码 未注册用户也可体验购物车功能">编码</th>
+								<th sortColumn="member">用户</th>
+								<th sortColumn="active">active</th>
+								<th sortColumn="created">created</th>
+								<th sortColumn="modified">modified</th>
 								<th>操作</th>
 							</tr>
 						</thead>
 						<tbody id="checkbox-toggled">
 							<c:forEach items="${page.content}" var="cart" varStatus="status">
-							<tr>
-								<td class="center">
-									<input class="icheck" type="checkbox" value="${cart.id}">
-${cart.cartKey}								</td>
-								<td class="center">
-${cart.member}								</td>
-								<td class="center">
-${cart.active}								</td>
-								<td class="center">
-									<fmt:formatDate value='${cart.created}' pattern='yyyy-MM-dd HH:mm:ss'/>
-								</td>
-								<td class="center">
-									<fmt:formatDate value='${cart.modified}' pattern='yyyy-MM-dd HH:mm:ss'/>
-								</td>
-								<td class="center ">
-									<shiro:hasPermission name="user:cart:edit">
-										<a href="#modal_form" action="${ctx}/user/cart/update/${cart.id}" title="编辑" data-toggle="modal"
-											data-target="#modal_form"><i class="fa fa-edit"></i> </a>
-									</shiro:hasPermission> 
-									<shiro:hasPermission name="user:cart:delete">
-										<a href="${ctx}/user/cart/delete/${cart.id}" single-delete title="删除"><i class="fa fa-trash-o"></i> </a>
-									</shiro:hasPermission>
-								</td>
-							</tr>
+								<tr>
+									<td class="center"><input class="icheck" type="checkbox" value="${cart.id}"> ${cart.cartKey}</td>
+									<td class="center">${cart.member.username}</td>
+									<td class="center">${cart.active}</td>
+									<td class="center"><fmt:formatDate value='${cart.created}' pattern='yyyy-MM-dd HH:mm:ss' /></td>
+									<td class="center"><fmt:formatDate value='${cart.modified}' pattern='yyyy-MM-dd HH:mm:ss' /></td>
+									<td class="center "><shiro:hasPermission name="user:cart:edit">
+											<a href="#modal_form" action="${ctx}/user/cart/update/${cart.id}" title="编辑" data-toggle="modal"
+												data-target="#modal_form"><i class="fa fa-edit"></i> </a>
+										</shiro:hasPermission> <shiro:hasPermission name="user:cart:delete">
+											<a href="${ctx}/user/cart/delete/${cart.id}" single-delete title="删除"><i class="fa fa-trash-o"></i> </a>
+										</shiro:hasPermission></td>
+								</tr>
 							</c:forEach>
 						</tbody>
 					</table>

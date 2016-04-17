@@ -10,15 +10,15 @@ import com.iac.letaoyp.repository.BasicRepository;
 
 public interface CategoryDao extends BasicRepository<Category,java.lang.Long>{
 
-	List<Category> findByParentOrderByOrderDesc(Long parent);
+	List<Category> findByParentOrderBySortDesc(Long parent);
 
-	List<Category> findAllByOrderByOrderDesc();
+	List<Category> findAllByOrderBySortDesc();
 
-	List<Category> findByParentAndTopAndActiveOrderByOrderDesc(Long root, boolean top, boolean active);
+	List<Category> findByParentAndTopAndActiveOrderBySortDesc(Long root, boolean top, boolean active);
 
-	List<Category> findByParentAndActiveOrderByOrderDesc(Long categoryId, boolean active);
+	List<Category> findByParentAndActiveOrderBySortDesc(Long categoryId, boolean active);
 
-	List<Category> findByActiveOrderByOrderDesc(boolean active);
+	List<Category> findByActiveOrderBySortDesc(boolean active);
 
 	@Modifying
     @Query("update Category a set a.active=?1 where a.id in (?2)")
@@ -28,4 +28,8 @@ public interface CategoryDao extends BasicRepository<Category,java.lang.Long>{
     @Modifying
     @Query("delete Category a where a.id in (?1)")
     void deleteByIdIn(Long[] ids);
+
+    @Modifying
+    @Query("update Category a set a.top=?1 where a.id = ?2")
+	void updateTopById(boolean top, Long id);
 }

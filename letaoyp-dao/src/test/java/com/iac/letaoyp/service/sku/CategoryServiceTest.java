@@ -12,6 +12,6 @@ public class CategoryServiceTest extends RollbackTransactionBaseTest {
 	
 	@Test
 	public void test() {
-		categoryService.findByParentOrderByOrderDesc(0L);
+		categoryService.findByParentOrderBySortDesc(0L);
 	}
 }

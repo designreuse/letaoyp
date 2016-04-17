@@ -25,24 +25,24 @@ public class CategoryService extends BasicService<Category,java.lang.Long> {
 		return categoryDao;
 	}
 
-	public List<Category> findByParentOrderByOrderDesc(Long parent) {
-		return categoryDao.findByParentOrderByOrderDesc(parent);
+	public List<Category> findByParentOrderBySortDesc(Long parent) {
+		return categoryDao.findByParentOrderBySortDesc(parent);
 	}
 
-	public List<Category> findAllByOrderByOrderDesc() {
-		return categoryDao.findAllByOrderByOrderDesc();
+	public List<Category> findAllByOrderBySortDesc() {
+		return categoryDao.findAllByOrderBySortDesc();
 	}
 
 	public List<Category> findHomeShown() {
-		return categoryDao.findByParentAndTopAndActiveOrderByOrderDesc(ROOT, true, true);
+		return categoryDao.findByParentAndTopAndActiveOrderBySortDesc(ROOT, true, true);
 	}
 
-	public List<Category> findByActiveOrderByOrderDesc(boolean active) {
-		return categoryDao.findByActiveOrderByOrderDesc(active);
+	public List<Category> findByActiveOrderBySortDesc(boolean active) {
+		return categoryDao.findByActiveOrderBySortDesc(active);
 	}
 
-	public List<Category> findByParentAndActiveOrderByOrderDesc(Long categoryId, boolean active) {
-		return categoryDao.findByParentAndActiveOrderByOrderDesc(categoryId, active);
+	public List<Category> findByParentAndActiveOrderBySortDesc(Long categoryId, boolean active) {
+		return categoryDao.findByParentAndActiveOrderBySortDesc(categoryId, active);
 	}
 	
 	public void updateActiveByIds(boolean active, Long[] ids) {
@@ -64,5 +64,9 @@ public class CategoryService extends BasicService<Category,java.lang.Long> {
 		c.setTreeName(parent.getTreeName() + "," + parent.getName());
 		c.setTreePath(parent.getTreePath() + "," + parent.getId());
 		categoryDao.save(c);
+	}
+
+	public void setTop(Long id, boolean top) {
+		categoryDao.updateTopById(top, id);
 	}
 }

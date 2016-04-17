@@ -67,15 +67,13 @@
 					<table class="table table-bordered table-hover">
 						<thead>
 							<tr role="row">
-								<th sortColumn="goods">goods</th>
-								<th sortColumn="category">goods一级类目</th>
-								<th sortColumn="goods_name">goodsName</th>
+								<th sortColumn="goods_name">商品名</th>
+								<th sortColumn="category">商品类目</th>
 								<th sortColumn="sales_price">销售价</th>
 								<th sortColumn="market_price">市场价</th>
 								<th sortColumn="comments">评论数</th>
-								<th sortColumn="top_image">topImage</th>
-								<th sortColumn="position">置顶位置 HOME_SLIDE首页滑动大图(785*368);
-									HOME_VERTICAL首页垂直中图(242*184);HOME_HORIZONTAL首页水平平铺商品图(310*310)</th>
+								<th sortColumn="top_image">置顶图</th>
+								<th sortColumn="position" title=" HOME_SLIDE首页滑动大图(785*368); HOME_VERTICAL首页垂直中图(242*184);HOME_HORIZONTAL首页水平平铺商品图(310*310)">置顶位置</th>
 								<th sortColumn="active">active</th>
 								<th sortColumn="created">created</th>
 								<th sortColumn="modified">modified</th>
@@ -85,13 +83,16 @@
 						<tbody id="checkbox-toggled">
 							<c:forEach items="${page.content}" var="goodsTop" varStatus="status">
 								<tr>
-									<td class="center"><input class="icheck" type="checkbox" value="${goodsTop.id}">${goodsTop.goods}</td>
-									<td class="center">${goodsTop.category}</td>
-									<td class="center">${goodsTop.goodsName}</td>
+									<td class="center"><input class="icheck" type="checkbox" value="${goodsTop.id}">${goodsTop.goodsName}</td>
+									<td class="center">${goodsTop.category.name}</td>
 									<td class="center">${goodsTop.salesPrice}</td>
 									<td class="center">${goodsTop.marketPrice}</td>
 									<td class="center">${goodsTop.comments}</td>
-									<td class="center">${goodsTop.topImage}</td>
+									<td class="center">
+									  <c:if test="${not empty goodsTop.topImage}">
+									    <img src="${goodsTop.topImage}" width="100px" height="${goodsTop.position.height * 100 /goodsTop.position.width}" />
+									  </c:if>
+									</td>
 									<td class="center">${goodsTop.position}</td>
 									<td class="center">${goodsTop.active}</td>
 									<td class="center"><fmt:formatDate value='${goodsTop.created}' pattern='yyyy-MM-dd HH:mm:ss' /></td>

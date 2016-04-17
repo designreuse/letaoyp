@@ -19,7 +19,8 @@
 							data-target="#modal_form"> <i class="fa fa-plus-square"></i>
 						</a>
 						<button type="button" class="btn btn-default btn-sm" title="失效" ajax data-data='{"active": "0"}'
-							data-confirm="确认失效选中记录？" data-url="${ctx}/sku/category/settings" data-method="post">
+							data-confirm="确认失效选中记录？" data-url="${ctx}/sku/category/settings" data-method="post"
+							data-before="before">
 							<i class="fa fa-ban"></i>
 						</button>
 						<button type="button" class="btn btn-default btn-sm" title="激活" ajax data-data='{"active": "1"}'
@@ -60,13 +61,12 @@
 			<thead>
 				<tr role="row">
 					<th sortColumn="name">名称</th>
-					<th sortColumn="order">排序</th>
+					<th sortColumn="sort">排序</th>
 					<th sortColumn="icon">图标</th>
-					<th sortColumn="top">置顶至首页</th>
+					<th sortColumn="top">置顶首页</th>
 					<th sortColumn="logo">类目logo</th>
 					<th sortColumn="active">状态</th>
 					<th sortColumn="created">创建时间</th>
-					<th sortColumn="modified">修改时间</th>
 					<th>操作</th>
 				</tr>
 			</thead>
@@ -74,22 +74,23 @@
 				<c:forEach items="${page.content}" var="category" varStatus="status">
 					<tr>
 						<td class="center"><input class="icheck" type="checkbox" value="${category.id}">${category.name}</td>
-						<td class="center">${category.order}</td>
+						<td class="center">${category.sort}</td>
 						<td class="center"><img src="${category.icon}" width="40px" height="40px" /></td>
 						<td class="center">${category.top ? '是' : '否'}</td>
 						<td class="center"><img src="${category.logo}" width="150px" height="60px" /></td>
 						<td class="center">${category.active}</td>
 						<td class="center"><fmt:formatDate value='${category.created}' pattern='yyyy-MM-dd HH:mm:ss' /></td>
-						<td class="center"><fmt:formatDate value='${category.modified}' pattern='yyyy-MM-dd HH:mm:ss' /></td>
 						<td class="center ">
 						  <shiro:hasPermission name="sku:category:edit">
 								<a href="#modal_form" action="${ctx}/sku/category/update/${category.id}" title="编辑" data-toggle="modal"
 									data-target="#modal_form"><i class="fa fa-edit"></i> </a>
 							</shiro:hasPermission>
 							<shiro:hasPermission name="info:advertise:edit">
-                <a href="#modal_form" action="${ctx}/info/advertise/create?index=${category.id}&model=HOME_CATEGORY" title="设定置顶图片" data-toggle="modal"
+                <a href="#modal_form" action="${ctx}/info/advertise/create/from?sequence=${category.id}&model=HOME_CATEGORY" title="设定置顶图片" data-toggle="modal"
                   data-target="#modal_form"><i class="fa fa-upload"></i> </a>
-                <a href="${ctx}/sku/catagory/top/${category.id}" title="置顶首页"><i class="fa fa-sort-up"></i> </a>
+                <a href="${ctx}/sku/catagory/top/${category.id}?top=${category.top ? 0 : 1}" class="ajax_link" title="${category.top ? '取消置顶':'置顶首页'}">
+                  <i class="fa ${category.top ? 'fa-sort-down' : 'fa-sort-up'}"></i> 
+                </a>
               </shiro:hasPermission> 
 							<shiro:hasPermission name="sku:category:delete">
 								<a href="${ctx}/sku/category/delete/${category.id}" single-delete title="删除"><i class="fa fa-trash-o"></i> </a>

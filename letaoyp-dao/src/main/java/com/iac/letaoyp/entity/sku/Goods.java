@@ -31,7 +31,20 @@ public class Goods extends IdEntity {
 	private JsonMapper jsonMapper = JsonMapper.nonEmptyMapper();
 
 	public enum Status {
-		OFFLINE, ONLINE;
+		OFFLINE("已下架"), ONLINE("上架");
+		private String description;
+
+		private Status(String description) {
+			this.description = description;
+		}
+
+		public String getDescription() {
+			return description;
+		}
+
+		public void setDescription(String description) {
+			this.description = description;
+		}
 	}
 
 	/**
@@ -43,13 +56,7 @@ public class Goods extends IdEntity {
     /**
      * 上架 下架      db_column: status 
      */ 	
-	@Length(max=20)
 	private Status status;
-    /**
-     * 上架时间       db_column: shipping_date 
-     */ 	
-	@NotNull 
-	private java.util.Date shippingDate;
     /**
      * name       db_column: name 
      */ 	
@@ -121,15 +128,6 @@ public class Goods extends IdEntity {
 	
 	public void setStatus(Status value) {
 		this.status = value;
-	}
-	
-	@Column(name = "shipping_date")
-	public java.util.Date getShippingDate() {
-		return this.shippingDate;
-	}
-	
-	public void setShippingDate(java.util.Date value) {
-		this.shippingDate = value;
 	}
 	
 	@Column(name = "name")

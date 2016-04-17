@@ -46,28 +46,28 @@
 				<div class="form-group">
 					<label class="col-sm-4 control-label" for="treePath">treePath</label>
 					<div class="col-sm-6">
-						<input class="form-control" id="treePath" name="treePath" type="text" value="${category.treePath}" disabled/> 
+						<input class="form-control" id="treePath" name="treePath" type="text" value="${category.treePath}" readonly="readonly"/> 
 						<span class="help-inline"><form:errors path="treePath" /></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-4 control-label" for="treeName">treeName</label>
 					<div class="col-sm-6">
-						<input class="form-control" id="treeName" name="treeName" type="text" value="${category.treeName}" disabled /> 
+						<input class="form-control" id="treeName" name="treeName" type="text" value="${category.treeName}" readonly="readonly" /> 
 						<span class="help-inline"><form:errors path="treeName" /></span>
 					</div>
 				</div>
 				<div class="form-group">
 	        <label class="col-sm-4 control-label" for="isLeaf">isLeaf</label>
 	        <div class="col-sm-6">
-	          <input class="form-control" id="isLeaf" name="isLeaf" type="text" value="${category.isLeaf}" disabled/> <span
+	          <input class="form-control" id="isLeaf" name="isLeaf" type="text" value="${category.isLeaf}" readonly="readonly"/> <span
 	            class="help-inline"><form:errors path="isLeaf" /></span>
 	        </div>
 	      </div>
 	      <div class="form-group">
 	        <label class="col-sm-4 control-label" for="level">层级</label>
 	        <div class="col-sm-6">
-	          <input class="form-control" id="level" name="level" type="text" value="${category.level}" disabled/> <span
+	          <input class="form-control" id="level" name="level" type="text" value="${category.level}" readonly="readonly"/> <span
 	            class="help-inline"><form:errors path="level" /></span>
 	        </div>
 	      </div>
@@ -76,7 +76,7 @@
 			<div class="form-group">
 				<label class="col-sm-4 control-label" for="parent">父类目</label>
 				<div class="col-sm-6">
-				  <input type="text" class="form-control" id="input_category_name" disabled> 
+				  <input type="text" class="form-control" id="input_category_name" readonly="readonly"> 
 					<input class="form-control" id="parent" name="parent" type="hidden" value="${category.parent}" />
 				</div>
 			</div>
@@ -91,16 +91,16 @@
 				</div>
 			</div>
 			<div class="form-group">
-        <label class="col-sm-4 control-label" for="order">排序(越大越靠前)</label>
+        <label class="col-sm-4 control-label" for="sort">排序(越大越靠前)</label>
         <div class="col-sm-6">
-          <input class="form-control" id="order" name="order" type="text" value="${category.order}" /> <span
+          <input class="form-control" id="sort" name="sort" type="text" value="${category.sort}" /> <span
             class="help-inline"><form:errors path="order" /></span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-4 control-label" for="top">置顶至首页</label>
         <div class="col-sm-6">
-          <input class="form-control" id="top" name="top" type="text" value="${category.top ? '是' : '否'}" disabled />
+          <input class="form-control" id="top" name="top" type="text" value="${category.top ? '是' : '否'}" readonly="readonly" />
         </div>
       </div>
 			<div class="form-group">
@@ -125,14 +125,14 @@
 				<label class="col-sm-4 control-label" for="created">created</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="created" name="created" type="text"
-						value="<fmt:formatDate value='${category.created}' pattern='yyyy-MM-dd HH:mm:ss'/>" disabled>
+						value="<fmt:formatDate value='${category.created}' pattern='yyyy-MM-dd HH:mm:ss'/>" readonly="readonly">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-4 control-label" for="modified">modified</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="modified" name="modified" type="text"
-						value="<fmt:formatDate value='${category.modified}' pattern='yyyy-MM-dd HH:mm:ss'/>" disabled>
+						value="<fmt:formatDate value='${category.modified}' pattern='yyyy-MM-dd HH:mm:ss'/>" readonly="readonly">
 				</div>
 			</div>
 

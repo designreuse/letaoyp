@@ -25,7 +25,7 @@ public class Category extends IdEntity {
      * 降序排列       db_column: order 
      */ 	
 	@Max(9999999999L)
-	private java.lang.Integer order;
+	private java.lang.Integer sort;
     /**
      * name       db_column: name 
      */ 	
@@ -82,13 +82,13 @@ public class Category extends IdEntity {
 	private String logo;
 	//columns END
 	
-	@Column(name = "order")
-	public java.lang.Integer getOrder() {
-		return this.order;
+	@Column(name = "sort")
+	public java.lang.Integer getSort() {
+		return sort;
 	}
 	
-	public void setOrder(java.lang.Integer value) {
-		this.order = value;
+	public void setSort(java.lang.Integer sort) {
+		this.sort = sort;
 	}
 	
 	@Column(name = "name")

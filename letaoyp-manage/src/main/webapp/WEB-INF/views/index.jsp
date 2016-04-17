@@ -53,6 +53,7 @@
 
 <script src="${ctx}/static/plugins/noty/jquery.noty.packaged.min.js"></script>
 <script src="${ctx}/static/plugins/pace/pace.js"></script>
+<script src="${ctx}/static/plugins/ckeditor/ckeditor.js"></script>
 
 </head>
 
@@ -111,6 +112,9 @@
 		<%@ include file="/WEB-INF/layouts/sidebar.jsp"%>
 	</div>
 
+  <script type="text/javascript">
+  var ctx = '${ctx}';
+  </script>
 	<!-- AdminLTE App -->
 	<script src="${ctx}/static/plugins/adminLTE/js/app.min.js"></script>
 	<script src="${ctx}/static/js/app.js"></script>

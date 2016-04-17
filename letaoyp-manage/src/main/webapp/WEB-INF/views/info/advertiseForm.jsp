@@ -18,8 +18,8 @@
 			<div class="form-group">
 				<label class="col-sm-4 control-label" for="model">模块</label>
 				<div class="col-sm-6">
-				  <!-- 从其他页面跳转过来 指定model参数后 则不允许再选择模块 disabled-->
-				  <select id="select_model" name="model" class="form-control" <c:if test="${param.model != null}">disabled</c:if>>  
+				  <!-- 从其他页面跳转过来 指定model参数后 则不允许再选择模块 readonly="readonly"-->
+				  <select id="select_model" name="model" class="form-control" <c:if test="${param.model != null}">readonly="readonly"</c:if>>  
 				    <% 
 				      Advertise advertise = (Advertise)request.getAttribute("advertise");
 				      String modelParam = request.getParameter("model");
@@ -31,7 +31,7 @@
 				      <% } %>
 				      data-option='{"width":<%= model.getWidth() %>, "height": <%= model.getHeight() %>}'
 				      <% if(model == Advertise.Model.HOME_CATEGORY) {%>
-                disabled
+                readonly="readonly"
               <% }%>
 				    >
 				      <%= model.getDescription() %>
@@ -58,10 +58,10 @@
 				</div>
 			</div>
 			<div class="form-group">
-        <label class="col-sm-4 control-label" for="index">索引值</label>
+        <label class="col-sm-4 control-label" for="sequence">索引值</label>
         <div class="col-sm-6">
-          <input class="form-control" id="index" name="index" type="text" 
-            value="${advertise.index == null ? param.index : advertise.index}" <c:if test="${param.model != null}">disabled</c:if> />
+          <input class="form-control" id="sequence" name="sequence" type="text" 
+            value="${advertise.sequence == null ? param.sequence : advertise.sequence}" <c:if test="${param.model != null}">readonly="readonly"</c:if> />
         </div>
       </div>
 			<div class="form-group">
@@ -84,14 +84,14 @@
 				<label class="col-sm-4 control-label" for="created">创建时间</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="created" name="created" type="text"
-						value="<fmt:formatDate value='${advertise.created}' pattern='yyyy-MM-dd HH:mm:ss'/>" disabled>
+						value="<fmt:formatDate value='${advertise.created}' pattern='yyyy-MM-dd HH:mm:ss'/>" readonly="readonly">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-4 control-label" for="modified">修改时间</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="modified" name="modified" type="text"
-						value="<fmt:formatDate value='${advertise.modified}' pattern='yyyy-MM-dd HH:mm:ss'/>" disabled>
+						value="<fmt:formatDate value='${advertise.modified}' pattern='yyyy-MM-dd HH:mm:ss'/>" readonly="readonly">
 				</div>
 			</div>
 

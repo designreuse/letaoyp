@@ -91,4 +91,10 @@ public class FileManagerService {
 		return context + "/" + sufixUrl;
 	}
 
+	public String getAbsolutePath(String url) {
+		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+		String context = Servlets.getRequestContext(request);
+		String relative = StringUtils.substringAfter(url, context);
+		return this.baseDir + relative;
+	}
 }

@@ -67,10 +67,10 @@
 					<table class="table table-bordered table-hover">
 						<thead>
 							<tr role="row">
-								<th sortColumn="goods">goods</th>
+								<th sortColumn="goods">商品</th>
 								<th sortColumn="name">选择条件名称 eg: 尺码</th>
 								<th sortColumn="value">选择条件值 eg: S M L XL</th>
-								<th sortColumn="cost">选择该条件后 额外需要支付价格</th>
+								<th sortColumn="cost" title="选择该条件后 额外需要支付价格">额外支付</th>
 								<th sortColumn="active">active</th>
 								<th sortColumn="created">created</th>
 								<th sortColumn="modified">modified</th>
@@ -80,7 +80,7 @@
 						<tbody id="checkbox-toggled">
 							<c:forEach items="${page.content}" var="goodsChoosen" varStatus="status">
 								<tr>
-									<td class="center"><input class="icheck" type="checkbox" value="${goodsChoosen.id}">${goodsChoosen.goods}</td>
+									<td class="center"><input class="icheck" type="checkbox" value="${goodsChoosen.id}">${goodsChoosen.goods.name}</td>
 									<td class="center">${goodsChoosen.name}</td>
 									<td class="center">${goodsChoosen.value}</td>
 									<td class="center">${goodsChoosen.cost}</td>
@@ -91,7 +91,8 @@
 											<a href="#modal_form" action="${ctx}/sku/goodschoosen/update/${goodsChoosen.id}" title="编辑"
 												data-toggle="modal" data-target="#modal_form"><i class="fa fa-edit"></i> </a>
 										</shiro:hasPermission> <shiro:hasPermission name="sku:goodschoosen:delete">
-											<a href="${ctx}/sku/goodschoosen/delete/${goodsChoosen.id}" single-delete title="删除"><i class="fa fa-trash-o"></i> </a>
+											<a href="${ctx}/sku/goodschoosen/delete/${goodsChoosen.id}" single-delete title="删除"><i
+												class="fa fa-trash-o"></i> </a>
 										</shiro:hasPermission></td>
 								</tr>
 							</c:forEach>

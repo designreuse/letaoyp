@@ -81,7 +81,7 @@
 								<tr>
 									<td class="center"><input class="icheck" type="checkbox" value="${brand.id}">${brand.name}</td>
 									<td class="center">${brand.introduction}</td>
-									<td class="center">${brand.order}</td>
+									<td class="center">${brand.sort}</td>
 									<td class="center">${brand.active}</td>
 									<td class="center"><fmt:formatDate value='${brand.created}' pattern='yyyy-MM-dd HH:mm:ss' /></td>
 									<td class="center"><fmt:formatDate value='${brand.modified}' pattern='yyyy-MM-dd HH:mm:ss' /></td>

@@ -1,6 +1,9 @@
 $(function() {
   "use strict";
+  window['ctx'] = window['ctx'] || '';
   _initialize();
+  
+  console.log('initialize in app.js');
 })
 
 function errorHandler(jqXHR, error, errorThrown) {
@@ -29,22 +32,25 @@ function ajax(config) {
   var complateFunc = config.complete;
 
   var settings = {
-      type: config.type || 'get',
-      success: function(data) {
-        if(data.success) {
-          if (successFunc) {
-            successFunc(data);
-          }
-        } else {
-          notice.error(data.msg || '操作失败');
+    type : config.type || 'get',
+    success : function(data) {
+      if (data.success) {
+        if (successFunc) {
+          successFunc(data);
         }
-      },
-      error: errorHandler,
-      complete: function() {
-          if (complateFunc) complateFunc();
+      } else {
+        notice.error(data.msg || '操作失败');
       }
+    },
+    error : errorHandler,
+    complete : function() {
+      if (complateFunc)
+        complateFunc();
+    }
   }
-  $(document).ajaxStart(function() { Pace.restart(); });
+  $(document).ajaxStart(function() {
+    Pace.restart();
+  });
   $.ajax($.extend(config, settings));
 }
 
@@ -60,54 +66,68 @@ function page(page) {
  * 需要再改进成通用的方式 有多个节点时 移回去位置会错乱
  */
 function picUpload() {
-    var $this = $(this);
-    $this.prop('name', 'file');
-    var $form = $('#pic-ajax-upload');
-    if (!$form.length) {
-        $form = $('<form id="pic-ajax-upload" style="display: none;" method="post" enctype="multipart/form-data"></form>');
-        $('body').append($form);
-    }
+  var $this = $(this);
+  $this.prop('name', 'file');
+  var $form = $('#pic-ajax-upload');
+  if (!$form.length) {
+    $form = $('<form id="pic-ajax-upload" action="' + ctx +'/admin/file/upload" style="display: none;" method="post" enctype="multipart/form-data"></form>');
+    $('body').append($form);
+  }
 
-    $form.html(''); //清空参数
-    var $parent = $this.parent();
-    $form.append($this);
-    var config = $this.data('config');
-    var submitData = $this.data('data');
-    for (var i in submitData) {
-        $form.append('<input name="' + i + '" value="' + submitData[i] + '" />');
+  $form.html(''); //清空参数
+  var $parent = $this.parent();
+  $form.append($this);
+  var config = $this.data('config') || {};
+  var submitData = $this.data('data') || {};
+  for ( var i in submitData) {
+    $form.append('<input name="' + i + '" value="' + submitData[i] + '" />');
+  }
+  
+  $form.ajaxSubmit({
+    url : config.url || $form.attr('action'),
+    success : function(data) {
+      if (typeof data == 'string') {
+        var d = eval("(" + data + ")");
+      } else {
+        var d = data;
+      }
+      
+      (window[config.success] || _default_pic_upload_func).call($this, d);
+    },
+    beforeSubmit: window[config.before],
+    error : errorHandler,
+    complete : function() {
+      //$parent.append($this);
+      $parent.append($this.clone());    // to clear input file
     }
-    var $inputImg = $(config.input_img);
-    var $inputId = $(config.input_id);
-    
-    if (!$inputImg.length || !$inputId.length) {
-        layer.msg('ajax upload file must define input_img and input_id with data-config attribute');
-        return;
-    }
-    var oringnalSrc = $inputImg.prop('src');
-    //  $.extend(data, config || {});
-    $form.ajaxSubmit({
-        url: config.url || $form.attr('action'),
-        success: function(data) {
-            if(typeof data == 'string') {
-                var d = eval("("+data+")");
-            } else {
-                var d = data;
-            }
-            
-            if (d.success) {
-                $inputImg.attr('src', d.url);
-                $inputId.val(d.url);
-            } else {
-                notice.error(d.msg || '文件上传失败');
-                $inputId.val('');
-                $inputImg.attr('src', oringnalSrc);
-            }
-        },
-        error: errorHandler,
-        complete: function() {
-            $parent.append($this);
-        }
-    });
+  });
+}
+
+/**
+ * context 'this' should be the element contains pic_upload class
+ * @param d ajax response ,we defined as AjaxResult
+ */
+function _default_pic_upload_func(d) {
+  var config = $(this).data('config');
+  var $inputImg = $(config.input_img);
+  var $inputId = $(config.input_id);
+  var oringnalSrc = $(this).prop('src');
+
+  var $inputImg = $(config.input_img);
+  var $inputId = $(config.input_id);
+
+  if (!$inputImg.length && !$inputId.length) {
+    notice.error('ajax upload image must define input_img and input_id with data-config attribute when using default callback function');
+  }
+  
+  if (d.success) {
+    $inputImg.attr('src', d.url);
+    $inputId.val(d.url);
+  } else {
+    notice.error(d.msg || '文件上传失败');
+    $inputId.val('');
+    $inputImg.attr('src', oringnalSrc);
+  }
 }
 
 function _beauty_checkbox() {
@@ -190,20 +210,19 @@ notice.confirm = function(message, callback_ok, title_ok, callback_cancel,
 }
 /** noty function end */
 
-
 function initialzeOnloading() {
   $('[initialze-onloading]').each(function() {
     var $this = $(this);
     var url = $this.attr('initialze-onloading');
     $this.removeAttr('initialze-onloading');
-    
+
     $.ajax({
-      url: url,
-      type: 'get',
-      success: function(html) {
+      url : url,
+      type : 'get',
+      success : function(html) {
         $($this.data('override') || $this).html(html);
       },
-      error: errorHandler
+      error : errorHandler
     })
   })
 }
@@ -233,38 +252,41 @@ function _initialize() {
       function(e) {
         e.preventDefault();
         var $this = $(this);
-        $(document).ajaxStart(function() { Pace.restart(); });
-        
+        $(document).ajaxStart(function() {
+          Pace.restart();
+        });
+
         $.ajax({
           url : $this.attr('href') || $this.attr('action')
               || ($this.data('config') ? $this.data('config').url : ''),
+          type : $this.attr('type') || $this.attr('method')
+              || $this.data('config-type') || 'GET',
           data : $this.data('data') || {},
           success : function(html) {
             $($this.data('override') || '#content-wrapper').html(html);
           },
-          error: errorHandler
+          error : errorHandler
         })
       });
-  
-  $(document).on(
-      'click',
-      'form .ajax_link',
-      function(e) {
-        e.preventDefault();
-        var $this = $(this);
-        var $form = $(this).parent('form');
-        $(document).ajaxStart(function() { Pace.restart(); });
-        $.ajax({
-          url : $form.attr('action'),
-          type: $form.attr('method') || 'GET',
-          data : $form.serialize(),
-          success : function(html) {
-            $($this.data('override') || '#content-wrapper').html(html);
-          },
-          error: errorHandler
-        })
-      });
-  
+
+  $(document).on('click', 'form .ajax_link', function(e) {
+    e.preventDefault();
+    var $this = $(this);
+    var $form = $(this).parent('form');
+    $(document).ajaxStart(function() {
+      Pace.restart();
+    });
+    $.ajax({
+      url : $form.attr('action'),
+      type : $form.attr('method') || 'GET',
+      data : $form.serialize(),
+      success : function(html) {
+        $($this.data('override') || '#content-wrapper').html(html);
+      },
+      error : errorHandler
+    })
+  });
+
   $(document).on('click', '[ajax]', function(e) {
     e.preventDefault();
     var $this = $(this);
@@ -306,40 +328,40 @@ function _initialize() {
       }
     })
   }
-  
+
   $(document).on('click', '[data-toggle="modal"]', function(e) {
     var $this = $(this), $target = $($(this).data('target'));
     $.ajax({
-      url: $this.attr('action'),
-      success: function(html) {
+      url : $this.attr('action'),
+      success : function(html) {
         $target.find('.modal-content').html(html);
       },
-      error: errorHandler
+      error : errorHandler
     })
-    
+
   })
-  
+
   $(document).on('click', '[single-delete]', function(e) {
     e.preventDefault();
     var $this = $(this), $target = $($(this).data('target'));
     notice.confirm('确认删除？ 删除后不可恢复', function() {
       $.ajax({
-        url: $this.attr('action') || $this.attr('href') || $this.data('url'),
-        type: 'DELETE',
-        success: function(data) {
+        url : $this.attr('action') || $this.attr('href') || $this.data('url'),
+        type : 'DELETE',
+        success : function(data) {
           notice.information(data.msg || 'delete success');
           page();
         },
-        error: errorHandler
+        error : errorHandler
       })
     })
-    
+
   })
-  
+
   $(document).on('change', '#searchForm input', function(e) {
     $('#page').val(1);
   });
-  
+
   //图片上传
   $(document).on('change', '.pic_upload', picUpload);
 }

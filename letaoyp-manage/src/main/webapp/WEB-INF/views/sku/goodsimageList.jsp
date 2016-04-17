@@ -67,7 +67,7 @@
 					<table class="table table-bordered table-hover">
 						<thead>
 							<tr role="row">
-								<th sortColumn="order">降序排列</th>
+								<th sortColumn="sort">降序排列</th>
 								<th sortColumn="src">src</th>
 								<th sortColumn="goods">goods</th>
 								<th sortColumn="active">active</th>
@@ -79,8 +79,12 @@
 						<tbody id="checkbox-toggled">
 							<c:forEach items="${page.content}" var="goodsImage" varStatus="status">
 								<tr>
-									<td class="center"><input class="icheck" type="checkbox" value="${goodsImage.id}">${goodsImage.order}</td>
-									<td class="center">${goodsImage.src}</td>
+									<td class="center"><input class="icheck" type="checkbox" value="${goodsImage.id}">${goodsImage.sort}</td>
+									<td class="center">
+									  <c:if test="${not empty goodsImage.src}">
+									    <img alt="" src="${goodsImage.src}" width = "100px" height = "100px">
+									  </c:if>
+									</td>
 									<td class="center">${goodsImage.goods}</td>
 									<td class="center">${goodsImage.active}</td>
 									<td class="center"><fmt:formatDate value='${goodsImage.created}' pattern='yyyy-MM-dd HH:mm:ss' /></td>
