@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
+
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 <div class="box">
@@ -67,6 +68,7 @@
 					<th sortColumn="status">状态</th>
 					<th sortColumn="online_time">上架时间</th>
 					<th sortColumn="active">active</th>
+					<th sortColumn="active" title="首页长图，首页右侧图，首页上新图">置顶位置</th>
 					<th sortColumn="created">创建时间</th>
 					<th>操作</th>
 				</tr>
@@ -84,6 +86,7 @@
 						<td class="center">${goods.status.description}</td>
 						<td class="center"><fmt:formatDate value='${goods.onlineTime}' pattern='yyyy-MM-dd HH:mm:ss' /></td>
 						<td class="center">${goods.active}</td>
+						<td class="center">${goods.topPosition.desc}</td>
 						<td class="center"><fmt:formatDate value='${goods.created}' pattern='yyyy-MM-dd HH:mm:ss' /></td>
 						<td class="center "><shiro:hasPermission name="sku:goods:edit">
 								<a href="#modal_form" action="${ctx}/sku/goods/update/${goods.id}" title="编辑" data-toggle="modal"
@@ -94,6 +97,14 @@
 								<c:if test="${goods.status == 'OFFLINE'}">
 								  <a href="${ctx}/sku/goods/online/${goods.id}" class="ajax_link" type="post" title="上架"><i class="fa fa-unlock"></i> </a>
 								</c:if>
+								
+								<c:if test="${goods.topPosition != null}">
+                  <a href="${ctx}/sku/goods/untop/${goods.id}" class="ajax_link" type="post" title="取消置顶"><i class="fa fa-sort-down"></i> </a>
+                </c:if>
+                <c:if test="${goods.topPosition == null}">
+                  <a href="#modal_form" action="${ctx}/sku/goodstop/from/${goods.id}" title="设置置顶" data-toggle="modal"
+                    data-target="#modal_form"><i class="fa fa-sort-up"></i> </a>
+                </c:if>
 							</shiro:hasPermission> 
 							<shiro:hasPermission name="sku:goods:delete">
 								<a href="${ctx}/sku/goods/delete/${goods.id}" single-delete title="删除"><i class="fa fa-trash-o"></i> </a>

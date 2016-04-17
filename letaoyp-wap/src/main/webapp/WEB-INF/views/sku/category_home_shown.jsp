@@ -16,7 +16,7 @@
                     <div class="Tr_cs Tr_cs1">
                         <div class="cxjad_m">
                             <div class="cxjinfo" style="width: 1570px; left: 0px;">
-                            	<c:forEach items="${topLevel1}" var="topGoods">
+                            	<c:forEach items="${topLevel1}" var="topGoods" begin="0" end="1">
 	                            	<div class="cxjitem">
 	                                    <a href="${ctx}/sku/goods/${topGoods.goods.id}" target="_blank">
 	                                    	<img src="${topGoods.topImage}" width="785" height="368" border="0">
@@ -36,7 +36,7 @@
             </div>
             <div class="fr_r">
                 <div id="Tr_cs31">
-                	<c:forEach items="${topLevel2}" var="topGoods">
+                	<c:forEach items="${topLevel2}" var="topGoods" begin="0" end="1">
                     	<div class="cxjitem">
                             <a href="${ctx}/sku/goods/${topGoods.goods.id}" target="_blank">
                             	<img src="${topGoods.topImage}" width="242" height="184" border="0">
@@ -63,7 +63,7 @@
             <div class="i_prclist hover goods_cart">
                 <div class="cxjad_m">
                     <div class="cxjinfo">
-                    	<c:forEach items="${topLevel3}" var="goods">
+                    	<c:forEach items="${topLevel3}" var="goods" begin="0" end="15">
                     		<div class="cxjitem">
 	                            <div class="p">
 	                                <a href="${ctx}/sku/goods/${goods.id}" class="aimg">

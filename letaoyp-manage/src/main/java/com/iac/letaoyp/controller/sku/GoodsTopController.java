@@ -16,11 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springside.modules.mapper.BeanMapper;
 import org.springside.modules.web.Servlets;
 
 import com.iac.letaoyp.biz.web.AjaxResult;
 import com.iac.letaoyp.controller.BasicController;
+import com.iac.letaoyp.entity.sku.Goods;
 import com.iac.letaoyp.entity.sku.GoodsTop;
+import com.iac.letaoyp.service.sku.GoodsService;
 import com.iac.letaoyp.service.sku.GoodsTopService;
 
 
@@ -30,6 +33,8 @@ public class GoodsTopController extends BasicController {
 	
 	@Autowired
 	private GoodsTopService goodsTopService;
+	@Autowired
+	private GoodsService goodsService;
 	
 	/** 列表 */
 	@RequestMapping
@@ -56,6 +61,19 @@ public class GoodsTopController extends BasicController {
 	public String updateForm(ModelMap model, @PathVariable java.lang.Long id) {
 		GoodsTop goodsTop = goodsTopService.get(id);
 		model.addAttribute("goodsTop",goodsTop);
+		return "sku/goodstopForm";
+	}
+	
+	@RequestMapping(value="from/{goodsId}", method = RequestMethod.GET)
+	public String createFrom(ModelMap model, @PathVariable java.lang.Long goodsId) {
+		Goods goods = goodsService.get(goodsId);
+		GoodsTop goodsTop = BeanMapper.map(goods, GoodsTop.class);
+		goodsTop.setCategory(goods.getCategory());
+		goodsTop.setGoods(goods);
+		goodsTop.setGoodsName(goods.getName());
+		goodsTop.setId(null);
+		goodsTop.setTopImage(goods.getImage());
+		model.addAttribute("goodsTop", goodsTop);
 		return "sku/goodstopForm";
 	}
 	

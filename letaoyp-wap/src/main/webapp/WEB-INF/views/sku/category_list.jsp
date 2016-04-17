@@ -24,7 +24,7 @@
 			</c:forEach>
 			
 			<code>&gt;</code>
-			<a href="javascript:;">${category.name}</a>
+			<a href="javascript:void(0);">${category.name}</a>
 		</div>
 		<div class="AreaR">
 			<div id="Tr_cs"></div>
@@ -67,9 +67,9 @@
 												<tr>
 													<td>显示方式：</td>
 													<td>
-														<a id="link_display_list" href="javascript:;">
+														<a id="link_display_list" href="javascript:void(0);">
 															<img src="${ctx}/static/images/display_mode_list_act.gif" alt=""></a> 
-														<a id="link_display_grid" href="javascript:;">
+														<a id="link_display_grid" href="javascript:void(0);">
 															<img src="${ctx}/static/images/display_mode_grid.gif" alt=""></a>
 													</td>
 												</tr>
@@ -90,7 +90,7 @@
 					<c:forEach items="${page.content}" var="goods" varStatus="status">
 						
 						<ul class="clearfix <c:if test="${status.index % 2 == 1}">bgcolor</c:if>" id="goods_${goods.id}">
-							<!-- <li><br> <a href="javascript:;"
+							<!-- <li><br> <a href="javascript:void(0);"
 								onclick="Compare.add(3852,&#39;女装短外套&#39;,&#39;19&#39;)"
 								class="f6">比较</a></li> -->
 							<li class="thumb">
@@ -103,14 +103,14 @@
 								</a></li>
 							<li>本店售价： <font class="shop">￥${goods.salesPrice / 100}</font> <br></li>
 							<li class="action">
-								<a href="javascript:collect(${goods.id});" class="abg f6">收藏该商品</a> 
+								<!-- <a href="javascript:collect(${goods.id});" class="abg f6">收藏该商品</a> --> 
 								<a href="javascript:addToCart(${goods.id})"><img src="${ctx}/static/images/bnt_buy_1.gif"></a></li>
 						</ul>
 					</c:forEach>
 				</div>
 				
 				
-				<div class="items_grid" >
+				<div class="itemsGrid" style="display:none;">
 				    <div class="clearfix goodsBox" style="border:none;">
 				    	<c:forEach items="${page.content}" var="goods">
 				    		<div class="items-gallery">
@@ -257,12 +257,12 @@
 			
 			if(type == 'list') {
 				$('.goodsList').show();
-				$('.goodsGrid').hide();
+				$('.itemsGrid').hide();
 				$('#link_display_list img').attr('src', '${ctx}/static/images/display_mode_list_act.gif');
 				$('#link_display_grid img').attr('src', '${ctx}/static/images/display_mode_grid.gif');
 			} else {
 				$('.goodsList').hide();
-				$('.goodsGrid').show();
+				$('.itemsGrid').show();
 				$('#link_display_list img').attr('src', '${ctx}/static/images/display_mode_list.gif');
 				$('#link_display_grid img').attr('src', '${ctx}/static/images/display_mode_grid_act.gif');
 			}

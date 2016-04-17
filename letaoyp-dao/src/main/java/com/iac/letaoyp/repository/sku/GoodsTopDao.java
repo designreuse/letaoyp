@@ -10,7 +10,7 @@ import com.iac.letaoyp.repository.BasicRepository;
 
 public interface GoodsTopDao extends BasicRepository<GoodsTop,java.lang.Long>{
 
-	List<GoodsTop> findByCategoryIdAndActive(Long categoryId, boolean active);
+	List<GoodsTop> findByCategoryAndActiveOrderByIdDesc(Long category, boolean active);
 
 	@Modifying
     @Query("update GoodsTop a set a.active=?1 where a.id in (?2)")

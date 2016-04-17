@@ -32,4 +32,8 @@ public interface GoodsDao extends BasicRepository<Goods,java.lang.Long>{
     @Modifying
     @Query("update Goods a set a.status = ?1 where a.id = ?2")
 	void updateStatusById(Status status, Long id);
+
+    @Modifying
+    @Query("update Goods a set a.topPosition = null where a.id = ?1")
+	void updateTopPositionById(Long id);
 }

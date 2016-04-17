@@ -1,7 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="com.iac.letaoyp.entity.sku.GoodsTop.Position"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
+<%
+  request.setAttribute("positions", Position.values());
+%>
 
 <form id="form" class="form-horizontal" form-validate action="${ctx}/sku/goodstop/update" method="post">
 	<div class="modal-header">
@@ -14,23 +18,17 @@
 			<input type="hidden" id="id" name="id" value="${goodsTop.id}" />
 
 			<div class="form-group">
-				<label class="col-sm-4 control-label" for="goods">goods</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="goods" name="goods" type="text" value="${goodsTop.goods}" data-rule-required="true"
-						data-msg-required="请输入goods" /> <span class="help-inline"><form:errors path="goods" /></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label" for="category">goods一级类目</label>
+				<label class="col-sm-4 control-label" for="category">商品类目</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="category" name="category" type="text" value="${goodsTop.category}"
-						data-rule-required="true" data-msg-required="请输入goods一级类目" /> <span class="help-inline"><form:errors
+						data-rule-required="true" data-msg-required="请输入商品类目" /> <span class="help-inline"><form:errors
 							path="category" /></span>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label" for="goodsName">goodsName</label>
+				<label class="col-sm-4 control-label" for="goodsName">商品名称</label>
 				<div class="col-sm-6">
+				  <input class="form-control" id="goods" name="goods.id" type="hidden" value="${goodsTop.goods.id}" />
 					<input class="form-control" id="goodsName" name="goodsName" type="text" value="${goodsTop.goodsName}"
 						data-rule-required="true" data-msg-required="请输入goodsName" /> <span class="help-inline"><form:errors
 							path="goodsName" /></span>
@@ -59,23 +57,28 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label" for="topImage">topImage</label>
+				<label class="col-sm-4 control-label" for="position">置顶位置 </label>
 				<div class="col-sm-6">
-					<input class="form-control" id="topImage" name="topImage" type="text" value="${goodsTop.topImage}"
-						data-rule-required="true" data-msg-required="请输入topImage" /> <span class="help-inline"><form:errors
-							path="topImage" /></span>
+				  <select id="select_position" name="position" class="form-control"> 
+					  <c:forEach items="${positions}" var="position">
+					    <option value="${position}" <c:if test="${position == goodsTop.position}">selected="selected"</c:if>
+					      data-option='{"width": ${position.width}, "height": ${position.height}}'
+					    >${position.desc}</option> 
+					  </c:forEach>
+				  </select>
 				</div>
 			</div>
+			
 			<div class="form-group">
-				<label class="col-sm-4 control-label" for="position">置顶位置 HOME_SLIDE首页滑动大图(785*368);
-					HOME_VERTICAL首页垂直中图(242*184);HOME_HORIZONTAL首页水平平铺商品图(310*310)</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="position" name="position" type="text" value="${goodsTop.position}"
-						data-rule-required="true"
-						data-msg-required="请输入置顶位置 HOME_SLIDE首页滑动大图(785*368); HOME_VERTICAL首页垂直中图(242*184);HOME_HORIZONTAL首页水平平铺商品图(310*310)" />
-					<span class="help-inline"><form:errors path="position" /></span>
-				</div>
-			</div>
+        <label class="col-sm-4 control-label" for="topImage">置顶图片<span id="label_size"></span></label>
+        <div class="col-sm-6">
+          <img alt="" id="img_topImage" src="${goodsTop.topImage}" width="300px" />
+          <input id="topImage" name="topImage" type="hidden" value="${goodsTop.topImage}" />
+          <input type="file" class="pos-abs pic_upload" 
+               data-config='{"url": "${ctx}/admin/file/upload", "input_img":"#img_topImage", "input_id":"#topImage"}' />
+        </div>
+      </div>
+			
 			<div class="form-group">
 				<label class="col-sm-4 control-label" for="active">active</label>
 				<div class="col-sm-6">
@@ -110,3 +113,19 @@
 </form>
 
 <script type="text/javascript" src="${ctx}/static/js/app_single.js" />
+
+<script>
+$(function() {
+  var option = $('#select_position option:selected').data('option');
+  select(option);
+  
+  $('#select_position').change(select);
+})
+
+function select(option) {
+  option = $(this).find('option:selected').data('option') || option;
+  
+  $('#label_size').html('(' + option.width + ' * ' + option.height + ')');
+  $('#img_topImage').css({width: '380px', height: option.height / option.width * 300 + 'px'});
+}
+</script>

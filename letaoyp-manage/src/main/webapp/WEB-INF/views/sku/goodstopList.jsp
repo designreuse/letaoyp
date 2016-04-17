@@ -84,7 +84,7 @@
 							<c:forEach items="${page.content}" var="goodsTop" varStatus="status">
 								<tr>
 									<td class="center"><input class="icheck" type="checkbox" value="${goodsTop.id}">${goodsTop.goodsName}</td>
-									<td class="center">${goodsTop.category.name}</td>
+									<td class="center">${goodsTop.category}</td>
 									<td class="center">${goodsTop.salesPrice}</td>
 									<td class="center">${goodsTop.marketPrice}</td>
 									<td class="center">${goodsTop.comments}</td>

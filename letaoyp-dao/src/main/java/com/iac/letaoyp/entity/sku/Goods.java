@@ -118,6 +118,8 @@ public class Goods extends IdEntity {
 	private Integer comments;
 	
 	private Long category;
+	
+	private GoodsTop.Position topPosition;
 	//columns END
 
 	@Column(name = "status")
@@ -268,6 +270,15 @@ public class Goods extends IdEntity {
 		this.category = category;
 	}
 
+	@Column(name = "top_position")
+	@Enumerated(EnumType.STRING)
+	public GoodsTop.Position getTopPosition() {
+		return topPosition;
+	}
+
+	public void setTopPosition(GoodsTop.Position topPosition) {
+		this.topPosition = topPosition;
+	}
 
 	private Brand brand;
 	public void setBrand(Brand brand){

@@ -169,4 +169,31 @@ public class GoodsService extends BasicService<Goods,java.lang.Long> {
 			goodsImageDao.save(goodsImage);
 		}
 	}
+
+	public void untop(Long id) {
+		goodsTopDao.deleteByGoodsIdIn(new Long[] {id});
+		goodsDao.updateTopPositionById(id);
+	}
+
+	/*public void top(Long id) {
+		Goods goods = goodsDao.findOne(id);
+		
+		if(goods == null) {
+			throw new ServiceException("参数错误");
+		}
+		
+		if(goods.getIsTop()) {
+			// then update it
+			
+		} else {
+			goods.setIsTop(true);
+			GoodsTop goodsTop = new GoodsTop();
+			goodsTop.setCategory(goods.getCategory());
+			goodsTop.setComments(goods.getComments());
+			goodsTop.setGoods(goods);
+			goodsTop.setGoodsName(goods.getName());
+			goodsTop.setMarketPrice(goods.getMarketPrice());
+			goodsTop.setPosition(value);
+		}
+	}*/
 }

@@ -123,6 +123,13 @@ public class GoodsController extends BasicController {
 		goodsService.updateActiveByIds(active, ids);
 		return AjaxResult.succeed();
 	}
+	
+	@RequestMapping(value = "untop/{id}", method = RequestMethod.POST)
+	@ResponseBody
+	public AjaxResult untop(@PathVariable Long id) {
+		goodsService.untop(id);
+		return AjaxResult.SUCCEED;
+	}
 
 	/**
 	 * 所有RequestMapping方法调用前的Model准备方法, 实现Struts2 Preparable二次部分绑定的效果,

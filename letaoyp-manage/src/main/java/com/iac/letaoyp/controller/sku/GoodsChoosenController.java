@@ -94,7 +94,7 @@ public class GoodsChoosenController extends BasicController {
 		goodsChoosenService.updateActiveByIds(active, ids);
 		return AjaxResult.succeed();
 	}
-
+	
 	/**
 	 * 所有RequestMapping方法调用前的Model准备方法, 实现Struts2 Preparable二次部分绑定的效果,
 	 * 先根据form的id从数据库查出menu对象,再把Form提交的内容绑定到该对象上。

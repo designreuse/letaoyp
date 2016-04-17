@@ -35,7 +35,7 @@ public class GoodsTop extends IdEntity {
 	/**
 	 * goods一级类目	   db_column: category
 	 */
-	private Category category;
+	private Long category;
 	
     /**
      * goodsName       db_column: goods_name 
@@ -65,7 +65,6 @@ public class GoodsTop extends IdEntity {
     /**
      * 置顶位置 HOME_1 首页置顶位置1(785*368); HOME_2 首页置顶位置2(242*184)       db_column: position 
      */ 	
-	@Length(max=20)
 	private Position position;
 	//columns END
 
@@ -136,15 +135,12 @@ public class GoodsTop extends IdEntity {
 		return goods;
 	}
 	
-	@ManyToOne(cascade = {}, fetch = FetchType.LAZY)
-	@JoinColumns({
-		@JoinColumn(name = "category") 
-	})
-	public Category getCategory() {
+	@Column(name = "category")
+	public Long getCategory() {
 		return category;
 	}
 
-	public void setCategory(Category category) {
+	public void setCategory(Long category) {
 		this.category = category;
 	}
 
