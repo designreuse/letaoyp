@@ -28,8 +28,8 @@
 				
 			</div>
 			<div class="fr">
-				<a href="http://www.hzltyp.com/article.php?id=17" target="_blank">招商加盟</a>
-				<b>400-8233-660 </b>
+				<a href="#" target="_blank">招商加盟</a>
+				<b>0571-87162087</b>
 			</div>
 			<div class="clear0"></div>
 		</div>
