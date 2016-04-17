@@ -11,12 +11,14 @@
 
             </li>
             <li>招商加盟热线
-                <dt class="service-num">400-8233-660</dt>
+                <dt class="service-num">0571-87162087</dt>
             </li>
+            <!--
             <li>
                 <img src="${ctx}/static/images/redegsin/erweima.jpg" width="120">
                 <p>关注我们</p>
             </li>
+            -->
         </ul>
     </div>
     <div class="footad">
@@ -32,12 +34,15 @@
             <div class="fl">
                 <dl class="service-info">
                     <dt class="service-num">售后服务热线 </dt>
-                    <dd class="number">400-8233-660</dd>
+                    <dd class="number">0571-87162087</dd>
+                    <!--
                     <dt class="service-email">客服邮箱 </dt>
                     <dd class="email"> 328451149@qq.com </dd>
+                    -->
                 </dl>
             </div>
             <div class="fr">
+            	<!--
                 <div class="help_cat">
                     <div class="tt">联系合作</div>
                     <div class="ii"><a href="http://www.hzltyp.com/article.php?id=17" title="资费标准">资费标准</a></div>
@@ -68,9 +73,10 @@
                     <div class="ii"><a href="http://www.hzltyp.com/article.php?id=30" title="新手卖家必读：常见问题解答">新手卖家必读：常见问题解答</a></div>
                     <div class="ii"><a href="http://www.hzltyp.com/article.php?id=31" title="店长必看：如何抓住淘宝自然搜索的流量">店长必看：如何抓住淘宝自然搜索的...</a></div>
                 </div>
+                -->
             </div>
             <div class="clear10"></div>
-            <div class="footer_info"> © 2005-2016 乐淘优品 版权所有，并保留所有权利。
+            <div class="footer_info"> © 2005-2016 友橙优品 版权所有，并保留所有权利。
             </div>
         </div>
         <div class="clear10"></div>
