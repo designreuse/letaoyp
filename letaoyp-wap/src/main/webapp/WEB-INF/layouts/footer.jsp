@@ -11,12 +11,14 @@
 
             </li>
             <li>招商加盟热线
-                <dt class="service-num">400-8233-660</dt>
+                <dt class="service-num">0571-87162087</dt>
             </li>
+            <!--
             <li>
                 <img src="${ctx}/static/images/redegsin/erweima.jpg" width="120">
                 <p>关注我们</p>
             </li>
+            -->
         </ul>
     </div>
     <div class="footad">
