@@ -81,7 +81,7 @@ public class CategoryController extends AbstractController {
 		
 		model.addAttribute("topLevel1", map.get(GoodsTop.Position.HOME_SLIDE));
 		model.addAttribute("topLevel2", map.get(GoodsTop.Position.HOME_VERTICAL));
-		model.addAttribute("topLevel3", goodsService.findTop15(categoryId, Goods.Status.ONLINE));
+		model.addAttribute("topLevel3", map.get(GoodsTop.Position.HOME_HORIZONTAL));
 		
 		return "sku/category_home_shown";
 	}

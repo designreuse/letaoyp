@@ -42,8 +42,13 @@ public class FileManagerService {
 		
 		//检查目录
 		File uploadDir = new File(dir);
-		if(!uploadDir.isDirectory()){
-			throw new IllegalStateException("Base dir " + dir + " not exists");
+		if(!uploadDir.exists()){
+			log.info("mkdir :: {} ", dir);
+			boolean mkdir = uploadDir.mkdirs();
+			
+			if(!mkdir) {
+				throw new IllegalStateException("Base dir " + dir + " not exists");
+			}
 		}
 		//检查目录写权限
 		if(!uploadDir.canWrite()){

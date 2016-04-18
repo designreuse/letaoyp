@@ -27,6 +27,7 @@
 <link rel="stylesheet" href="${ctx}/static/plugins/pace/pace.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="${ctx}/static/plugins/adminLTE/css/AdminLTE.min.css">
+<link rel="stylesheet" href="${ctx}/static/css/mine.css">
 <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
       page. However, you can choose any other skin. Make sure you
       apply the skin class to the body tag so the changes take effect.

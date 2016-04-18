@@ -3,9 +3,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
+<%@ page import="com.iac.letaoyp.entity.sku.Goods.Status"%>
+<%@ page import="com.iac.letaoyp.entity.sku.GoodsTop.Position"%>
 
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
-
+<%
+  request.setAttribute("statuses", Status.values());
+  request.setAttribute("positions", Position.values());
+%>
 <div class="box">
 	<div class="box-header with-border">
 		<h3 class="box-title">
@@ -49,6 +54,18 @@
 						value="${param.page == null ? 1 : param.page}" type="hidden">
 					<input id="input_search_category" name="search_EQ_category"
 						value="${param.search_EQ_category}" type="hidden">
+					<select id="select_status" name="search_EQ_status" class="input-sm input-medium">
+					  <option value="">选择状态</option>
+					  <c:forEach items="${statuses}" var="status">
+					    <option value="${status}" <c:if test="${param.search_EQ_status == status}">selected="selected"</c:if>>${status.description}</option>
+					  </c:forEach>
+					</select>
+					<select id="select_topPostion" name="search_EQ_topPosition" class="input-sm input-medium">
+					  <option value="">选择置顶状态</option>
+					  <c:forEach items="${positions}" var="position">
+					    <option value="${position}" <c:if test="${param.search_EQ_topPosition == position}">selected="selected"</c:if>>${position.desc}</option>
+					  </c:forEach>
+					</select>
 				</div>
 			</form>
 		</h3>
@@ -98,12 +115,14 @@
 								  <a href="${ctx}/sku/goods/online/${goods.id}" class="ajax_link" type="post" title="上架"><i class="fa fa-unlock"></i> </a>
 								</c:if>
 								
-								<c:if test="${goods.topPosition != null}">
-                  <a href="${ctx}/sku/goods/untop/${goods.id}" class="ajax_link" type="post" title="取消置顶"><i class="fa fa-sort-down"></i> </a>
-                </c:if>
-                <c:if test="${goods.topPosition == null}">
-                  <a href="#modal_form" action="${ctx}/sku/goodstop/from/${goods.id}" title="设置置顶" data-toggle="modal"
-                    data-target="#modal_form"><i class="fa fa-sort-up"></i> </a>
+								<c:if test="${goods.status == 'ONLINE' && goods.active}">
+									<c:if test="${goods.topPosition != null}">
+	                  <a href="${ctx}/sku/goods/untop/${goods.id}" class="ajax_link" type="post" title="取消置顶"><i class="fa fa-sort-down"></i> </a>
+	                </c:if>
+	                <c:if test="${goods.topPosition == null}">
+	                  <a href="#modal_form" action="${ctx}/sku/goodstop/from/${goods.id}?position=HOME_HORIZONTAL" title="设置置顶" data-toggle="modal"
+	                    data-target="#modal_form"><i class="fa fa-sort-up"></i> </a>
+	                </c:if>
                 </c:if>
 							</shiro:hasPermission> 
 							<shiro:hasPermission name="sku:goods:delete">

@@ -22,6 +22,8 @@ public interface GoodsChoosenDao extends BasicRepository<GoodsChoosen,java.lang.
     @Query("delete GoodsChoosen a where a.id in (?1)")
     void deleteByIdIn(Long[] ids);
 
+    @Modifying
+    @Query("delete GoodsChoosen a where a.goods.id in (?1)")
     void deleteByGoodsIdIn(Long[] goodsIds);
     
     @Modifying

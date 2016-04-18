@@ -21,8 +21,11 @@ import org.springside.modules.web.Servlets;
 
 import com.iac.letaoyp.biz.web.AjaxResult;
 import com.iac.letaoyp.controller.BasicController;
+import com.iac.letaoyp.entity.sku.Category;
 import com.iac.letaoyp.entity.sku.Goods;
 import com.iac.letaoyp.entity.sku.GoodsTop;
+import com.iac.letaoyp.service.ServiceException;
+import com.iac.letaoyp.service.sku.CategoryService;
 import com.iac.letaoyp.service.sku.GoodsService;
 import com.iac.letaoyp.service.sku.GoodsTopService;
 
@@ -35,6 +38,8 @@ public class GoodsTopController extends BasicController {
 	private GoodsTopService goodsTopService;
 	@Autowired
 	private GoodsService goodsService;
+	@Autowired
+	private CategoryService categoryService;
 	
 	/** 列表 */
 	@RequestMapping
@@ -67,6 +72,16 @@ public class GoodsTopController extends BasicController {
 	@RequestMapping(value="from/{goodsId}", method = RequestMethod.GET)
 	public String createFrom(ModelMap model, @PathVariable java.lang.Long goodsId) {
 		Goods goods = goodsService.get(goodsId);
+		Category category = categoryService.get(goods.getCategory());
+		if(category.getParent() == null) {
+			throw new ServiceException("类目：" + category.getName() + "不允许置顶");
+		}
+		
+		if(category.getParent().longValue() != 0L) {
+			category = categoryService.get(category.getParent());
+		}
+		model.addAttribute("category", category);
+		
 		GoodsTop goodsTop = BeanMapper.map(goods, GoodsTop.class);
 		goodsTop.setCategory(goods.getCategory());
 		goodsTop.setGoods(goods);

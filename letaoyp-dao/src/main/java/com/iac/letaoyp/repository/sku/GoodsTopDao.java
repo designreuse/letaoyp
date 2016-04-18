@@ -24,5 +24,7 @@ public interface GoodsTopDao extends BasicRepository<GoodsTop,java.lang.Long>{
     @Query("update GoodsTop a set a.active = ?1 where a.goods.id in (?2)")
 	void updateActiveByGoodsIdIn(boolean active, Long[] goodsIds);
 
+    @Modifying
+    @Query("delete from GoodsTop a where a.goods.id in (?1)")
 	void deleteByGoodsIdIn(Long[] goodsIds);
 }

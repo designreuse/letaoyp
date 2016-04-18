@@ -1,0 +1,15 @@
+.input-small {
+	width: 70px;
+}
+.input-medium {
+  width: 100px;
+}
+.input-large {
+  width: 200px;
+}
+.input-xlarge {
+  width: 350px;
+}
+.input-xxlarge {
+  width: 700px;
+}

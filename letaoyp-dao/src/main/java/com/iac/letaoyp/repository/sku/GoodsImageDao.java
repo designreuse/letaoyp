@@ -26,5 +26,7 @@ public interface GoodsImageDao extends BasicRepository<GoodsImage,java.lang.Long
 
 	List<GoodsImage> findByGoodsIn(Long[] goodsIds);
 
+	@Modifying
+	@Query("delete from GoodsImage g where g.goods in (?1)")
 	void deleteByGoodsIn(Long[] ids);
 }

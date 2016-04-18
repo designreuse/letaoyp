@@ -263,7 +263,11 @@ function _initialize() {
               || $this.data('config-type') || 'GET',
           data : $this.data('data') || {},
           success : function(html) {
-            $($this.data('override') || '#content-wrapper').html(html);
+            if(typeof html == 'string') {
+              $($this.data('override') || '#content-wrapper').html(html);
+            } else {
+              $('#button_search').click();
+            }
           },
           error : errorHandler
         })

@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.jsoup.helper.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,8 +53,8 @@ public class GoodsService extends BasicService<Goods,java.lang.Long> {
 		return goodsDao;
 	}
 
-	public List<Goods> findTop15(Long category, Goods.Status status) {
-		return goodsDao.findTop(category, status.name(), 15);
+	public List<Goods> findTop(Long category, Goods.Status status, int size) {
+		return goodsDao.findTop(category, status.name(), size);
 	}
 
 	/**
@@ -105,8 +104,14 @@ public class GoodsService extends BasicService<Goods,java.lang.Long> {
 
 	public void delete(Long[] ids) {
 		List<GoodsImage> goodsImages = goodsImageDao.findByGoodsIn(ids);
+		
+		goodsImageDao.deleteByGoodsIn(ids);
+		goodsTopDao.deleteByGoodsIdIn(ids);
+		goodsChoosenDao.deleteByGoodsIdIn(ids);
+		goodsDao.deleteByIdIn(ids);
+		
 		for(GoodsImage image : goodsImages) {
-			if(StringUtil.isBlank(image.getPath())) continue;
+			if(StringUtils.isBlank(image.getPath())) continue;
 			
 			try {
 				File f = new File(image.getPath());
@@ -121,17 +126,14 @@ public class GoodsService extends BasicService<Goods,java.lang.Long> {
 				log.warn(String.format("Delete Image with path [%s] goodsImage id [%s] due to error", image.getPath(), image.getId()), e);
 			}
 		}
-		goodsImageDao.deleteByGoodsIn(ids);
-		goodsTopDao.deleteByGoodsIdIn(ids);
-		goodsChoosenDao.deleteByGoodsIdIn(ids);
-		goodsDao.deleteByIdIn(ids);
 	}
 
 	public void updateStatus(Long id, Status status) {
 		if(status == Status.ONLINE) {
 			goodsDao.updateStatusAndOnlineTimeById(status, new Date(), id);
 		} else {
-			goodsDao.updateStatusById(status, id);
+			goodsTopDao.deleteByGoodsIdIn(new Long[] {id});
+			goodsDao.updateStatusAndTopPositionById(status, null, id);
 		}
 	}
 
@@ -172,7 +174,7 @@ public class GoodsService extends BasicService<Goods,java.lang.Long> {
 
 	public void untop(Long id) {
 		goodsTopDao.deleteByGoodsIdIn(new Long[] {id});
-		goodsDao.updateTopPositionById(id);
+		goodsDao.updateTopPositionById(null, id);
 	}
 
 	/*public void top(Long id) {

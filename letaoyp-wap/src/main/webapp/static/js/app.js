@@ -127,7 +127,7 @@ function file_upload() {
         },
         error: errorHandle,
         complete: function() {
-            $parent.append($this);
+            $parent.append($this.clone());
         }
     });
 

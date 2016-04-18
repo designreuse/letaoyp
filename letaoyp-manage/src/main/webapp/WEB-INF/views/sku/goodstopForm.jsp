@@ -20,9 +20,15 @@
 			<div class="form-group">
 				<label class="col-sm-4 control-label" for="category">商品类目</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="category" name="category" type="text" value="${goodsTop.category}"
-						data-rule-required="true" data-msg-required="请输入商品类目" /> <span class="help-inline"><form:errors
-							path="category" /></span>
+				  <c:if test="${category != null}">
+				    <input type="text" value="${category.name}" class="form-control" readonly="readonly"/>
+				    <input type="hidden" name="category" value="${category.id}">
+				  </c:if>
+				  <c:if test="${category == null}">
+						<input class="form-control" id="category" name="category" type="text" value="${goodsTop.category}"
+							data-rule-required="true" data-msg-required="请输入商品类目" /> <span class="help-inline"><form:errors
+								path="category" /></span>
+				  </c:if>
 				</div>
 			</div>
 			<div class="form-group">
@@ -61,7 +67,7 @@
 				<div class="col-sm-6">
 				  <select id="select_position" name="position" class="form-control"> 
 					  <c:forEach items="${positions}" var="position">
-					    <option value="${position}" <c:if test="${position == goodsTop.position}">selected="selected"</c:if>
+					    <option value="${position}" <c:if test="${position == goodsTop.position || param.position == position}">selected="selected"</c:if>
 					      data-option='{"width": ${position.width}, "height": ${position.height}}'
 					    >${position.desc}</option> 
 					  </c:forEach>
