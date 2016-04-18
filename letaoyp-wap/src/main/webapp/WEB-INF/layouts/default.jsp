@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>乐淘优品:<sitemesh:title /></title>
+<title>友橙优品:<sitemesh:title /></title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta http-equiv="Cache-Control" content="no-store" />
 <meta http-equiv="Pragma" content="no-cache" />
