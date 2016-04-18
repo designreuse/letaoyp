@@ -105,11 +105,18 @@
 			<div class="bf">
 				<div id="Tr_cs37">
 					<div class="t">新闻中心</div>
-					<a href="" target="_blank"><img src="${ctx}/static/img/TB2xQwLkVXXXXcZXXXXXXXXXXXX_!!901865565.jpg" width="365"
-						height="337"></a> <a href="" target="_blank"><img src="${ctx}/static/img/TB2kwUUiFXXXXbnXXXXXXXXXXXX_!!901865565.jpg"
-						width="326" height="166"></a> <a href="http://daxue.taobao.com/" target="_blank"><img
-						src="${ctx}/static/img/TB28NejgFXXXXceXXXXXXXXXXXX_!!901865565.jpg"></a> <a href="http://www.hzltyp.com/article.php?id=18"
-						target="_blank"><img src="${ctx}/static/img/TB2.EicgFXXXXawXpXXXXXXXXXX_!!901865565.jpg"></a>
+					<a href="#" target="_blank">
+						<img src="${ctx}/static/img/TB2xQwLkVXXXXcZXXXXXXXXXXXX_!!901865565.jpg" width="365" height="337">
+					</a>
+					<a href="" target="_blank">
+						<img src="${ctx}/static/img/TB2kwUUiFXXXXbnXXXXXXXXXXXX_!!901865565.jpg" width="326" height="166">
+					</a>
+					<a href="http://daxue.taobao.com/" target="_blank">
+						<img src="${ctx}/static/img/TB28NejgFXXXXceXXXXXXXXXXXX_!!901865565.jpg">
+					</a> 
+					<a href="#" target="_blank">
+						<img src="${ctx}/static/img/TB2.EicgFXXXXawXpXXXXXXXXXX_!!901865565.jpg">
+					</a>
 				</div>
 			</div>
 			<div class="br">
