@@ -53,9 +53,10 @@
                         </div>
                     </div>
                 </div>
+                <!--
                 <div class="logo2 search">
                     <div id="fd_ffff">
-                        <form id="searchForm" name="searchForm" method="get" action="http://www.hzltyp.com/search.php" class="SearchBar_11_00" onsubmit="return checkSearchForm()">
+                        <form id="searchForm" name="searchForm" method="get" action="http://www.youchengds.com/search.php" class="SearchBar_11_00" onsubmit="return checkSearchForm()">
                             <div class="search_label">
                                 <select name="category" id="category" class="B_input" style="display:none">
                                     <option value="0">所有分类</option>
@@ -101,9 +102,18 @@
                             </div>
                         </form>
                         <div class="hot-keywords"> <span>热门搜索:</span>
-                            <a href="http://www.hzltyp.com/search.php?keywords=%E4%B8%89%E5%BD%A9">三彩</a> <a href="http://www.hzltyp.com/search.php?keywords=%E8%B4%9D%E6%8B%89">贝拉</a> <a href="http://www.hzltyp.com/search.php?keywords=%E5%A5%B3%E8%A3%85">女装</a> <a href="http://www.hzltyp.com/search.php?keywords=%E7%94%B7%E8%A3%85">男装</a> <a href="http://www.hzltyp.com/search.php?keywords=%E7%AB%A5%E8%A3%85">童装</a> <a href="http://www.hzltyp.com/search.php?keywords=%E6%83%85%E4%BE%A3%E8%A3%85">情侣装</a> <a href="http://www.hzltyp.com/search.php?keywords=%E5%8C%85">包</a> <a href="http://www.hzltyp.com/search.php?keywords=%E9%9E%8B%E5%AD%90">鞋子</a> </div>
+                            <a href="http://www.hzltyp.com/search.php?keywords=%E4%B8%89%E5%BD%A9">三彩</a> 
+                            <a href="http://www.hzltyp.com/search.php?keywords=%E8%B4%9D%E6%8B%89">贝拉</a> 
+                            <a href="http://www.hzltyp.com/search.php?keywords=%E5%A5%B3%E8%A3%85">女装</a> 
+                            <a href="http://www.hzltyp.com/search.php?keywords=%E7%94%B7%E8%A3%85">男装</a> 
+                            <a href="http://www.hzltyp.com/search.php?keywords=%E7%AB%A5%E8%A3%85">童装</a> 
+                            <a href="http://www.hzltyp.com/search.php?keywords=%E6%83%85%E4%BE%A3%E8%A3%85">情侣装</a> 
+                            <a href="http://www.hzltyp.com/search.php?keywords=%E5%8C%85">包</a> 
+                            <a href="http://www.hzltyp.com/search.php?keywords=%E9%9E%8B%E5%AD%90">鞋子</a> 
+                       	</div>
                     </div>
                 </div>
+                -->
             </div>
             <div class="clear0"></div>
         </div>
