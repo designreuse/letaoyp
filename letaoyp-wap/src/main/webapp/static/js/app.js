@@ -27,12 +27,12 @@ function errorHandle(jqXHR, error, errorThrown) {
     }
 }
 
-function ajax(config, withoutLoading) {
+function ajax(config, withLoading) {
     var errorFunc = config.error;
     var successFunc = config.success;
     var complateFunc = config.complete;
 
-    if (!withoutLoading) {
+    if (withLoading) {
         var loadingIndex = layer.load();
     }
 
@@ -40,7 +40,7 @@ function ajax(config, withoutLoading) {
         type: config.type || 'get',
         success: function(data) {
             if (data.sessionExpired) {
-                layer.msg('会话失效，请重新登录');
+                layer.msg('请登录后操作');
                 setTimeout(function() {location = '/user/login'}, 1000);
                 return;
             } else if (!data.success) {
@@ -61,7 +61,7 @@ function ajax(config, withoutLoading) {
             if (errorFunc) errorFunc();
         },
         complete: function() {
-            if (!withoutLoading) {
+            if (withLoading) {
                 layer.close(loadingIndex);
             }
 

@@ -27,7 +27,7 @@ import com.iac.letaoyp.security.SessionPrincipal.LoginType;
 import com.iac.letaoyp.service.user.MemberService;
 import com.iac.letaoyp.service.user.OrderService;
 import com.iac.letaoyp.util.Servlets;
-import com.iac.letaoyp.util.WebUtils;
+import com.iac.letaoyp.util.SessionUtils;
 
 /**
  * 
@@ -43,6 +43,8 @@ public class UserController extends AbstractController {
 	private MemberService memberService;
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private SessionUtils sessionUtils;
 	
 	@RequestMapping
 	public String index(Model model) {
@@ -113,7 +115,7 @@ public class UserController extends AbstractController {
 		user.setLoginDate(new Date());
 		
 		this.memberService.register(user);
-		WebUtils.setupSession(user, LoginType.PC_LOGIN);
+		sessionUtils.setupSession(user, LoginType.PC_LOGIN);
 		return "redirect:/";
 	}
 	

@@ -34,4 +34,12 @@ public class CartItemService extends BasicService<CartItem,java.lang.Long> {
 	public void delete(Long[] ids) {
 		cartItemDao.deleteByIdIn(ids);
 	}
+
+	public void delete(Long cartId, Long id) {
+		cartItemDao.deleteByCartIdAndId(cartId, id);
+	}
+
+	public void deleteByCartId(Long id) {
+		cartItemDao.deleteByCartId(id);
+	}
 }

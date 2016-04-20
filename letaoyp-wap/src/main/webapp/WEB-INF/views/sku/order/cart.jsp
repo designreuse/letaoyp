@@ -6,7 +6,7 @@
 <c:set var="visit_history" value="${sessionScope._key_visit_history.list}"/>
 <html>
 <head>
-<title>Home</title>
+<title>购物车</title>
 <link href="${ctx}/static/css/style.css" rel="stylesheet" type="text/css">
 <link href="${ctx}/static/css/ec11.css" rel="stylesheet" type="text/css">
 <link href="${ctx}/static/css/category.css" rel="stylesheet" type="text/css">
@@ -32,7 +32,7 @@
                     </tr>
                     
                     <c:forEach items="${items}" var="cartItem">
-                    	<tr>
+                    	<tr id="cartitem_${cartItem.id}" class="cartItem">
                          <td align="center">
                              <div class="fl">
                                  <a href="${ctx}/sku/goods/${cartItem.goods.id}" target="_blank">
@@ -48,14 +48,14 @@
                                  </p>
                              </div>
                          </td>
-                         <td>￥<span class="span_price">${cartItem.price / 100}</span></td>
+                         <td>￥<span>${cartItem.price / 100}</span></td>
                          <td>
                          	${cartItem.quantity}
                              <!-- <input name="submit" type="button" class="fd30_jian_606" value="-" onclick="decrement(${cartItem.id})"> -->
                              <!-- <input type="text" name="goods_number[606]" id="goods_number_606" value="${cartItem.quantity}" size="2" class="inputBg fd30_num" style="text-align:center " onkeydown="showdiv(this)"> -->
                              <!-- <input name="submit" type="button" class="fd30_jia_606" value="+" onclick="increment(${cartItem.id})"> -->
                          </td>
-                         <td align="right">￥${cartItem.price * cartItem.quantity / 100}</td>
+                         <td align="right">￥<span class="span_price">${cartItem.price * cartItem.quantity / 100}</span></td>
                          <td align="center">
                              <a href="javascript:deleteCartItem(${cartItem.id})" class="f6">删除</a>
                              <a href="javascript:;" class="f6">放入收藏夹</a>
@@ -69,7 +69,7 @@
                     <tr>
                         <td>
                             <a href="${ctx}/"><img src="${ctx}/static/images/continue.gif" alt="continue"></a>
-                            <input type="button" value="清空购物车" class="fd30_clear" />
+                            <input id="button_clear_cart" type="button" value="清空购物车" class="fd30_clear" />
                         </td>
                         <td>
                             <div class="fr"> <a href="${ctx}/sku/order/from/cart" class="fd30_checkout">去结算</a></div>
@@ -87,13 +87,50 @@
     <script type="text/javascript" src="${ctx}/static/lib/jquery/jquery-1.9.1.min.js"></script>
     <script>
     	$(function() {
-    		var totalPrice = 0;
-    		$('.span_price').each(function() {
-    			totalPrice += parseInt($(this).text());
-    		})
-    		
-    		$('#total_price').html('<em>总计：￥</em>' + totalPrice);
+    	  computePrice();
+    		$('#button_clear_cart').click(clearCart);
     	})
+    	
+    	function computePrice() {
+    	  var totalPrice = 0;
+        $('.span_price').each(function() {
+          totalPrice += parseInt($(this).text());
+        })
+        
+        $('#total_price').html('<em>总计：￥</em>' + totalPrice);
+    	}
+    	
+    	function deleteCartItem(cartItem) {
+    	  $.ajax({
+    	    url: '${ctx}/sku/order/cart/' + cartItem, 
+    	    type: 'DELETE',
+    	    success: function(data) {
+    	      if(data.success) {
+    	        $('#cartitem_' + cartItem).fadeOut();
+    	        $('#cartitem_' + cartItem).find('.span_price').removeClass('span_price');
+    	        computePrice();
+    	      } else {
+    	        layer.msg(data.msg || 'Sorry 操作失败，请稍后再试');
+    	      }
+    	    }
+    	  })
+    	}
+    	
+    	function clearCart() {
+    	  $.ajax({
+          url: '${ctx}/sku/order/cart',
+          type: 'DELETE',
+          success: function(data) {
+            if(data.success) {
+              $('tr.cartItem .span_price').removeClass('span_price');
+              $('tr.cartItem').fadeOut();
+              computePrice();
+            } else {
+              layer.msg(data.msg || 'Sorry 操作失败，请稍后再试');
+            }
+          }
+        })
+    	}
     </script>
 </body>
 </html>

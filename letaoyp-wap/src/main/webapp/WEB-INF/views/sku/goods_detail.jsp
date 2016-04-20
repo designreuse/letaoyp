@@ -26,7 +26,7 @@
 					</c:forEach>
 					
 					<code>&gt;</code>
-					<a href="javascript:;">${category.name}</a>
+					<a href="javascript:void(0);">${category.name}</a>
 	            
                 </div>
             </div>
@@ -42,7 +42,7 @@
                         	<c:forEach items="${images}" var="image">
                         		<div class="cxjitem">
                         			
-	                                <a <c:if test="${goods.image == image.src}">class="a_h"</c:if> href="javascript:;" rev="${image.src}" title=""> <img src="${image.src}" alt="${goods.name}"></a>
+	                                <a <c:if test="${goods.image == image.src}">class="a_h"</c:if> href="javascript:void(0);" rev="${image.src}" title=""> <img src="${image.src}" alt="${goods.name}"></a>
 	                            </div>
                         	</c:forEach>
                         </div>
@@ -70,6 +70,7 @@
                             </div>
                         </div> -->
                         <div class="clear0"></div>
+                        <div class="market_prices"> <strong>市场价格：</strong><font class="market">￥${goods.marketPrice / 100}</font> </div>
                     </div>
                     <div class="clear10"></div>
                     <table width="100%" border="0" cellpadding="0" cellspacing="15" class="COMMENT_table">
@@ -84,7 +85,7 @@
                     <div class="clear0"></div>
                     <ul class="fd30_ulinfo">
                     	<c:if test="${goods.brand != null }">
-                        	<li> <strong>商品品牌：</strong><a href="javascript:;">${goods.brand.name}</a> </li>
+                        	<li> <strong>商品品牌：</strong><a href="javascript:void(0);">${goods.brand.name}</a> </li>
                         </c:if>
                         <li> <strong>商品重量：</strong>${goods.weight}${goods.unit} </li>
                         <li>
@@ -230,17 +231,17 @@
 		
 		var price = $('goods.salesPrice');
 		function computePrice() {
-			if(!/[0-9]/.test($('#number').val())) {
+			if(!/^[0-9]+$/g.test($('#number').val())) {
 				$('#number').val('1');
 			}
 			
 			var num = $('#number').val();
-			var p = 0;
+			var p = '${goods.salesPrice}';
 			$('.padd.loop .label_click').each(function() {
 				var _this = $(this);
 				p += _this.data('price');
 			})
-			$('#ECS_GOODS_AMOUNT').html('￥' + p / 100);
+			$('#ECS_GOODS_AMOUNT').html('￥' + num * (p / 100).toFixed(2));
 		}
 		
 		function addToCart(goods) {
@@ -266,6 +267,8 @@
 				success: function(data) {
 					// animate pic into the cart
 					layer.msg('已加入购物车');
+					var num = parseInt($('#cartCount').html());
+					$('#cartCount').html(num + 1);
 				}
 			})
 			

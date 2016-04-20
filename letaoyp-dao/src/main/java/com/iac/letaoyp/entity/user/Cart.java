@@ -1,5 +1,7 @@
 package com.iac.letaoyp.entity.user;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +10,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -30,6 +33,8 @@ public class Cart extends IdEntity {
 	@NotBlank @Length(max=255)
 	private java.lang.String cartKey;
 	//columns END
+	
+	private List<CartItem> items;
 	
 	@Column(name = "cart_key")
 	public java.lang.String getCartKey() {
@@ -56,6 +61,15 @@ public class Cart extends IdEntity {
 	@PrePersist
 	private void prePersist() {
 		if(cartKey == null) this.cartKey = "N/A";
+	}
+
+	@Transient
+	public List<CartItem> getItems() {
+		return items;
+	}
+
+	public void setItems(List<CartItem> items) {
+		this.items = items;
 	}
 }
 

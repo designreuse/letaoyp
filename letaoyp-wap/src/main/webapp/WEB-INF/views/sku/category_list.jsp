@@ -206,7 +206,7 @@
 								</li>
 								<li><a href="${ctx}/sku/goods/${goods.id}"
 									target="_blank" title="${goods.name}">${goods.name}</a>
-									<br>本店售价： <font class="f1">￥${goods.salesPrice}</font> <br></li>
+									<br>本店售价： <font class="f1">￥${goods.salesPrice / 100}</font> <br></li>
 							</ul>
 						</c:forEach>
 						<ul id="clear_history">

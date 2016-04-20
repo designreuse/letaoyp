@@ -1,5 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div id="header">
 	<a name="top"></a>
 	<div class="fd_top_ad">
@@ -45,7 +46,7 @@
                 <div class="logo3">
                     <div class="cart" id="ECS_CARTINFO">
                         <div id="ECS_CARTINFO" class="fd30_slideTog">
-                            <h4><a href="${ctx}/sku/order/cart">购物车<b id="goodsCount">(0)</b></a></h4>
+                            <h4><a href="${ctx}/sku/order/cart">购物车(<span id="cartCount">${fn:length(sessionScope._letaoyp_u_.cart.items)}</span>)</a></h4>
                             <div id="cart_list" class="slideTog_info">
                                 <div class="noprc">您购物车暂商品，赶紧选购吧！</div>
                             </div>

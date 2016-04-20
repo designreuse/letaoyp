@@ -18,7 +18,7 @@ import com.iac.letaoyp.security.SessionPrincipal.LoginType;
 import com.iac.letaoyp.service.ServiceException;
 import com.iac.letaoyp.service.user.MemberService;
 import com.iac.letaoyp.util.Servlets;
-import com.iac.letaoyp.util.WebUtils;
+import com.iac.letaoyp.util.SessionUtils;
 
 @Controller
 @RequestMapping("user")
@@ -26,7 +26,8 @@ public class LoginController {
 	
 	@Autowired
 	private MemberService memberService;
-	
+	@Autowired
+	private SessionUtils sessionUtils;
 
 	@RequestMapping(value="login", method=RequestMethod.GET)
 	@SessionOption(false)
@@ -51,14 +52,14 @@ public class LoginController {
 		if(remember) {
 			Servlets.setCookie(Principal.ACCOUNT_COOKIE_KEY, member.getUsername(), 30, TimeUnit.DAYS);
 		}
-		WebUtils.setupSession(member, LoginType.PC_LOGIN);
+		sessionUtils.setupSession(member, LoginType.PC_LOGIN);
 		
 		return "redirect:" + redirect;
 	}
 	
 	@RequestMapping(value="logout", method=RequestMethod.GET)
 	public String logout() {
-		WebUtils.cleanSession();
+		sessionUtils.cleanSession();
 		
 		return "redirect:/";
 	}

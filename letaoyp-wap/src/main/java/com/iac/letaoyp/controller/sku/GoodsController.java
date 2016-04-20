@@ -21,7 +21,7 @@ import com.iac.letaoyp.service.sku.GoodsChoosenService;
 import com.iac.letaoyp.service.sku.GoodsImageService;
 import com.iac.letaoyp.service.sku.GoodsService;
 import com.iac.letaoyp.util.CollectionsUtil;
-import com.iac.letaoyp.util.WebUtils;
+import com.iac.letaoyp.util.SessionUtils;
 
 @Controller
 @RequestMapping("sku/goods")
@@ -38,6 +38,9 @@ public class GoodsController extends AbstractController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private SessionUtils sessionUtils;
 	
 	@RequestMapping("{id}")
 	public String detail(@PathVariable("id") Long id, HttpServletRequest request,  Model model) {
@@ -56,13 +59,13 @@ public class GoodsController extends AbstractController {
 		Map<Object, List<GoodsChoosen>> choosen = CollectionsUtil.extractToMap(list, "name");
 		model.addAttribute("choosen", choosen);
 		
-		WebUtils.addVisitHistory(goods);
+		sessionUtils.addVisitHistory(goods);
 		return "sku/goods_detail";
 	}
 	
 	@RequestMapping("clearVisitHistory")
 	public AjaxResult clearVisitHistory() {
-		WebUtils.clearVisitHistory();
+		sessionUtils.clearVisitHistory();
 		
 		return AjaxResult.succeed();
 	}

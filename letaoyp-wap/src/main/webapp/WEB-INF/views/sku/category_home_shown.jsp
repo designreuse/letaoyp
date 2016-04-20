@@ -66,7 +66,7 @@
                     	<c:forEach items="${topLevel3}" var="topGoods">
                     		<div class="cxjitem">
 	                            <div class="p">
-	                                <a href="${ctx}/sku/goods/${topGoods.id}" class="aimg">
+	                                <a href="${ctx}/sku/goods/${topGoods.goods.id}" class="aimg">
 	                                	<img src="${topGoods.topImage}" width="310" height="310" alt="${topGoods.goodsName}" class="goodsimg">
 	                               	</a>
 	                            </div>

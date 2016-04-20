@@ -2,6 +2,7 @@ package com.iac.letaoyp.security;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.iac.letaoyp.entity.user.Cart;
 import com.iac.letaoyp.entity.user.Member;
 import com.opentech.cloud.sox.common.configuration.annotation.SessionConfiguration;
 
@@ -18,6 +19,8 @@ public class SessionPrincipal extends Principal {
 	private Member member;
 	
 	private LoginType loginType;
+	
+	private Cart cart;
 	
 	/**
 	 * 如果有更新用户时，记录最后更新时间 以更新session信息
@@ -70,6 +73,14 @@ public class SessionPrincipal extends Principal {
 
 	@Override
 	public boolean isActualLogin() {
-		return this.loginType != LoginType.PC_LOGIN;
+		return this.loginType == LoginType.PC_LOGIN;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 }

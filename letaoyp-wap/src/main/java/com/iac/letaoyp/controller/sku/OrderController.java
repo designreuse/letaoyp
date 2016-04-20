@@ -28,6 +28,7 @@ import com.iac.letaoyp.service.user.CartItemService;
 import com.iac.letaoyp.service.user.CartService;
 import com.iac.letaoyp.service.user.OrderItemService;
 import com.iac.letaoyp.service.user.OrderService;
+import com.iac.letaoyp.util.SessionUtils;
 
 @Controller
 @RequestMapping("sku/order")
@@ -44,11 +45,13 @@ public class OrderController extends AbstractController {
 	private OrderService orderService;
 	@Autowired
 	private OrderItemService orderItemService;
+	@Autowired
+	private SessionUtils sessionUtils;
 	
 	@RequestMapping(value = "cart", method = RequestMethod.GET)
 	public String cart(Model model) {
 		Member member = this.getCurrentUser();
-		Cart cart = cartService.findByMemberId(member.getId());
+		Cart cart = cartService.findByMember(member);
 		
 		if(cart != null) {
 			List<CartItem> items = cartItemService.findByCartId(cart.getId());
@@ -68,9 +71,27 @@ public class OrderController extends AbstractController {
 		if(StringUtils.isNotBlank(predicate)) 
 			return AjaxResult.fail(predicate);
 		
-		cartService.addCart(member, goods, choosen, count);
+		CartItem ci = cartService.addCart(member, goods, choosen, count);
+		sessionUtils.addSessionCart(ci);
 		return AjaxResult.succeed();
 	}
+	
+	@RequestMapping(value = "cart/{id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public AjaxResult deleteCart(@PathVariable Long id) {
+		cartItemService.delete(sessionUtils.getSessionPrincipal().getCart().getId(), id);
+		sessionUtils.clearSessionCart(id);
+		return AjaxResult.succeed();
+	}
+	
+	@RequestMapping(value = "cart", method = RequestMethod.DELETE)
+	@ResponseBody
+	public AjaxResult deleteCart() {
+		cartItemService.deleteByCartId(sessionUtils.getSessionPrincipal().getCart().getId());
+		sessionUtils.clearSessionCart(null);
+		return AjaxResult.succeed();
+	}
+
 	
 	/**
 	 * 购物车点击结算 write订单
@@ -79,7 +100,7 @@ public class OrderController extends AbstractController {
 	@RequestMapping(value = "from/cart", method = RequestMethod.GET)
 	public String orderFromCart(Model model) {
 		Member member = this.getCurrentUser();
-		Cart cart = cartService.findByMemberId(member.getId());
+		Cart cart = cartService.findByMember(member);
 		
 		if(cart != null) {
 			List<CartItem> items = cartItemService.findByCartId(cart.getId());
@@ -98,6 +119,7 @@ public class OrderController extends AbstractController {
 		Member member = this.getCurrentUser();
 		
 		Order order = orderService.generateFromCart(member, shippingAddress);
+		sessionUtils.clearSessionCart(null);
 		
 		return "redirect:/sku/order/confirm/" + order.getId();
 	}
