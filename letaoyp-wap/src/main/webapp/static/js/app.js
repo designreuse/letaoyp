@@ -15,7 +15,7 @@ function errorHandle(jqXHR, error, errorThrown) {
         layer.msg('不支持的方法');
     } else if (status == 401) {
         //needLogin
-        layer.msg('会话失效，请重新登录');
+        layer.msg('请登录后操作');
         setTimeout(function() {location = '/user/login'}, 1000);
     } else if (status == 403) {
         var headerMsg = jqXHR.getResponseHeader('msg');

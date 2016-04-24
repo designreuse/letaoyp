@@ -11,6 +11,7 @@
 	<div class="fd_top0">
 		<div class="fd_top">
 			<div class="fl">
+			<!-- 
 				<c:choose>
 					<c:when test="${member != null}">
 						<font id="ECS_MEMBERZONE"><div id="append_parent"></div> <font>
@@ -26,7 +27,7 @@
 						</font>
 					</c:otherwise>
 				</c:choose>
-				
+				 -->
 			</div>
 			<div class="fr">
 				<a href="#" target="_blank">招商加盟</a>

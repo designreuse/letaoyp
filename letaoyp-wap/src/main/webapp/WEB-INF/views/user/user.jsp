@@ -24,7 +24,7 @@
             <div class="box">
                 <div class="box_1">
                     <div class="userCenterBox boxCenterList clearfix" style="_height:1%;">
-                        <font class="f5"><b class="f4">${member.username}</b> 欢迎您回到 乐淘优品！</font>
+                        <font class="f5"><b class="f4">${member.username}</b> 欢迎您回到 友橙优品！</font>
                         <br>
                         <div class="blank"></div>
                         您的上一次登录时间: <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${member.loginDate}" />

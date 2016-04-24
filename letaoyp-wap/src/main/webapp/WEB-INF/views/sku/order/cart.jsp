@@ -10,6 +10,9 @@
 <link href="${ctx}/static/css/style.css" rel="stylesheet" type="text/css">
 <link href="${ctx}/static/css/ec11.css" rel="stylesheet" type="text/css">
 <link href="${ctx}/static/css/category.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="${ctx}/static/lib/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${ctx}/static/lib/jquery.cookie.js"></script>
 </head>
 <body>
 	<div class="reg_top">
@@ -58,7 +61,6 @@
                          <td align="right">￥<span class="span_price">${cartItem.price * cartItem.quantity / 100}</span></td>
                          <td align="center">
                              <a href="javascript:deleteCartItem(${cartItem.id})" class="f6">删除</a>
-                             <a href="javascript:;" class="f6">放入收藏夹</a>
                          </td>
                      </tr>
                     </c:forEach>

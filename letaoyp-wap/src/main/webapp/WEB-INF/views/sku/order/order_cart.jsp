@@ -6,9 +6,12 @@
 <c:set var="visit_history" value="${sessionScope._key_visit_history.list}"/>
 <html>
 <head>
-<title>下单</title>
+<title>订单</title>
 <link href="${ctx}/static/css/style.css" rel="stylesheet" type="text/css">
 <link href="${ctx}/static/css/ec11.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="${ctx}/static/lib/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${ctx}/static/lib/jquery.cookie.js"></script>
 </head>
 <body>
 	<div class="reg_top">
@@ -32,7 +35,7 @@
                         </tr>
                         <c:forEach items="${items}" var="cartItem">
                         
-                        <tr>
+                        <tr class="goods">
                             <td>
                                 <a href="${ctx}/sku/goods/${cartItem.goods.id}" target="_blank" class="f6">${cartItem.goods.name}</a>
                             </td>
@@ -44,12 +47,12 @@
                             </td>
                             <td align="right">￥${cartItem.price / 100}</td>
                             <td align="right">${cartItem.quantity}</td>
-                            <td align="right">￥<span="span_price">${cartItem.price * cartItem.quantity / 100}</span></td>
+                            <td align="right">￥<span class="span_price">${cartItem.price * cartItem.quantity / 100}</span></td>
                         </tr>
                         
                         </c:forEach>
                         <tr>
-                            <td colspan="7" id="total_price">
+                            <td colspan="7" id="total">
                                 <em>总计：</em>￥311.00 </td>
                         </tr>
                     </tbody>
@@ -57,24 +60,24 @@
             </div>
             <div class="blank"></div>
             <div class="flowBox">
-                <h6><span>收货人信息</span><a href="javascript:;" id="modify_consignee" class="f6">修改</a></h6>
+                <h6><span id="span_consignee">收货人信息</span><a href="javascript:void(0);" id="modify_consignee" class="f6">修改</a></h6>
                 <table width="100%" align="center" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
                     <tbody>
                         <tr>
-                            <td>收货人姓名:</td>
-                            <td class="modifiable" data-id="receiver">Markin</td>
-                            <td>电子邮件地址:</td>
-                            <td class="modifiable" data-id="email">iacdingping@gmail.com</td>
+                            <td width="25%">收货人姓名:</td>
+                            <td width="25%" class="modifiable" data-id="receiver"></td>
+                            <td width="25%">电子邮件地址:</td>
+                            <td width="25%" class="modifiable" data-id="email" data-pattern=".+@.+\..+"></td>
                         </tr>
                         <tr>
                             <td>详细地址:</td>
-                            <td class="modifiable" data-id="address">湖北高级人才中心市场 </td>
+                            <td class="modifiable" data-id="address"></td>
                             <td>邮政编码:</td>
-                            <td class="modifiable" data-id="zipCode">430034</td>
+                            <td class="modifiable" data-id="zipCode" data-pattern="^[0-9]{4, 10}$"></td>
                         </tr>
                         <tr>
                             <td>手机:</td>
-                            <td class="modifiable" data-id="mobile">18012341234</td>
+                            <td class="modifiable" data-id="mobile" data-pattern="^1[0-9]{10}$"></td>
                             <td>收货时间:</td>
                             <td class="modifiable" data-id="receiveTime">9:00 - 24:00</td>
                         </tr>
@@ -182,6 +185,7 @@
                                 <textarea name="postscript" cols="80" rows="3" id="postscript" style="border:1px solid #ccc;"></textarea>
                             </td>
                         </tr>
+                        <!-- 
                         <tr>
                             <td><strong>缺货处理:</strong></td>
                             <td>
@@ -195,7 +199,7 @@
                                     <input name="how_oos" type="radio" value="2" onclick="changeOOS(this)"> 与店主协商
                                 </label>
                             </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -228,7 +232,7 @@
                     </table>
                 </div>
                 <div align="center" style="margin:15px auto;">
-                    <input type="image" src="${ctx}/static/images/bnt_subOrder.gif">
+                    <input id="submit" type="image" src="${ctx}/static/images/bnt_subOrder.gif">
                     <input type="hidden" name="step" value="done">
                 </div>
             </div>
@@ -236,24 +240,66 @@
     </div>
     <jsp:include page="/WEB-INF/layouts/footer.jsp"></jsp:include>
     
-    <script type="text/javascript" src="${ctx}/static/lib/jquery/jquery-1.9.1.min.js"></script>
     <script>
     	$(function() {
-    		var amount = 0;
-    		$('.span_price').each(function() {
-    			amount += parseInt($(this).text());
-    		})
-    		
-    		$('#total_price').html('<em>总计：￥</em>' + amount);
-    		$('#payment').html('￥' + amount);
-    		$('#goods_price').html('￥' + amount);
+    	  computePrice();
     		modifyConsignee();
+    		
+    		$('#submit').click(function(e) {
+    		  var invalidInput = false;
+    		  $('input[required]').each(function() {
+    		    var _this = $(this);
+    		    if(_this.val().trim() == '') {
+    		      invalidInput = true;
+    		      _this.parent().prev().css('color', 'red');
+    		    } else {
+    		      _this.parent().prev().css('color', 'black');
+    		    }
+    		  })
+    		  
+    		  $('input[pattern]').each(function() {
+            var _this = $(this);
+            var reg = new RegExp(_this.attr('pattern'));
+            if(!reg.test(_this.val())) {
+              console.log('reg::' + _this.attr('pattern') + ' not valid');
+              invalidInput = true;
+              _this.parent().prev().css('color', 'red');
+            } else {
+              _this.parent().prev().css('color', 'black');
+            }
+          })
+    		  
+    		  if(invalidInput) {
+    		    e.preventDefault();
+	    		  $('#span_consignee').html('收货人信息填写错误');
+	          location = '#modify_consignee';
+	          return false;
+    		  }
+    		  
+    		  if($('.goods').length == 0) {
+    		    e.preventDefault();
+    		    alert('抱歉，物品栏没有商品，无法创建订单');
+    		    return false;
+    		  }
+    		})
     	})
+    	
+    	function computePrice() {
+        var amount = 0;
+        $('.span_price').each(function() {
+          amount += parseInt($(this).text());
+        })
+        
+        $('#total').html('<em>总计：￥</em>' + amount);
+        $('#goods_price').html('￥' + amount);
+        $('#payment').html('￥' + amount);
+      }
     	
     	function modifyConsignee() {
     		$('.modifiable').each(function() {
     			var _this = $(this);
-    			_this.html('<span>' + _this.html() + '</span><input id="' + _this.data('id') + '" name="' + _this.data('id') + '" value="' + _this.html() + '" />')
+    			var pattern = _this.data('pattern') ? ' pattern="' + _this.data('pattern') + '"' : '';
+    			_this.html('<span>' + _this.html() + '</span><input required id="' + _this.data('id') + '" name="' + _this.data('id') + '" value="' + _this.html() + '"' + pattern + ' />')
     				.addClass('modify');
     		})
     		

@@ -88,7 +88,7 @@ public class CategoryController extends AbstractController {
 	
 	@RequestMapping("{id}")
 	public String list(@PathVariable Long id,
-			@RequestParam(value="pageNumber", required=false, defaultValue="1") int pageNumber,
+			@RequestParam(value="page", required=false, defaultValue="1") int pageNumber,
 			@RequestParam(value="pageSize", required=false, defaultValue=DEFAULT_PAGE_SIZE) int pageSize,
 			@RequestParam(value = "sortType", required=false, defaultValue = DEFAULT_SORT_TYPE) String sortType,
 			Model model, HttpServletRequest request) {

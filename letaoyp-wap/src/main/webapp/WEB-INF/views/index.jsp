@@ -13,8 +13,17 @@
           <div class="cxjinfo" style="width: 6745px; left: -1349px;">
             <c:forEach items="${topSlideAdvertises}" var="advertise">
               <div class="cxjitem" style="width: 1349px; background-image: url(&quot;${advertise.image}&quot;);">
-                <a href="${empty advertise.link ? ctx + '/' : advertise.link}" target="_blank"><img
-                  src="${advertise.image}" width="1920" height="500" border="0"></a>
+                <c:choose>
+                  <c:when test="${empty advertise.link}">
+                    <a href="${ctx}/" target="_blank">
+                    <img src="${advertise.image}" width="1920" height="500" border="0"></a>
+                  </c:when>
+                  <c:otherwise>
+                    <a href="${advertise.link}" target="_blank">
+                    <img src="${advertise.image}" width="1920" height="500" border="0"></a>
+                  </c:otherwise>
+                </c:choose>
+                
               </div>
             </c:forEach>
             
@@ -92,7 +101,14 @@
       
   	  <c:if test="${not empty categoryAdvertise.image}">
 				<div id="Tr_cs10">
-						<a href="${not empty categoryAdvertise.link ? categoryAdvertise.link : '#nogo'}" target="_blank">
+				  <c:choose>
+				    <c:when test="${empty categoryAdvertise.link}">
+				      <a href="${'#nogo'}">
+				    </c:when>
+				    <c:otherwise>
+				      <a href="${categoryAdvertise.link}" target="_blank">
+				    </c:otherwise>
+				  </c:choose>
 						<img src="${categoryAdvertise.image}" width="1200" height="124" border="0"></a>
 				</div>
 			</c:if>

@@ -1,0 +1,147 @@
+
+.main {
+	width: 121px;
+	height: 102px;
+	padding-top: 175px;
+	background-repeat: no-repeat;
+}
+
+.bg {
+	background-image:
+		url(http://combo.b.qq.com/crm/wpa/release/3.3/wpa/views/b03.png)
+}
+
+.btn {
+	position: absolute;
+	display: block;
+}
+
+.btnText {
+	top: 250px;
+	left: 18px;
+	display: block;
+	width: 84px;
+	height: 22px;
+	font-size: 12px;
+	font-weight: normal;
+	color: #000;
+	text-align: center;
+	text-decoration: none;
+	line-height: 22px;
+}
+
+.offlineBtnText {
+	display: none;
+}
+
+.offline .onlineBtnText {
+	display: none;
+}
+
+.offline .offlineBtnText {
+	display: inline;
+}
+
+.closeBtn {
+	top: 0;
+	right: 6px;
+	width: 39px;
+	height: 26px;
+}
+
+.content .subTitle {
+	height: 18px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #095996;
+	line-height: 18px;
+	text-align: center;
+	overflow-y: hidden;
+}
+
+.content .plainText {
+	height: 28px;
+	margin-top: 14px;
+	padding: 0 5px;
+	font-size: 12px;
+	color: #2f6b99;
+	line-height: 14px;
+	text-align: center;
+	word-wrap: break-word;
+	overflow-y: hidden;
+}
+
+.main2 {
+	width: 327px;
+	height: 172px;
+	background-repeat: no-repeat;
+}
+
+.bg2 {
+	background-image:
+		url(http://combo.b.qq.com/crm/wpa/release/3.3/wpa/views/b02.png)
+}
+
+.btn2 {
+	position: absolute;
+	display: block;
+}
+
+.launchBtn2 {
+	top: 145px;
+	left: 173px;
+	width: 69px;
+	height: 22px;
+}
+
+.laterBtn2 {
+	top: 145px;
+	left: 248px;
+	width: 69px;
+	height: 22px;
+}
+
+.closeBtn2 {
+	top: 0;
+	right: 6px;
+	width: 39px;
+	height: 26px;
+}
+
+.title2 {
+	position: absolute;
+	top: 1px;
+	left: 17px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 16px;
+	color: #000;
+}
+
+.content2 {
+	position: absolute;
+	top: 45px;
+	left: 114px;
+	width: 203px;
+	height: 85px;
+}
+
+.content2 .msg2 {
+	font-size: 12px;
+	color: #000;
+	line-height: 25px;
+}
+
+.bg3 {
+	margin-left: 20px;
+  background-image:
+    url(http://combo.b.qq.com/crm/wpa/release/3.3/wpa/views/a01.png);
+}
+
+.launchBtn3 {
+    height: 22px;
+    background-repeat: no-repeat;
+    text-indent: 15px;
+    line-height: 22px;
+    cursor: pointer;
+}

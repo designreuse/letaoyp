@@ -27,7 +27,7 @@ request.setAttribute("end", end);
             	<span class="lis page_now">${i}</span>
             </c:when>
             <c:otherwise>
-            	<a href="?page=${i}&sortType=${sortType}&${searchParams}" class="lis">8</a>
+            	<a href="?page=${i}&sortType=${sortType}&${searchParams}" class="lis">${i}</a>
             </c:otherwise>
         </c:choose>
     </c:forEach>
