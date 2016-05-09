@@ -256,7 +256,7 @@
 				'    </div>' +
 				'</li>'
 		);
-		$menu.append('<li><a href="http://pan.baidu.com/s/1i3XhI9v" target="_blank">数据包下载</a></li>');
+		$menu.append('<li><a href="http://pan.baidu.com/s/1bZn0rs" target="_blank">数据包下载</a></li>');
 	}
 
 	$(function() {
